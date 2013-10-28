@@ -50,7 +50,7 @@
                             <label>Status:</label>
                             <div class="field">
                               <select name="status" id="status" class="validate[required]">
-                                <option value="">Select Status</option>
+                                <option value="" <?php echo( ($status ==0) ?"Selected":"")?>>Select Status</option>
                                 <option value="0" <?php echo( ($status ==0) ?"Selected":"")?>>Disable</option>
       								          <option value="1" <?php echo( ($status ==1) ?"Selected":"")?>>Enable</option>
                               </select>

@@ -5,10 +5,10 @@
         <!-- #contentHeader -->    
         <div class="container">
             <div class="grid-18">
-            	<?php if($this->session->flashdata('orientation_msg')): ?>
+            	<?php if($this->session->flashdata('scategory_msg')): ?>
                          <div class="notify notify-success">                        
                             <a class="close" href="javascript:;">×</a>                        
-                            <h3><?php echo $this->session->flashdata('orientation_msg');?></h3>                        
+                            <h3><?php echo $this->session->flashdata('scategory_msg');?></h3>                        
                         </div>
                     <?php endif; ?>
                 <div class="widget">

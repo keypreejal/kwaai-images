@@ -5,10 +5,10 @@
         <!-- #contentHeader -->    
         <div class="container">
             <div class="grid-18">
-            	<?php if($this->session->flashdata('orientation_msg')): ?>
+            	<?php if($this->session->flashdata('category_msg')): ?>
                          <div class="notify notify-success">                        
                             <a class="close" href="javascript:;">×</a>                        
-                            <h3><?php echo $this->session->flashdata('orientation_msg');?></h3>                        
+                            <h3><?php echo $this->session->flashdata('category_msg');?></h3>                        
                         </div>
                     <?php endif; ?>
                 <div class="widget">
@@ -30,7 +30,7 @@
                                     <label>Status:</label>
                                     <div class="field">
                                        <select name="status" id="status" class="validate[required]">
-                                            <option value="">Select Status</option>
+                                            <option value="" <?php echo( ($status ==-1) ?"Selected":"")?>>Select Status</option>
                                              <option value="0" <?php echo( ($status ==0) ?"Selected":"")?>>Disable</option>
               								 <option value="1" <?php echo( ($status ==1) ?"Selected":"")?>>Enable</option>
                                         </select>

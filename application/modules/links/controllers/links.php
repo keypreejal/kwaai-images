@@ -6,6 +6,7 @@ class Links extends MY_Controller {
   {
    	 parent::__construct();    
 	 $this->load->model('admin/admin_model');
+	 $this->template->set_template('default');
   }
  
   public function index()
@@ -61,6 +62,9 @@ class Links extends MY_Controller {
 							$this->session->set_flashdata('slink_msg', 'Error In Adding Social Link.');					
 						}
 				   }
+				   else {
+				   		$this->session->set_flashdata('slink_msg', 'Link with that Name Already Exits.');
+				   	}
 			   }
 		   }
 	   }
@@ -110,7 +114,7 @@ class Links extends MY_Controller {
 		else {
 			$data['ltitle'] = '';
 			$data['lurl'] = '';
-			$data['status'] = '';
+			$data['status'] = -1;
 		}
 		return $data;
   }

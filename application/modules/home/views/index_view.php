@@ -25,32 +25,33 @@
                             <span></span>
                         </h2>
 
-                        <div class="dashboard_report first activeState">
-                            <div class="pad">
-                                <span class="value">USER</span>
-                                ADD NEW USER
+                        <div class="dashboard_report first defaultState">
+                            <div class="sub">
+                               <a href="#"> <span class="value">SUBSCRIPTION</span>
+                                List Subscriber</a>
                             </div>
                             <!-- .pad --> </div>
                         <div class="dashboard_report defaultState">
-                            <div class="pad">
-                                <span class="value">USER</span>
-                                LIST USER
+                            <div class="cat">
+                               <a href="<?php echo site_url();?>/categories/aeddcategories"><span class="value">CATEGORY</span>
+                                Add Category </a>
                             </div>
                             <!-- .pad --> </div>
 
                         <div class="dashboard_report defaultState">
-                            <div class="pad">
-                                <span class="value">MAP</span>
-                                ADD NEW MAP
-                            </div>
-                            <!-- .pad --> </div>
-                        <div class="dashboard_report defaultState">
-                            <div class="pad">
-                                <span class="value">MAP</span>
-                                LIST AVAILABLE MAP
+                            <div class="scat">
+                               <a href="<?php echo site_url();?>/categories/aeddscategories"> <span class="value">SUBCATEGORY</span>
+                                Add New SubCategory</a>
                             </div>
                             <!-- .pad --> </div>
 
+                        <div class="dashboard_report defaultState">
+                            <div class="slider">
+                               <a href="<?php echo site_url();?>/slider/addSlides"> <span class="value">SLIDER</span>
+                                Add New Slider</a>
+                            </div>
+                            <!-- .pad --> </div>
+                        
                     </div>
                     <!-- .widget-content --> </div>
                 <!-- .widget --> </div>

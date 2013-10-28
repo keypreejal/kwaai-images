@@ -6,6 +6,7 @@ class Categories extends MY_Controller {
   {
    	 parent::__construct();    
 	 $this->load->model('admin/admin_model');
+	 $this->template->set_template('default');
   }
  
   public function index()
@@ -66,6 +67,8 @@ class Categories extends MY_Controller {
 						} else{
 							$this->session->set_flashdata('category_msg', 'Error In Adding Category.');					
 						}
+				   } else {
+				   		$this->session->set_flashdata('category_msg', 'Category with that Name Already Exits.');
 				   }
 			   }
 		   }
@@ -121,6 +124,9 @@ class Categories extends MY_Controller {
 						} else{
 							$this->session->set_flashdata('scategory_msg', 'Error In Adding SubCategory.');					
 						}
+				   }
+				   else {
+				   		$this->session->set_flashdata('category_msg', 'SubCategory with that Name Already Exits.');
 				   }
 			   }
 		   }
@@ -197,7 +203,7 @@ class Categories extends MY_Controller {
 		}
 		else {
 			$data['cname'] = '';
-			$data['status'] = '';
+			$data['status'] = -1;
 		}
 		return $data;
   }
@@ -216,7 +222,7 @@ class Categories extends MY_Controller {
 		else {
 			$data['cid'] = '';
 			$data['scname'] = '';
-			$data['status'] = '';
+			$data['status'] = -1;
 		}
 		return $data;
   }

@@ -6,6 +6,7 @@ class Orientation extends MY_Controller {
   {
    	 parent::__construct();    
 	 $this->load->model('admin/admin_model');
+	 $this->template->set_template('default');
   }
  
   public function index() {
@@ -61,6 +62,9 @@ class Orientation extends MY_Controller {
 							$this->session->set_flashdata('orientation_msg', 'Error In Adding Orientation.');					
 						}
 				   }
+				   else {
+				   		$this->session->set_flashdata('orientation_msg', 'Orientation with that Name Already Exits.');
+				   	}
 			   }
 		   }
 	   }
@@ -108,7 +112,7 @@ class Orientation extends MY_Controller {
 		}
 		else {
 			$data['oname'] = '';
-			$data['status'] = '';
+			$data['status'] = -1;
 		}
 		return $data;
   }

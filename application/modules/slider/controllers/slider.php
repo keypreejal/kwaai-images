@@ -8,6 +8,7 @@ class Slider extends MY_Controller {
   }
  
    public function index() {
+   		$this->template->set_template('default');
    		$data['slides'] = $this->admin_model->get_grid('tblslider','SliderId');
    		$this->template->write_view('content', 'slider/slider_view',$data);
 		$this->template->render();
@@ -76,7 +77,7 @@ class Slider extends MY_Controller {
 				
 			// move/resize images
 			
-			$this->image->resize($tmp_file_path,$thumb,100,100);
+			$this->image->resize($tmp_file_path,$thumb,250,100);
 			$this->image->resize($tmp_file_path,$dest,1600,425);
 			@unlink($tmp_file_path);
 			

@@ -7,6 +7,7 @@ class Cms extends MY_Controller {
    	 parent::__construct();    
 	 $this->load->model('admin/admin_model');
 	 $this->load->model('slider/img_model','image');
+	 $this->template->set_template('default');
 	 
   }
  
@@ -88,7 +89,6 @@ class Cms extends MY_Controller {
 						}
 					}
 					else{
-						$this->session->set_flashdata('page_class', 'alert error');
 						$this->session->set_flashdata('page_msg', 'Duplicate Page With that Name Exists');				
 					}
 			   } else { //insert here
@@ -125,6 +125,9 @@ class Cms extends MY_Controller {
 						} else{
 							$this->session->set_flashdata('pages_msg', 'Error In Adding Page.');					
 						}
+				   }
+				   else {
+				   		$this->session->set_flashdata('pages_msg', 'Page with that Name Already Exits.');
 				   }
 			   }
 		   }
@@ -176,14 +179,12 @@ class Cms extends MY_Controller {
 			$data['ipath'] = '';
 			$data['ptitle'] = '';
 			$data['pcontent'] = '';
-			$data['status'] = '';
+			$data['status'] = -1;
 		}
 		return $data;
   }
  
- public function upload()	{					
-		
-   }
+
   
 }
 

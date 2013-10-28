@@ -41,7 +41,19 @@ if (!defined('BASEPATH'))
   |
  */
 
-$route['default_controller'] = "login";
+$route['default_controller'] = "front";
+$route['admin/home'] = "home";
+$route['admin/categories'] = "categories";
+$route['admin/categories/aeddCategories'] = "categories/aeddCategories";
+$route['admin/categories/aeddSCategories'] = "categories/aeddSCategories";
+$route['admin/cms'] = "cms";
+$route['admin/cms/aeddPages'] = "cms/aeddPages";
+$route['admin/orientation'] = "orientation";
+$route['admin/orientation/aeddOrientation'] = "orientation/aeddOrientation";
+$route['admin/slider'] = "slider";
+$route['admin/slider/addSlides'] = "slider/addSlides";
+$route['admin/links'] = "links";
+$route['admin/links/aeddLinks'] = "links/aeddLinks";
 $route['404_override'] = '';
 
 

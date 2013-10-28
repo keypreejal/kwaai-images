@@ -7,50 +7,56 @@
         <!-- #contentHeader -->    
 
         <div class="container">
-            <div class="grid-18">
-            	  <?php if($this->session->flashdata('slider_msg')): ?>
+            <div class="grid-24">
+            	  <?php if($this->session->flashdata('slink_msg')): ?>
                          <div class="notify notify-success">                        
                             <a class="close" href="javascript:;">×</a>                        
-                            <h3><?php echo $this->session->flashdata('slider_msg');?></h3>                        
+                            <h3><?php echo $this->session->flashdata('slink_msg');?></h3>                        
                         </div>
                     <?php endif; ?>
-                   <div class="widget widget-plain">
-                		<table class="table table-bordered table-striped data-table">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Link Url</th>                                    
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                   if(is_array($links)>0):
-                                    foreach($links as $link): 
-										$enable ='';$disable='';
-										$sta = $link->Status==1?'Enable':'Disable';
-										if ($link->Status==1){
-											$enable=" selected=selected";
-										}else{
-											$disable=" selected=selected";
-										}
-										$setSta = '<span style="margin-left:10px;display:in-line;"><select style="float:none; min-width:100px;" class="sta" name="sta" id="'.$link->LinkId.'"><option value="1"'.$enable.'>Enable</option><option value="0"'.$disable.'>Disable</option></select>';
-								?>
-                                    <tr class="gradeA">
-                                        <td><?php echo $link->LinkTitle; ?></td>
-                                        <td><?php echo $link->LinkUrl; ?></td>
-                                        <td><?php echo '<span class="dataSta">'.$sta.'</span>'.$setSta; ?></td>
-                                        <td class="actiontd">
-                                           
-                                            <a href="<?php echo base_url(); ?>links/aeddLinks/<?php echo $link->LinkId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
-                                            <a id="delpage" onclick="return confirm(\'Are You Sure To Delete This Link?\');" href="<?php echo base_url(); ?>links/delete/<?php echo $link->LinkId ?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
-                                        </td>
+                   <div class="widget widget-table">
+                        <div class="widget-header">
+                            <span class="icon-list"></span>
+                            <h3 class="icon chart">Social Links Table</h3>        
+                        </div>
+                        <div class="widget-content">
+                    		<table class="table table-bordered table-striped data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Link Url</th>                                    
+                                        <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
-                            <?php endforeach; endif;?>
-                                
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                       if(is_array($links)>0):
+                                        foreach($links as $link): 
+    										$enable ='';$disable='';
+    										$sta = $link->Status==1?'Enable':'Disable';
+    										if ($link->Status==1){
+    											$enable=" selected=selected";
+    										}else{
+    											$disable=" selected=selected";
+    										}
+    										$setSta = '<span style="margin-left:10px;display:in-line;"><select style="float:none; min-width:100px;" class="sta" name="sta" id="'.$link->LinkId.'"><option value="1"'.$enable.'>Enable</option><option value="0"'.$disable.'>Disable</option></select>';
+    								?>
+                                        <tr class="gradeA">
+                                            <td><?php echo $link->LinkTitle; ?></td>
+                                            <td><?php echo $link->LinkUrl; ?></td>
+                                            <td><?php echo '<span class="dataSta">'.$sta.'</span>'.$setSta; ?></td>
+                                            <td class="actiontd">
+                                               
+                                                <a title="Edit" href="<?php echo base_url(); ?>links/aeddLinks/<?php echo $link->LinkId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
+                                                <a id="delpage" title="Delete" onclick="return confirm('Are You Sure To Delete This Link?');" href="<?php echo base_url(); ?>links/delete/<?php echo $link->LinkId ?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
+                                            </td>
+                                        </tr>
+                                <?php endforeach; endif;?>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                  	</div>   
                 </div><!-- .widget-content -->
             </div><!-- .widget --> 

@@ -25,8 +25,9 @@ class Admin extends CI_Controller {
   #...................................##
 	public function index()
 	{
-		$this->admin_model->check_logged_in();
+		//$this->admin_model->check_logged_in();
 		$this->load->view('login_view');
+		
 	}
 	//End Index Function
   #...................................##
@@ -77,17 +78,17 @@ class Admin extends CI_Controller {
 					$sess_array = array();
 					foreach($result as $row)
 					{
-					$sess_array = array(
-								'id' => $row->UserID,
-								'username' => $row->UserName,
-								'user_type'=>$row->UserType,
-								'email'=>$row->UserEmail,
-								'statuss'=>$row->UserStatus
-						 );
+						$sess_array = array(
+									'id' => $row->UserID,
+									'username' => $row->UserName,
+									'user_type'=>$row->UserType,
+									'email'=>$row->UserEmail,
+									'statuss'=>$row->UserStatus
+									);
 				}#...............end foreach.......##
 			   $this->session->set_userdata('logged_in', $sess_array);//set the session name logged_in with the array data
 			   #...........redirect to home page......##
-			   redirect('home','refresh');
+			   redirect('admin/home','refresh');
 		
 		}else{
 		 $this->session->set_flashdata('invalidlogin',"Invalid UserEmail And Password");

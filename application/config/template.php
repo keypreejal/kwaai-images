@@ -10,7 +10,7 @@
 |
 */
 $template['active_template'] = 'default';
-
+// $template['active_template'] = 'defaultfront';
 /*
 |--------------------------------------------------------------------------
 | Explaination of template group variables
@@ -63,8 +63,12 @@ $template['default']['regions'] = array(
    'footer',
 );
 
-
-
+$template['defaultfront']['template'] = 'templates/front/defaultfront';
+$template['defaultfront']['regions'] = array(
+   'header',
+   'content',
+   'footer',
+);
 
 /* End of file template.php */
 /* Location: ./system/application/config/template.php */
