@@ -37,7 +37,16 @@
                                     
                                     <label>SubCategory Name:</label>
                                     <div class="field">
-                                        <input type="text" name="scname" id="scname" size="50" value=<?php echo $this->admin_model->format_data($scname);?>"" class="validate[required]"/>            
+                                        <input type="text" name="scname" id="scname" size="50" value="<?php echo $this->admin_model->format_data($scname);?>" class="validate[required]"/>            
+                                    </div>
+                                    
+                                    <label>IsFeatured:</label>
+                                    <div class="field">
+                                        <select name="featured" id="featured" class="validate[required]">
+                                            <option value="">Is Featured</option>
+                                             <option value="1" <?php echo( ($featured ==1) ?"Selected":"")?>>Yes</option>
+                                             <option value="0" <?php echo( ($featured ==0) ?"Selected":"")?>>No</option>
+                                        </select>
                                     </div>
                                     
                                     <label>Status:</label>

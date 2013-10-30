@@ -24,7 +24,7 @@
                                endif;?>
                             <label>Orientation Name:</label>
                             <div class="field">
-                                <input type="text" name="oname" id="oname" size="50" value=<?php echo $this->admin_model->format_data($oname);?>"" class="validate[required]"/>            
+                                <input type="text" name="oname" id="oname" size="50" value="<?php echo $this->admin_model->format_data($oname);?>" class="validate[required]"/>            
                             </div>
                             
                             <label>Status:</label>

@@ -24,7 +24,7 @@
                                    endif;?>
                                     <label>Category Name:</label>
                                     <div class="field">
-                                        <input type="text" name="cname" id="cname" size="50" value=<?php echo $this->admin_model->format_data($cname);?>"" class="validate[required]"/>            
+                                        <input type="text" name="cname" id="cname" size="50" value="<?php echo $this->admin_model->format_data($cname);?>" class="validate[required]"/>            
                                     </div>
                                     
                                     <label>Status:</label>

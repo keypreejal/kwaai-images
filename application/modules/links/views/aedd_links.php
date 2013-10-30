@@ -24,11 +24,11 @@
                                       endif; ?>
                                     <label>Link Title:</label>
                                     <div class="field">
-                                        <input type="text" name="link_title" id="link_title" size="50" value=<?php echo $ltitle;?>"" class="validate[required]"/>            
+                                        <input type="text" name="link_title" id="link_title" size="50" value="<?php echo $ltitle;?>" class="validate[required]"/>            
                                     </div>
                                     <label>Link Url:</label>
                                     <div class="field">
-                                    	<input type="text" name="link_url" id="link_url" size="50" value=<?php echo $lurl;?>"" class="validate[required]"/>            
+                                    	<input type="text" name="link_url" id="link_url" size="50" value="<?php echo $lurl;?>" class="validate[required]"/>            
                                     </div>
                                     <label>Status:</label>
                                     <div class="field">

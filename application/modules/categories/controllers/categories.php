@@ -81,7 +81,7 @@ class Categories extends MY_Controller {
 	   $data = $this->_sget_datas($id);
 	   $where = array('status'=>1);
 	   $data['categories'] = $this->admin_model->get_all_datas('tblcategory','CategoryName',$where);
-	   $this->template->write_view('content', 'categories/aedd_scategories',$data);
+	   $this->template->write_view('content', 'aedd_scategories',$data);
 	   
 	   if ($this->input->post('submit')) {
 		   $this->form_validation->set_rules('category', 'Category Name', 'trim|required');
@@ -98,6 +98,7 @@ class Categories extends MY_Controller {
 						$this->db->where('SCatId', $id);			
 						$update_data['CatId'] = intval($this->input->post('category'));
 						$update_data['SCategoryName'] = $this->admin_model->format_data($scname);
+						$update_data['IsFeatured'] = intval($this->input->post('featured'));
 						$update_data['Status'] = $this->admin_model->format_data($this->input->post('status'));
 						$update_data['UpdatedAt'] = date('Y-m-d H:i:s');
 						$result = $this->db->update('tblcategorychild', $update_data);
@@ -115,6 +116,7 @@ class Categories extends MY_Controller {
 				   if($this->admin_model->count_no_fields('tblcategorychild','SCategoryName', $scname ) == '0') { // to check duplication
 						$insert_data['CatId'] = intval($this->input->post('category'));
 						$insert_data['SCategoryName'] = $this->admin_model->format_data($scname);
+						$insert_data['IsFeatured'] = intval($this->input->post('featured'));
 						$insert_data['Status'] = $this->admin_model->format_data($this->input->post('status'));
 						$insert_data['CreatedAt'] = date('Y-m-d H:i:s');
 						$result = $this->db->insert('tblcategorychild', $insert_data);
@@ -187,7 +189,7 @@ class Categories extends MY_Controller {
 			$action['category_msg']	= 'No Such SubCategory Found.';
 		}
 		$this->session->set_flashdata($action);
-		redirect('categories');
+		redirect('categories/subCategories');
   }
   
   function _get_datas($id) { 
@@ -217,11 +219,13 @@ class Categories extends MY_Controller {
 			}	
 			$data['cid'] = $this->admin_model->get_formatted($scategory->CatId);		
 			$data['scname'] = $this->admin_model->get_formatted($scategory->SCategoryName);
+			$data['featured'] = intval($scategory->IsFeatured );
 			$data['status'] = intval($scategory->Status);
 		}
 		else {
 			$data['cid'] = '';
 			$data['scname'] = '';
+			$data['featured'] = -1;
 			$data['status'] = -1;
 		}
 		return $data;

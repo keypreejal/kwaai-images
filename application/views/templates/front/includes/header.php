@@ -153,14 +153,17 @@
     <div class="navbar-inner main-menu"> <a href="<?php echo site_url();?>" class="logo pull-left"><img src="<?php echo site_url();?>/themes/images/kwaai-logo.png" class="site_logo" alt="The Creative Company | Kwaai-Images.com"></a>
       <nav id="menu" class="pull-right">
         <ul>
+          <li><a href="<?php echo site_url();?>">Home</a></li>
           <?php 
           if(is_array($pages)>0):
             foreach($pages as $page){
-             echo "<li><a href=$page->PageTitle>$page->PageTitle</a></li>";
+             echo "<li><a href=$page->PageSlug>$page->PageTitle</a></li>";
             }
           endif;
           ?>
-          
+          <li><a href="<?php echo site_url();?>imagesList">Images</a></li>
+          <li><a href="<?php echo site_url();?>subscription">Subscription</a></li>
+          <li><a href="<?php echo site_url();?>contact">Contact Us</a></li>
         </ul>
       </nav>
     </div>
@@ -177,9 +180,12 @@
         </label>
         <br>
       <select class="srchTxt" style="width:auto; color:#adadad;  border:none; background:none">
-        <option>Advanced Search</option>
-        <option>Images </option>
-        <option>Sketch</option>
+        <option>Category Search</option>
+        <?php 
+            foreach($categories as $category){
+              echo "<option value=imageslist/category/".intval($category->CatId).">".$this->front_model->format_data($category->CategoryName)."</option>";         
+            } ?>
+       
       </select> 
     </form>
   </div>

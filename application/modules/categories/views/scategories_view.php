@@ -46,8 +46,8 @@
                                             <td><?php echo '<span class="dataSta">'.$sta.'</span>'.$setSta; ?></td>
                                             <td class="actiontd">
                                                
-                                                <a title="Edit" href="<?php echo base_url(); ?>categories/aeddCategories/<?php echo $scategory->CatId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
-                                                <a id="delpage" title="Delete" onclick="return confirm('Are You Sure To Delete This SubCategory?');" href="<?php echo base_url(); ?>categories/sdelete/<?php echo $scategory->CatId ?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
+                                                <a title="Edit" href="<?php echo base_url(); ?>categories/aeddSCategories/<?php echo $scategory->SCatId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
+                                                <a id="delpage" title="Delete" onclick="return confirm('Are You Sure To Delete This SubCategory?');" href="<?php echo base_url(); ?>categories/sdelete/<?php echo $scategory->SCatId ?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
                                             </td>
                                         </tr>
                                 <?php endforeach; endif;?>

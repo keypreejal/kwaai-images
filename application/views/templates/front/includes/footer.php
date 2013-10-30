@@ -4,15 +4,14 @@
       <div class="span4">
         <h4>Kwaai Images</h4>
         <ul class="nav">
-          <li><a href="about.php">About us</a></li>
-          <li><a href="./about.html">Website terms</a></li>
-           <li><a href="#">License information</a></li>
-          <li><a href="./contact.html">Editorial policy</a></li>
-          <li><a href="./cart.html">Privacy policy</a></li>
-         			<li><a href="#">Help center</a></li>
-			<li><a href="#">Site map</a></li>
-			<li><a href="#">Careers</a></li>
-         </ul>
+          <?php 
+          if(is_array($fpages)>0):
+            foreach($fpages as $fpage){
+             echo "<li><a href=$fpage->PageSlug>$fpage->PageTitle</a></li>";
+            }
+          endif;
+          ?>
+        </ul>
       </div>
       <div class="span2">
         <h4>My Account</h4>

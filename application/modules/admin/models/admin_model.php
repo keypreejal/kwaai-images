@@ -76,7 +76,7 @@ Class Admin_model extends CI_Model
 	}
 	
 	function get_all_datas($table_name,$order_field,$where){
-		$this->db->order_by($order_field,'DESC');
+		$this->db->order_by($order_field,'ASC');
 		if (is_array($where) && !empty($where)){
 			$this->db->where($where);
 		}
@@ -105,8 +105,12 @@ Class Admin_model extends CI_Model
 		$this->db->from($table_name);
 		return $this->db->count_all_results();
 	}
-	public function get_grid($table_name,$primary_field) 
+	public function get_grid($table_name,$primary_field,$where=Null) 
 	{
+		if (!empty($where)){
+			$this->db->where($where);
+		}
+
 		$this->db->select('*');
 		$this->db->from($table_name);
 		$query = $this->db->get();

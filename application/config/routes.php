@@ -44,8 +44,9 @@ if (!defined('BASEPATH'))
 $route['default_controller'] = "front";
 $route['admin/home'] = "home";
 $route['admin/categories'] = "categories";
-$route['admin/categories/aeddCategories'] = "categories/aeddCategories";
-$route['admin/categories/aeddSCategories'] = "categories/aeddSCategories";
+$route['admin/categories/aeddCategories'] = "categories/aeddCategories/$1";
+$route['admin/categories/subCategories'] = "categories/subCategories";
+$route['admin/categories/aeddSCategories'] = "categories/aeddSCategories/$1";
 $route['admin/cms'] = "cms";
 $route['admin/cms/aeddPages'] = "cms/aeddPages";
 $route['admin/orientation'] = "orientation";
@@ -54,6 +55,12 @@ $route['admin/slider'] = "slider";
 $route['admin/slider/addSlides'] = "slider/addSlides";
 $route['admin/links'] = "links";
 $route['admin/links/aeddLinks'] = "links/aeddLinks";
+
+
+//$route['front/(:any)'] = "front/pages/"; 
+//$route['([^/]+)/?'] = 'front/pages/$1';
+$route['([^/]+)\.html?'] = 'front/pages/$1';
+
 $route['404_override'] = '';
 
 

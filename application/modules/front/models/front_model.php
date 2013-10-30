@@ -4,21 +4,37 @@ Class Front_model extends CI_Model
     public function __construct()
     {
       parent::__construct();
-
-
     }
-    
-	public function get_datas($table_name,$primary_field) 
+
+    function format_data($data)
+	{		
+		$data = mysql_real_escape_string(trim($data));
+		return $data; 
+	}
+    function get_formatted($data)
 	{
-		$this->db->select('*');
-		$this->db->from($table_name);
-		$query = $this->db->get();
-		if($query->num_rows()>0){
-		  return $query->result();
+		$data = (empty($data)?"":stripslashes($data));
+		return $data;
+	}
+	
+	function get_datas($table_name,$order_field,$where=NULL){
+		$this->db->order_by($order_field,'ASC');
+		if (is_array($where) && !empty($where)){
+			$this->db->where($where);
 		}
-		else{
-		  return false;
+		$query = $this->db->get($table_name);			
+		return $query->result();
+	}
+	
+	function get_single_data($table_name, $field, $field_name, $field_value)
+	{
+		$this->db->select($field);
+		$this->db->where($field_name, $field_value);
+		$query = $this->db->get($table_name)->row();		
+		if($query) {
+			return $query->$field;
 		}
+		return '';
 	}
 	
 	function get_single_row($table_name, $field, $value)

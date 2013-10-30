@@ -4,14 +4,11 @@
   	<div class="span4 pull-left home-cat">
     	<h2>BROWSE BY CATEGORY</h2>
         <ul>
-        	<li><a href="#" title="People">People</a></li>
-			<li><a href="#" title="Architecture">Architecture</a></li>
-			<li><a href="#" title="Fauna &amp; Flora">Fauna &amp; Flora</a></li>
-			<li><a href="#" title="Food &amp; Drink">Food &amp; Drink</a></li>
-            <li><a href="#" title="Landscape">Landscape</a></li>
-			<li><a href="#" title="Objects">Objects</a></li>
-			<li><a href="#" title="Sport &amp; Leisure">Sport &amp; Leisure</a></li>
-			<li><a href="#" title="Transport">Transport</a></i>
+          <?php 
+            foreach($scategories as $scategory){
+              echo "<li><a href=imageslist/subcategory/".strtolower($this->front_model->format_data($scategory->SCategoryName))." title=".$this->front_model->format_data($scategory->SCategoryName).">".$this->front_model->format_data($scategory->SCategoryName)."</a></li>";
+           } ?>
+        	
         </ul>
     </div>
     <div class="span6 pull-right offer-home">

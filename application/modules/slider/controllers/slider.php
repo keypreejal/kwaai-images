@@ -25,9 +25,58 @@ class Slider extends MY_Controller {
 
    		$this->template->write_view('content', 'slider/edit_slides',$data);
    		if ($this->input->post('submit')) {
-	   		$this->db->where('SliderId', $id);			
+   			/*create directory for images start*/
+			$tmp = './sliderImg/tmp/';
+			$dest = './sliderImg/'; 
+			$thumb = $dest.'thumb/';
+			if(!file_exists($dest)){
+				mkdir($dest);
+				$str ='<html><head><title>403 Forbidden</title></head><body><p>Directory access is forbidden.</p></body></html>';
+				$file = fopen($dest.'/index.html',"wb");
+				fwrite($file,$str);
+				fclose($file);
+				
+			}
+			if(!file_exists($thumb)){
+				mkdir($thumb);
+				$str ='<html><head><title>403 Forbidden</title></head><body><p>Directory access is forbidden.</p></body></html>';
+				$file = fopen($thumb.'/index.html',"wb");
+				fwrite($file,$str);
+				fclose($file);
+			}
+			if(!file_exists($tmp))
+				mkdir($tmp);
+			/*create directory for images ends */
+
+	   					
 			$update_data['Title '] = $this->input->post('title');
 			$update_data['Status'] = intval($this->input->post('status'));
+			$img = $this->input->post('img');
+			if($img !='') {
+				//upload images to tmp folder
+				$base64img = explode(',',$img);
+				$data = base64_decode($base64img[1]);
+				$replacearr = array('data:image/',';base64');
+				$ext = str_replace($replacearr,'',$base64img[0]);
+				$filename = time().".$ext";
+				$tmp_file_path = $tmp.$filename;
+				file_put_contents($tmp_file_path, $data);
+					
+				// move/resize images
+				$this->image->resize($tmp_file_path,$thumb,250,100);
+				$this->image->resize($tmp_file_path,$dest,1600,425);
+				@unlink($tmp_file_path);
+				$update_data['ImageName'] = $filename;
+
+				//unlink old image
+				$image_name = $this->admin_model->get_single_data('tblslider','ImageName',array('SliderId'=>$id));
+				if($image_name)
+				{
+					 @unlink($dest.$image_name);
+					 @unlink($thumb.$image_name);
+				}
+			}
+			$this->db->where('SliderId', $id);
 			$result = $this->db->update('tblslider', $update_data);
 			if($result){
 				$this->session->set_flashdata('slider_msg', 'Slider Updated successfully.');

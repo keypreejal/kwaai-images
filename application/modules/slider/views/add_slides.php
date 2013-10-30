@@ -40,6 +40,7 @@ display: block;
                                     <thead>
                                       <tr>
                                         <th scope="col">Preview Image</th>
+                                        <th scope="col">Title</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
                                         </tr>
@@ -69,10 +70,6 @@ $('document').ready(function(){
 				
 		var $slider ='',$status_action;var $loaded = 0;
 		
-		if (!preview){
-			$('.prev-div table#sli-cont thead tr th:first-child').after('<th scope="col">Title</th>');
-			preview=false;
-		}
 		$slider = '<td><input type="text" name="title[]" class="title"></td>';
 		
 		$status_action = '';
