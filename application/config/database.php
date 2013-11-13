@@ -48,12 +48,18 @@
 $active_group = 'default';
 $active_record = TRUE;
 
+/*$db['default']['hostname'] = 'mysql.clients.view9.com.au';
+$db['default']['username'] = 'view9';
+$db['default']['password'] = 'view9@123';
+$db['default']['database'] = 'view9_pinnacle';*/
+
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'kwaai';
+
 $db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = '';
+$db['default']['dbprefix'] = 'pxl_';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;
