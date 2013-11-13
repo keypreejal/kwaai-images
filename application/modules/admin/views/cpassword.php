@@ -7,7 +7,7 @@
 
         <div class="container">
 
-            <div class="grid-18">
+            <div class="grid-24">
               <div class="widget">
                 <div class="widget-header">
                     <span class="icon-article"></span>

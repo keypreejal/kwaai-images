@@ -75,10 +75,13 @@ Class Admin_model extends CI_Model
 		return $query->row();
 	}
 	
-	function get_all_datas($table_name,$order_field,$where){
-		$this->db->order_by($order_field,'ASC');
+	function get_all_datas($table_name,$order_field,$where,$group=NULL){
+		$this->db->order_by($order_field,'DESC');
 		if (is_array($where) && !empty($where)){
 			$this->db->where($where);
+		}
+		if(!empty($group)){
+			$this->db->group_by($group);
 		}
 		$query = $this->db->get($table_name);			
 		return $query->result();
@@ -105,12 +108,15 @@ Class Admin_model extends CI_Model
 		$this->db->from($table_name);
 		return $this->db->count_all_results();
 	}
-	public function get_grid($table_name,$primary_field,$where=Null) 
+	public function get_grid($table_name,$primary_field,$where=Null,$group=NULL) 
 	{
 		if (!empty($where)){
 			$this->db->where($where);
 		}
-
+		if(!empty($group)){
+			$this->db->group_by($group);
+		}
+		$this->db->order_by($primary_field,'DESC');
 		$this->db->select('*');
 		$this->db->from($table_name);
 		$query = $this->db->get();
@@ -121,6 +127,8 @@ Class Admin_model extends CI_Model
 		  return false;
 		}
 	}
+	
+	
 
 }
 //end of class

@@ -16,28 +16,25 @@ class Admin extends CI_Controller {
   #..............end constructor.......................##
 
 
-	/**
-		*Begin Index function for this controller
-	 	* Thiis function Loads a login form with a view name login_view.php
-	*/
-
-
-  #...................................##
+  /**
+	*Begin Index function for this controller
+ 	* Thiis function Loads a login form with a view name login_view.php
+  */
+  #...........Begin Index Function........................##
 	public function index()
 	{
 		//$this->admin_model->check_logged_in();
 		$this->load->view('login_view');
 		
 	}
-	//End Index Function
-  #...................................##
+  #............End Index Function. ......................##
 
 
-   #...................................##
-	/**
+  	/**
 		*Begin Function Verifylogin
 	 	* This function validates the login form against the blank username and password
 	*/
+	#...........Begin verifyLogin Function........................##
 	public function verifyLogin()
 	{
     		#this sets the validations for the email and the password fields
@@ -53,14 +50,14 @@ class Admin extends CI_Controller {
         #calls a checklogin function to check username and password in database
        	}
 	}
-	#ends verifylogin function
-  #.................................##
+	#........Ends verifylogin function.........................##
 
-  #.................................##
+  
 	/**
 		*Begin Function checklogin
 	 	* This function generally takes the user login input and match the input with the username and password in the database and if matches redirect to dashboard and else redirect to login page
 	*/
+	#........Begins checklogin function.........................##
 	public function checklogin()
    	{
 		#gets email
@@ -79,7 +76,7 @@ class Admin extends CI_Controller {
 					foreach($result as $row)
 					{
 						$sess_array = array(
-									'id' => $row->UserID,
+									'id' => $row->UserId,
 									'username' => $row->UserName,
 									'user_type'=>$row->UserType,
 									'email'=>$row->UserEmail,
@@ -94,11 +91,11 @@ class Admin extends CI_Controller {
 		 $this->session->set_flashdata('invalidlogin',"Invalid UserEmail And Password");
 		 redirect('admin');
 	  }
-   	#.........endif..........##
+   	#........Ends checklogin function.........................##
    	  
  }
-  #end function checklogin
-  #....................................................##
+  
+ 
 
   #..............BEGIN FUNCTION LOGOUT...........##
   #destroy session and redirect to index page#

@@ -14,6 +14,7 @@
                             <h3><?php echo $this->session->flashdata('category_msg');?></h3>                        
                         </div>
                     <?php endif; ?>
+                   <a class="btn btn-small" href="<?php echo base_url(); ?>admin/categories/aeddCategories">Add Category</a>
                    <div class="widget widget-table">
                         <div class="widget-header">
                             <span class="icon-list"></span>
@@ -46,7 +47,7 @@
                                             <td><?php echo '<span class="dataSta">'.$sta.'</span>'.$setSta; ?></td>
                                             <td class="actiontd">
                                                
-                                                <a title="Edit" href="<?php echo base_url(); ?>categories/aeddCategories/<?php echo $category->CatId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
+                                                <a title="Edit" href="<?php echo base_url(); ?>admin/categories/aeddCategories/<?php echo $category->CatId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
                                                 <a id="delpage" title="Delete" onclick="return confirm('Are You Sure To Delete This Category?');" href="<?php echo base_url(); ?>categories/delete/<?php echo $category->CatId ?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
                                             </td>
                                         </tr>
@@ -74,7 +75,7 @@ $(document).ready(function(e) {
 		var text = $(this).find("option:selected").text();
 		$.ajax({
 			url:'<?php echo site_url("categories/changeStatus");?>',
-			data:{id:$id,status:$status},
+			data:{id:$id,status:$status,tbl:'tblcategory',tid:'CatId'},
 			type:'POST',
 			dataType:"html",
 			success: function(data){

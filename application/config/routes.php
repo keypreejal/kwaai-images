@@ -41,25 +41,53 @@ if (!defined('BASEPATH'))
   |
  */
 
+
+/*
+   * Backend Routing.
+   * Backend Routing starts from here
+*/
 $route['default_controller'] = "front";
 $route['admin/home'] = "home";
+
 $route['admin/categories'] = "categories";
-$route['admin/categories/aeddCategories'] = "categories/aeddCategories/$1";
+$route['admin/categories/aeddCategories'] = "categories/aeddCategories";
+$route['admin/categories/aeddCategories/(:any)'] = "categories/aeddCategories/$1";
+
 $route['admin/categories/subCategories'] = "categories/subCategories";
-$route['admin/categories/aeddSCategories'] = "categories/aeddSCategories/$1";
+$route['admin/categories/aeddSCategories'] = "categories/aeddSCategories";
+$route['admin/categories/aeddSCategories/(:any)'] = "categories/aeddSCategories/$1";
+
 $route['admin/cms'] = "cms";
 $route['admin/cms/aeddPages'] = "cms/aeddPages";
+$route['admin/cms/aeddPages/(:any)'] = "cms/aeddPages/$1";
+$route['admin/cms/subPages/(:any)'] = "cms/subPages/$1";
+$route['admin/cms/addSubPages/(:any)'] = "cms/addSubPages/$1";
+$route['admin/cms/editSubpage/(:any)'] = "cms/editSubpage/$1";
+
 $route['admin/orientation'] = "orientation";
 $route['admin/orientation/aeddOrientation'] = "orientation/aeddOrientation";
+$route['admin/orientation/aeddOrientation/(:any)'] = "orientation/aeddOrientation/$1";
+
 $route['admin/slider'] = "slider";
 $route['admin/slider/addSlides'] = "slider/addSlides";
-$route['admin/links'] = "links";
-$route['admin/links/aeddLinks'] = "links/aeddLinks";
+$route['admin/slider/editSlides/(:any)'] = "slider/editSlides/$1";
+
+$route['admin/siteSettings'] = "siteSettings";
+$route['admin/siteSettings/(:any)'] = "siteSettings/$1";
 
 
+/*
+   * Front Routing.
+   * Front Routing starts from here
+*/
 //$route['front/(:any)'] = "front/pages/"; 
 //$route['([^/]+)/?'] = 'front/pages/$1';
+//$route['front/(:any)']  = 'front/$1';
+/*$route['(:any)'] = 'front';
+$route['front(:any)'] = 'front/$1';*/
+$route['front/en'] = 'front/';
 $route['([^/]+)\.html?'] = 'front/pages/$1';
+
 
 $route['404_override'] = '';
 

@@ -69,7 +69,7 @@ class Slider extends MY_Controller {
 				$update_data['ImageName'] = $filename;
 
 				//unlink old image
-				$image_name = $this->admin_model->get_single_data('tblslider','ImageName',array('SliderId'=>$id));
+				$image_name = $this->admin_model->get_single_data('tblslider','ImageName','SliderId',$id);
 				if($image_name)
 				{
 					 @unlink($dest.$image_name);
@@ -157,7 +157,7 @@ class Slider extends MY_Controller {
 		 $id = (int)$id;
 		 if($id > 0)
 		 {
-			 $image_name = $this->admin_model->get_single_data('tblslider','ImageName',array('SliderId'=>$id));
+			 $image_name = $this->admin_model->get_single_data('tblslider','ImageName','SliderId',$id);
 			 if($image_name)
 			 {
 				 $result = $this->db->delete('tblslider',array('SliderId'=>$id));

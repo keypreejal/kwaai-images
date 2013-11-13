@@ -13,7 +13,7 @@
                         <h3><?php echo $this->session->flashdata('orientation_msg');?></h3>                        
                     </div>
             <?php endif; ?>
-
+			<a class="btn btn-small" href="<?php echo base_url(); ?>admin/orientation/aeddOrientation">Add Orientation</a>
             <div class="widget widget-table">
                 <div class="widget-header">
                             <span class="icon-list"></span>
@@ -46,7 +46,7 @@
                                     <td><?php echo '<span class="dataSta">'.$sta.'</span>'.$setSta; ?></td>
                                     <td class="actiontd">
                                        
-                                        <a title="Edit" href="<?php echo base_url(); ?>orientation/aeddOrientation/<?php echo $orientation->OrId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
+                                        <a title="Edit" href="<?php echo base_url(); ?>admin/orientation/aeddOrientation/<?php echo $orientation->OrId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
                                         <a id="delpage" title="Delete" onclick="return confirm('Are You Sure To Delete This Orientation?');" href="<?php echo base_url(); ?>orientation/delete/<?php echo $orientation->OrId ?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
                                     </td>
                                 </tr>

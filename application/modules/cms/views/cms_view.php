@@ -50,7 +50,7 @@
                             <h3><?php echo $this->session->flashdata('spages_msg');?></h3>                        
                         </div>
                     <?php endif; ?>
-                    
+                   <a class="btn btn-small" href="<?php echo base_url(); ?>admin/cms/aeddPages">Add Page</a>
                    <div class="widget widget-table">
                         <div class="widget-header">
                             <span class="icon-list"></span>
@@ -91,9 +91,9 @@
                                             <td><?php echo $page->PageTitle ; ?></td>
                                             <td><?php echo '<span class="dataSta">'.$sta.'</span>'.$setSta; ?></td>
                                             <td class="actiontd">
-                                               <?php echo $page->HasSubPage==1?'<a title="View Subpage" href='.base_url().'cms/subPages/'.$page->PageId.'><img src='.base_url().'images/admin/view.png></a>':'';?>
-                                               <a title="Add Subpage" href="<?php echo base_url(); ?>cms/addSubPages/<?php echo $page->PageId ?>"><img src="<?php echo base_url(); ?>images/admin/add.png"></a>
-                                                <a title="Edit" href="<?php echo base_url(); ?>cms/aeddPages/<?php echo $page->PageId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
+                                               <?php echo $page->HasSubPage==1?'<a title="View Subpage" href='.base_url().'admin/cms/subPages/'.$page->PageId.'><img src='.base_url().'images/admin/view.png></a>':'';?>
+                                               <a title="Add Subpage" href="<?php echo base_url(); ?>admin/cms/addSubPages/<?php echo $page->PageId ?>"><img src="<?php echo base_url(); ?>images/admin/add.png"></a>
+                                                <a title="Edit" href="<?php echo base_url(); ?>admin/cms/aeddPages/<?php echo $page->PageId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
                                                 <a title="Delete" id="delpage" onclick="return confirm('Are You Sure To Delete This Page?');" href="<?php echo base_url(); ?>cms/delete/<?php echo $page->PageId ?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
                                             </td>
                                         </tr>

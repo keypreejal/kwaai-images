@@ -28,7 +28,7 @@
 	<section class="main-content">				
 		<div class="row">
 			<div class="span10">					
-				<h4 class="title"><span class="text pull-left"><strong><?php echo $content->PageTitle;?>, </strong> Kwaai-Images.com</span></h4>
+				<h4><strong><?php echo $content->PageTitle;?> </strong> </h4>
 				<p><?php echo $content->PageContent;?></p>	
 			</div>
 				

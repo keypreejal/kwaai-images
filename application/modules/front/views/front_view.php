@@ -1,8 +1,9 @@
 
 <div id="wrapper" class="container">
+
   <section class="header_text"> <div class="row">
   	<div class="span4 pull-left home-cat">
-    	<h2>BROWSE BY CATEGORY</h2>
+    	<h2><?php echo $browse_by_category;?></h2>
         <ul>
           <?php 
             foreach($scategories as $scategory){
@@ -21,7 +22,7 @@
       <div class="span10">
         <div class="row">
           <div class="span10">
-            <h4 class="title"> <span class="pull-center"><span class="text"><span class="line">MOST POPULAR PICTURES</span></span></span> <span class="pull-right"> <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a> </span> </h4>
+            <h4 class="title"> <span class="pull-center"><span class="text"><span class="line"><?php echo $most_popular_pictures;?></span></span></span> <span class="pull-right"> <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a> </span> </h4>
             <div id="myCarousel" class="myCarousel carousel slide">
               <div class="carousel-inner">
                 <div class="active item">
@@ -228,74 +229,46 @@
         </div>
         
         <div class="row">
-							<div class="span10">
-								
-								<div id="myCarousel-2" class="myCarousel carousel slide">
-									<div class="carousel-inner" style="border-bottom:none">
-										<div class="active item">
-											<ul class="thumbnails">												
-												<li class="span3">
-													<div class="product-box">
-														<span class="sale_tag"></span>
-														<p><a href="products.php"><img src="themes/images/home-cat/cat1.jpg" alt="" /></a></p>
-														<a href="products.php" class="title a-position">Nature</a>
-														
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="products.php"><img src="themes/images/home-cat/cat2.jpg" alt="" /></a></p>
-														<a href="products.php" class="title a-position">Animals</a>
-										
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="products.php"><img src="themes/images/home-cat/cat3.jpg" alt="" /></a></p>
-														<a href="products.php" class="title a-position">Foods</a>
-													
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="products.php"><img src="themes/images/home-cat/cat4.jpg" alt="" /></a></p>
-														<a href="products.php" class="title a-position">People</a>
-													
-													</div>
-												</li>
-                                                <li class="span3">
-													<div class="product-box">
-														<p><a href="products.php"><img src="themes/images/home-cat/cat5.jpg" alt="" /></a></p>
-														<a href="products.php" class="title a-position">Sports</a>
-													
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="item">
-											<ul class="thumbnails">
+					<div class="span10">
+							<div id="myCarousel-2" class="myCarousel carousel slide">
+								<div class="carousel-inner" style="border-bottom:none">
+									<div class="active item">
+										<ul class="thumbnails">	
+                      <?php foreach($randoms as $random): ?>
+                          <li class="span3">
+                            <div class="product-box">
+                              <span class="sale_tag"></span>
+                              <p><a href="#"><img src="<?php echo site_url().'featureSubCat/'.$random->FeatureImage;?>" alt="" /></a></p>
+                              <a href="imageslist/subcategory/<?php echo $random->SCategoryName;?>" class="title a-position"><?php echo $random->SCategoryName;?></a>
+                            </div>
+                          </li>
+                      <?php endforeach; ?>											
+										</ul>
+									</div>
+									<div class="item">
+										<ul class="thumbnails">
+											
+											<li class="span3">
+												<div class="product-box">
+													<p><a href="products.php"><img src="themes/images/home-cat/cat3.jpg" alt="" /></a></p>
+													<a href="products.php" class="title a-position">City</a>
 												
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="products.php"><img src="themes/images/home-cat/cat3.jpg" alt="" /></a></p>
-														<a href="products.php" class="title a-position">City</a>
-													
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="products.php"><img src="themes/images/home-cat/cat2.jpg" alt="" /></a></p>
-														<a href="products.php" class="title a-postion">Cars</a>
-													
-													</div>
-												</li>
-																																													
-											</ul>
-										</div>
-									</div>							
-								</div>
-							</div>						
-						</div>
+												</div>
+											</li>
+											<li class="span3">
+												<div class="product-box">
+													<p><a href="products.php"><img src="themes/images/home-cat/cat2.jpg" alt="" /></a></p>
+													<a href="products.php" class="title a-postion">Cars</a>
+												
+												</div>
+											</li>
+																																												
+										</ul>
+									</div>
+								</div>							
+							</div>
+					</div>						
+				</div>
         <div class="row feature_box">
           <div class="span3">
             <div class="service">

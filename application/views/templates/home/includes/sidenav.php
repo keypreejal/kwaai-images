@@ -5,7 +5,7 @@
                 <a href="<?php echo base_url(); ?>home">Dashboard</a>                
             </li>
                          
-            <li id="navPages" class="nav">
+            <li id="slider" class="nav">
                 <span class="icon-image"></span>
                 <a href="javascript:;">Feature Image Slider</a>             
                 <ul class="subNav">
@@ -13,14 +13,14 @@
                   <li><a href="<?php echo base_url(); ?>admin/slider">List Slider Images</a></li>
                 </ul>                       
             </li>
-            <li id="navPages" class="nav">
+            <li id="subscriber" class="nav">
                 <span class="icon-award-fill"></span>
                 <a href="javascript:;">Subscriber</a>             
                 <ul class="subNav">
                    <li><a href="<?php echo base_url(); ?>users">List User</a></li>
                 </ul>                       
             </li>   
-            <li id="navPages" class="nav">
+            <li id="cms" class="nav">
                 <span class="icon-book-alt"></span>
                 <a href="javascript:;">Cms Pages</a>             
                 <ul class="subNav">
@@ -28,7 +28,7 @@
                   <li><a href="<?php echo base_url(); ?>admin/cms">List Pages</a></li>
                 </ul>                       
             </li>  
-            <li id="navPages" class="nav">
+            <li id="categories" class="nav">
                 <span class="icon-star"></span>
                 <a href="javascript:;">Categories</a>             
                 <ul class="subNav">
@@ -38,7 +38,7 @@
                   <li><a href="<?php echo base_url(); ?>admin/categories/subCategories">List SubCategories</a></li>
                 </ul>                       
             </li> 
-            <li id="navPages" class="nav">
+            <li id="orientation" class="nav">
                 <span class="icon-box"></span>
                 <a href="javascript:;">Orientation</a>             
                 <ul class="subNav">
@@ -46,15 +46,14 @@
                    <li><a href="<?php echo base_url(); ?>admin/orientation">List Orientation</a></li>
                 </ul>                       
             </li>
-            <li id="navPages" class="nav">
+            <li id="siteSettings" class="nav">
                 <span class="icon-link"></span>
-                <a href="javascript:;">Social Links</a>             
+                <a href="javascript:;">Settings</a>             
                 <ul class="subNav">
-                  <li><a href="<?php echo base_url(); ?>admin/links/aeddLinks">Add Links</a></li>
-                   <li><a href="<?php echo base_url(); ?>admin/links">List Links</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/siteSettings">Site Settings</a></li>
                 </ul>                       
             </li>                 
-            <li id="navPages" class="nav">
+            <li id="changePassword" class="nav">
                 <span class="icon-user"></span>
                 <a href="javascript:;">Account</a>             
                 <ul class="subNav">

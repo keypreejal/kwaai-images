@@ -5,9 +5,10 @@
         <h4>Kwaai Images</h4>
         <ul class="nav">
           <?php 
+          $selan = isset($_GET['lang'])==1?"?&lang=$_GET[lang]":'?&lang=en';
           if(is_array($fpages)>0):
             foreach($fpages as $fpage){
-             echo "<li><a href=$fpage->PageSlug>$fpage->PageTitle</a></li>";
+             echo "<li><a href=$fpage->PageSlug$selan>$fpage->PageTitle</a></li>";
             }
           endif;
           ?>
@@ -31,7 +32,7 @@
       </div>
       <div class="span2 foot-last">
         <p style="float:left; font-size:13px; font-weight:bold; color:#fff; line-height:29px; ">Follow us:</p>
-        <span class="social_icons"> <a class="facebook" href="#"><i class="icon-facebook"></i></a> <a class="twitter" href="#"><i class="icon-twitter"></i></a> <a class="google" href="#"><i class="icon-google-plus"></i></a> </span> </div>
+        <span class="social_icons"> <a target="_blank" class="facebook" href="<?php echo $facebook;?>"><i class="icon-facebook"></i></a> <a class="twitter" href="<?php echo $twitter;?>"><i class="icon-twitter"></i></a> <a class="google" target="_blank" href="<?php echo $gplus;?>"><i class="icon-google-plus"></i></a> </span> </div>
         <a href="#"><img src="themes/images/paypao.jpg" width="174" height="53"  alt="paypal" align="right"></a>
     </div>
   </section>
@@ -52,6 +53,20 @@
           directionNav: true,
           controlsContainer: ".flex-container" // the container that holds the flexslider
         });
+        var langSelected = "<?php echo isset($_GET['lang'])==1?$_GET['lang']:'en';?>";
+        //alert(langSelected);
+        $('select.country>option').each(function(){
+          if($(this).val() == langSelected){
+            $(this).attr('selected',true);
+          }
+        });
+        $('select.country').live('change',function(){
+          langCode = $(this).val();
+          window.location = "?&lang="+langCode;
+          /*var curLocation = $(location).attr('href');            
+          window.location = curLocation+'/'+langCode; */
+
+         });
       });
     });
 </script>

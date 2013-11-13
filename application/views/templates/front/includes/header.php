@@ -35,11 +35,14 @@
       <div class="language pull-right">
         <ul class="user-lang">
           <li>
-          <label>
+          <label>  
             <select class="country">
-              <option>English</option>
+              <?php foreach ($languages as $language) {
+                echo "<option value=$language->LangCode>$language->LangName</option>";
+              }?>
+              <!-- <option>English</option>
               <option>Dutch</option>
-              <option>Chinese </option>
+              <option>Chinese </option> -->
             </select>
             </label>
           </li>
@@ -64,7 +67,7 @@
       <div class="account pull-right">
         <ul class="user-menu">
           <li class="">
-	 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span>Sign in</span></a>
+	 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span><?php echo $sign_in;?></span></a>
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="signin" aria-hidden="false" >
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -100,7 +103,7 @@
 	</li>
           <span>|</span>
            <li class="">
-   <a href="#register" role="button" data-toggle="modal" style="padding-right:0"><span>Register</span></a>
+   <a href="#register" role="button" data-toggle="modal" style="padding-right:0"><span><?php echo $register;?></span></a>
   <div id="register" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="register" aria-hidden="false" >
       <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -140,7 +143,7 @@
         
   </div>
   </li>
-          <li><a href="cart.php">Shopping Basket </a> <span class="s-basket">
+          <li><a href="cart.php"><?php echo $shopping_baskets;?> </a> <span class="s-basket">
             <p>0</p>
             </span></li>
         </ul>
@@ -149,11 +152,12 @@
   </div>
 </div><!---/top bar---->
 <div id="wrapper" class="container">
-  <section class="navbar main-menu">
+   <section class="navbar main-menu">
     <div class="navbar-inner main-menu"> <a href="<?php echo site_url();?>" class="logo pull-left"><img src="<?php echo site_url();?>/themes/images/kwaai-logo.png" class="site_logo" alt="The Creative Company | Kwaai-Images.com"></a>
       <nav id="menu" class="pull-right">
         <ul>
-          <li><a href="<?php echo site_url();?>">Home</a></li>
+          <?php $lang = isset($_GET['lang'])?$_GET['lang']:'en';?>
+          <li><a href="<?php echo site_url();?>"><?php echo $lang=='en'?'Home':($lang=='nl'?'huis':'家');?></a></li>
           <?php 
           if(is_array($pages)>0):
             foreach($pages as $page){
@@ -161,9 +165,9 @@
             }
           endif;
           ?>
-          <li><a href="<?php echo site_url();?>imagesList">Images</a></li>
-          <li><a href="<?php echo site_url();?>subscription">Subscription</a></li>
-          <li><a href="<?php echo site_url();?>contact">Contact Us</a></li>
+          <li><a href="<?php echo site_url();?>imagesList/"><?php echo $lang=='en'?'Images':($lang=='nl'?'afbeeldingen':'圖片');?></a></li>
+          <li><a href="<?php echo site_url();?>subscription/"><?php echo $lang=='en'?'Subscription':($lang=='nl'?'abonnement':'訂閱');?></a></li>
+          <li><a href="<?php echo site_url();?>contact/"><?php echo $lang=='en'?'Contact Us':($lang=='nl'?'Contacteer ons':'聯繫我們');?></a></li>
         </ul>
       </nav>
     </div>
@@ -171,16 +175,16 @@
   </div><!----./navigation---->
 <?php if(is_array($slides)>0): ?>
 <div class="src-img">
-  <h2>Search For Images</h2>
+  <h2><?php echo $search_for_images;?></h2>
   <div class="navbar-inner home-search">
     <form class="form-inline navbar-search" method="post" action="products.html" >
         <label>
           <input id="srchFld" class="srchTxt" type="text" placeholder="Enter Keyword(s)" style="border:none; background-color:#f1f1f1" />
-          <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+          <button type="submit" id="submitButton" class="btn btn-primary"><?php echo $search_btn; ?></button>
         </label>
         <br>
       <select class="srchTxt" style="width:auto; color:#adadad;  border:none; background:none">
-        <option>Category Search</option>
+        <option><?php echo $category_search;?></option>
         <?php 
             foreach($categories as $category){
               echo "<option value=imageslist/category/".intval($category->CatId).">".$this->front_model->format_data($category->CategoryName)."</option>";         

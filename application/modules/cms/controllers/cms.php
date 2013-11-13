@@ -12,7 +12,7 @@ class Cms extends MY_Controller {
  
   public function index()
   {
-	$data['pages'] = $this->admin_model->get_grid('tblpages','PageId');
+  	$data['pages'] = $this->admin_model->get_grid('tblpages','PageId','','PageSlug');
 	
 	$this->template->write_view('content', 'cms/cms_view',$data);
 	$this->template->render();
@@ -20,7 +20,7 @@ class Cms extends MY_Controller {
 
   public function subPages($id=Null) {
   	$where = array('PageId'=>$id);
-  	$data['spages'] = $this->admin_model->get_grid('tblpagechild','SPageId',$where);
+  	$data['spages'] = $this->admin_model->get_grid('tblpagechild','SPageId',$where,'PageId');
 	$data['pageTitle'] = $this->admin_model->get_single_data('tblpages', 'PageTitle', 'PageId',$id);
 	$this->template->write_view('content', 'cms/cms_sview',$data);
 	$this->template->render();
@@ -29,69 +29,71 @@ class Cms extends MY_Controller {
   public function aeddPages($id = NULL) {
 	   $id = (int)$id;
 	   $data = $this->_get_datas($id);
+
+	   $where = array('LangStatus'=>1);
+	   $data['languages'] = $this->admin_model->get_all_datas('languagetypes','LangName',$where);
 	   $this->template->write_view('content', 'cms/aedd_pages',$data);
 	   
 	   if ($this->input->post('submit')) 
 	   {
-		   $this->form_validation->set_rules('page_title', 'Page Title', 'trim|required');
-		   $this->form_validation->set_rules('status', 'Page Status', 'trim|required');
+		  
+	   	   	$this->form_validation->set_rules('page_title[0]', 'Page Title', 'trim|required');
+		   	$this->form_validation->set_rules('status', 'Page Status', 'trim|required');
 		   //check whether the form is validated or not
            if($this->form_validation->run() == FALSE){
               $this->template->write_view('content', 'cms/aedd_pages',$data);
               $this->template->render(); 
            } else {
            	   $ptitle = $this->input->post('page_title');
-			   if($id !='') { // update here
-					if($this->admin_model->count_no_fields_edit('tblpages','PageTitle', $ptitle, 'PageId', $id) == '0') {  
-						$hpos = $this->input->post('header_position')==''?-1:$this->input->post('header_position');
-				   		$fpos = $this->input->post('footer_position')==''?-1:$this->input->post('footer_position');
+           	   $content = $this->input->post('page_content');
+			   $slug = $this->input->post('page_slug');
+			   
+			   $hpos = $this->input->post('header_position')==''?-1:$this->input->post('header_position');
+			   $fpos = $this->input->post('footer_position')==''?-1:$this->input->post('footer_position');
+			   $status = $this->input->post('status');
 
-						$this->db->where('PageId', $id);			
-						$update_data['PageTitle'] = $this->admin_model->format_data($ptitle);
-						$update_data['PageSlug'] = $this->admin_model->format_data($this->input->post('page_slug'));
-						$update_data['PageLocation'] = intval($this->input->post('page_location'));
-						$update_data['HeaderPosition'] = intval($hpos);
-						$update_data['FooterPosition'] = intval($fpos);
-
-						$update_data['PageContent'] = $this->admin_model->format_data($this->input->post('page_content'));
-						$update_data['Status'] = $this->admin_model->format_data($this->input->post('status'));
-						
-						$result = $this->db->update('tblpages', $update_data);
-						if($result){
-							$this->session->set_flashdata('pages_msg', 'Page Updated successfully.');
-							redirect('cms');
-						} else{
-							$this->session->set_flashdata('pages_msg', 'Error In Updating Page.');					
-						}
-					}
-					else{
-						$this->session->set_flashdata('page_class', 'alert error');
-						$this->session->set_flashdata('page_msg', 'Duplicate Page With that Name Exists');				
-					}
+           	   if($id !='') { // update here
+				  for($i=0; $i<count($ptitle); $i++) {	
+					$this->db->where('PageId', $id);			
+					$update_data['PageTitle'] = $ptitle[$i];
+					$update_data['PageSlug'] = $slug;
+					$update_data['PageContent'] =  $content[$i];
+					$update_data['PageLocation'] = intval($this->input->post('page_location'));
+					$update_data['HeaderPosition'] = intval($hpos);
+					$update_data['FooterPosition'] = intval($fpos);
+					$update_data['Status'] = $status;
+					$id = $id+1;
+					$result = $this->db->update('tblpages', $update_data);
+				  }
+				  if($result){
+					$this->session->set_flashdata('pages_msg', 'Page Updated successfully.');
+					redirect('cms');
+				  } else{
+					$this->session->set_flashdata('pages_msg', 'Error In Updating Page.');
+				  }
 			   } else { //insert here
-				   if($this->admin_model->count_no_fields('tblpages','PageTitle', $ptitle ) == '0') {
-				   		$hpos = $this->input->post('header_position')==''?-1:$this->input->post('header_position');
-				   		$fpos = $this->input->post('footer_position')==''?-1:$this->input->post('footer_position');
-
-						$data = array(
-							'PageTitle' => $ptitle,
-							'PageContent' => $this->input->post('page_content'),
-							'PageSlug' => $this->admin_model->format_data($this->input->post('page_slug')),
-							'PageLocation' => intval($this->input->post('page_location')),
-							'HeaderPosition' => intval($hpos),
-							'FooterPosition' => intval($fpos),
-							'Status' => $this->admin_model->format_data($this->input->post('status'))
-						);
-						$result = $this->db->insert('tblpages',$data);
-						
-						if($result) {
-							$this->session->set_flashdata('pages_msg', 'Page Added successfully.');
-							redirect('cms');
-						} else{
-							$this->session->set_flashdata('pages_msg', 'Error In Adding Page.');					
-						}
+				   for($i=0;$i<count($ptitle);$i++){
+					   if($this->admin_model->count_no_fields('tblpages','PageTitle', $ptitle[$i] ) == '0') {
+						  $data = array(
+									'PageTitle' => $ptitle[$i],
+									'PageLangId' => $i+1,
+									'PageContent' => $content[$i],
+									'PageSlug' => $slug,
+									'PageLocation' => intval($this->input->post('page_location')),
+									'HeaderPosition' => intval($hpos),
+									'FooterPosition' => intval($fpos),
+									'Status' => $status
+						  );
+						  $result = $this->db->insert('tblpages',$data);
+					   }
 				   }
-			   }
+				  if($result) {
+						$this->session->set_flashdata('pages_msg', 'Page Added successfully.');
+						redirect('cms');
+				  } else{
+						$this->session->set_flashdata('pages_msg', 'Error In Adding Page.');					
+				  }
+			  }
 		   }
 	   }
 		$this->template->render();
@@ -99,22 +101,20 @@ class Cms extends MY_Controller {
  
  public function addSubPages($pid = NULL)  {
  	 $pid = (int)$pid;
- 	// prepare data for add subpage
+
+ 	 // prepare data for add subpage
+ 	 $where = array('LangStatus'=>1); 
  	 $data = array(
+ 	 			'pid' =>'',
  	 			'pageId' => $pid,
+ 	 			'languages' => $this->admin_model->get_all_datas('languagetypes','LangName',$where), 
 				'pageTitle' => $this->admin_model->get_single_data('tblpages', 'PageTitle', 'PageId',$pid),
-				'sptitle' => '',
-				'spslug' => '',
-				'spcontent' => '',
 				'status' => -1
-				
-			);
- 	  
- 	 
-	 $this->template->write_view('content', 'cms/aedd_spages',$data);
+				);
+ 	 $this->template->write_view('content', 'cms/aedd_spages',$data);
 	 if ($this->input->post('submit')) 
 	 {
-		   $this->form_validation->set_rules('spage_title', 'Sub Page Title', 'trim|required');
+		   $this->form_validation->set_rules('spage_title[0]', 'Sub Page Title', 'trim|required');
 		   $this->form_validation->set_rules('status', 'SubPage Status', 'trim|required');
 		   //check whether the form is validated or not
            if($this->form_validation->run() == FALSE){
@@ -122,28 +122,38 @@ class Cms extends MY_Controller {
               $this->template->render(); 
            } else {
            	   $sptitle = $this->input->post('spage_title');
+           	   $content = $this->input->post('spage_content');
+			   $slug = $this->input->post('spage_slug');
+			   $status = $this->input->post('status');
+			   
 			   //insert here
-			   if($this->admin_model->count_no_fields('tblpagechild','SPageTitle', $sptitle ) == '0') {
-			   		
+			   for($i=0;$i<count($sptitle);$i++){
+			  	 if($this->admin_model->count_no_fields('tblpagechild','SPageTitle', $sptitle[$i] ) == '0') {
 					$data = array(
 						'PageId' => $this->admin_model->format_data($this->input->post('page_id')),		
-						'SPageTitle' => $sptitle,
-						'SPageContent' => $this->input->post('spage_content'),
-						'SPageSlug' => $this->admin_model->format_data($this->input->post('spage_slug')),
-						'Status' => $this->admin_model->format_data($this->input->post('status'))
+						'SPageTitle' => $this->admin_model->format_data($sptitle[$i]),
+						'SPageLangId' => $i+1,
+						'SPageContent' => $content[$i],
+						'SPageSlug' => $this->admin_model->format_data($slug),
+						'Status' => intval($status)
 					);
 					$result = $this->db->insert('tblpagechild',$data);
-					
-					if($result) {
+			  	 }
+			   }
+				if($result) {
+					$j = $pid+3;
+					for($i=$pid;$i<$j;$i++){
+						$this->db->where('PageId',$i);	
 						$update_data['HasSubPage'] = 1;
-						$this->db->where('PageId', $pid);	
-						$this->db->update('tblpages', $update_data);
+						$result = $this->db->update('tblpages', $update_data);
+					}
+					if($result) {
 						$this->session->set_flashdata('spages_msg', 'SubPage Added successfully.');
 						redirect('cms');
-					} else{
-						$this->session->set_flashdata('spages_msg', 'Error In Adding SubPage.');					
 					}
-			   }
+				} else{
+					$this->session->set_flashdata('spages_msg', 'Error In Adding SubPage.');					
+				}
 			   
 		   }
 	 }
@@ -160,17 +170,20 @@ class Cms extends MY_Controller {
 		$this->session->set_flashdata($error);
 		redirect('cms/subPage');				
 	}	
-	$data['pageId']	= $this->admin_model->get_formatted($spages->PageId);
-	$data['pageTitle'] = $this->admin_model->get_single_data('tblpages', 'PageTitle', 'PageId',$spages->PageId);
-	$data['sptitle'] = $this->admin_model->get_formatted($spages->SPageTitle);
-	$data['spslug'] = $this->admin_model->get_formatted($spages->SPageSlug);
-	$data['spcontent'] = $this->admin_model->get_formatted($spages->SPageContent);
-	$data['status'] = intval($spages->Status);
+	 $where = array('LangStatus'=>1); 
+ 	 $data = array(
+ 	 			'pid' =>intval($id),
+ 	 			'pageId' => $this->admin_model->get_formatted($spages->PageId),
+ 	 			'languages' => $this->admin_model->get_all_datas('languagetypes','LangName',$where), 
+				'pageTitle' => $this->admin_model->get_single_data('tblpages', 'PageTitle', 'PageId',$spages->PageId),
+				'status' => intval($spages->Status)
+			);
 
- 	$this->template->write_view('content', 'cms/aedd_spages',$data);
+
+	$this->template->write_view('content', 'cms/aedd_spages',$data);
  	if ($this->input->post('submit')) 
 	{
-		   $this->form_validation->set_rules('spage_title', 'Sub Page Title', 'trim|required');
+		   $this->form_validation->set_rules('spage_title[0]', 'Sub Page Title', 'trim|required');
 		   $this->form_validation->set_rules('status', 'SubPage Status', 'trim|required');
 		   //check whether the form is validated or not
            if($this->form_validation->run() == FALSE){
@@ -179,30 +192,36 @@ class Cms extends MY_Controller {
            } else {
 			 	// update here
 	 		 	$sptitle = $this->input->post('spage_title');
-				if($this->admin_model->count_no_fields_edit('tblpagechild','SPageTitle', $sptitle, 'SPageId', $spid) == '0') {  
+	 		 	$content = $this->input->post('spage_content');
+				$slug = $this->input->post('spage_slug');
+				$status = $this->input->post('status');
+	 		 	for($i=0; $i<count($sptitle); $i++) {	
 					$this->db->where('SPageId', $spid);	
-
 					$update_data['PageId'] = $this->admin_model->format_data($this->input->post('page_id'));		
-					$update_data['SPageTitle'] = $this->admin_model->format_data($sptitle);
-					$update_data['SPageSlug'] = $this->admin_model->format_data($this->input->post('spage_slug'));
+					$update_data['SPageTitle'] = $this->admin_model->format_data($sptitle[$i]);
+					$update_data['SPageSlug'] = $this->admin_model->format_data($slug);
 					
-					$update_data['SPageContent'] = $this->admin_model->format_data($this->input->post('spage_content'));
-					$update_data['Status'] = $this->admin_model->format_data($this->input->post('status'));
-					
+					$update_data['SPageContent'] = $content[$i];
+					$update_data['Status'] = $status;
+					$spid = $spid+1;
 					$result = $this->db->update('tblpagechild', $update_data);
-					if($result){
-						$this->session->set_flashdata('spages_msg', 'SubPage Updated successfully.');
-						$pid = $this->admin_model->get_single_data('tblpagechild', 'PageId', 'SPageId',$spid);
-						redirect("cms/subPages/$pid");
-					} else{
-						$this->session->set_flashdata('spages_msg', 'Error In Updating SubPage.');					
+				}
+				if($result){
+					$i = $id;
+					$j = $id+3;
+					for($i;$i<$j;$i++){
+						$this->db->where('PageId',$i);	
+						$update_data_parent['HasSubPage'] = 1;
+						$result = $this->db->update('tblpages', $update_data_parent);
 					}
+					if($result) {
+						$this->session->set_flashdata('spages_msg', 'SubPage Updated successfully.');
+						$pid = $this->admin_model->get_single_data('tblpagechild','PageId','SPageId',$id);
+						redirect("admin/cms/subPages/$pid");
+					}
+				} else{
+					$this->session->set_flashdata('spages_msg', 'Error In Updating SubPage.');					
 				}
-				else{
-					$this->session->set_flashdata('spage_class', 'alert error');
-					$this->session->set_flashdata('spage_msg', 'Duplicate SubPage With that Name Exists');				
-				}
-				
 			}
 	}
 	$this->template->render();
@@ -233,7 +252,8 @@ class Cms extends MY_Controller {
 		/*create directory for images ends */
 		$img = $this->input->post('img');
 		$id = intval($id);
-		$image_name = $this->admin_model->get_single_data('tblpages','FeatureImage',array('PageId'=>$id));				
+		
+		$image_name = $this->admin_model->get_single_data('tblpages','FeatureImage','PageId',$id);				
 		if($image_name) {
 			 @unlink($dest.$image_name);
 			 @unlink($thumb.$image_name);
@@ -250,21 +270,27 @@ class Cms extends MY_Controller {
 		// move/resize images
 		
 		$this->image->resize($tmp_file_path,$thumb,100,100);
-		$this->image->resize($tmp_file_path,$dest,940);
+		$this->image->resize($tmp_file_path,$dest,940,'');
 		@unlink($tmp_file_path);
-		$this->db->where('PageId', $id);	
-		$update_data['FeatureImage'] = $filename;
-		$result = $this->db->update('tblpages', $update_data);
 
-   }
+		for($i=$id;$i<($id+3);$i++){
+			$this->db->where('PageId',$i);	
+			$update_data['FeatureImage'] = $filename;
+			$result = $this->db->update('tblpages', $update_data);
+		}
+	}
 
   function changeStatus(){ //Page Status Changing , this method is called via Ajax 
 		$status['Status'] = $this->input->post('status');
 		$id = intval($this->input->post('id'));
 		$table = $this->input->post('tbl');
 		$tid = $this->input->post('tid');
-		$where = array($tid=>$id);
-		if ($this->db->update($table,$status,$where)){
+		
+		for($i=$id;$i<($id+3);$i++){
+			$where = $this->db->where($tid,$i);	
+			$result = $this->db->update($table, $status);
+		}
+		if ($result){
 			echo 'success';
 		}else{
 			echo '';	
@@ -275,11 +301,13 @@ class Cms extends MY_Controller {
 		$id = (int)$id;
 		if($this->admin_model->count_row('tblpages', 'PageId', $id) != 0) {
 			//unlink old image
-			$image_name = $this->admin_model->get_single_data('tblpages','FeatureImage',array('PageId'=>$id)); //get featureImge name
-			$hsp = $this->admin_model->get_single_data('tblpages','HasSubPage',array('PageId'=>$id)); // check if it has subpage or not
+			$image_name = $this->admin_model->get_single_data('tblpages','FeatureImage','PageId',$id); //get featureImge name
+			$hsp = $this->admin_model->get_single_data('tblpages','HasSubPage','PageId',$id); // check if it has subpage or not
 			
-			$this->db->where('PageId', $id);
-			$result = $this->db->delete('tblpages');
+			for($i=$id;$i<($id+3);$i++){
+				$this->db->where('PageId',$i);	
+				$result = $this->db->delete('tblpages');
+			}
 			if($result){
 				if($image_name) {
 					 $dest = './featureImg/';
@@ -288,8 +316,10 @@ class Cms extends MY_Controller {
 					 @unlink($thumb.$image_name);
 				} 
 				if( $hsp != Null){ //Delete Subpage if it has 
-					$this->db->where('PageId', $id);
-					$this->db->delete('tblpagechild');
+					for($i=$id;$i<($id+3);$i++){
+						$this->db->where('PageId',$i);	
+						$this->db->delete('tblpagechild');
+					}
 				}
 				$action['page_msg']	= 'Page Successfully Deleted.';
 			}else{
@@ -304,17 +334,23 @@ class Cms extends MY_Controller {
 
   function sdelete($id=NULL){ // SubPage Deletion
 		$id = (int)$id;
-		$pid = $this->admin_model->get_single_data('tblpagechild','PageId',array('SPageId'=>$id)); 
+		$pid = $this->admin_model->get_single_data('tblpagechild','PageId','SPageId',$id); 
 		if($this->admin_model->count_row('tblpagechild', 'SPageId', $id) != 0) {
-			$this->db->where('SPageId', $id);
-			$result = $this->db->delete('tblpagechild');
+			for($i=$id;$i<($id+3);$i++){
+				$this->db->where('SPageId',$i);	
+				$result = $this->db->delete('tblpagechild');
+			}
 			if($result){
 				$action['spage_msg']	= 'Subpage Successfully Deleted.';
 				if($this->admin_model->count_no_fields('tblpagechild', 'PageId', $pid)<=0){
-					$update_data['HasSubPage'] = 0;
-					$this->db->where('PageId', $pid);	
-					$this->db->update('tblpages', $update_data);
-					redirect("cms");
+					for($i=$pid;$i<($pid+3);$i++){
+						$this->db->where('PageId',$i);	
+						$update_data['HasSubPage'] = 0;
+						$result = $this->db->update('tblpages', $update_data);
+					}
+					if($result) {
+						redirect("cms");
+					}
 				}
 			}else{
 				$action['spage_msg']	= 'Error In Deleting SubPage.';	
@@ -329,11 +365,12 @@ class Cms extends MY_Controller {
   function RemoveFeatureImage($id=NULL){ // Feature Image Deletion(Update)
 	$id = (int)$id;
 	//unlink old image
-	$image_name = $this->admin_model->get_single_data('tblpages','FeatureImage',array('PageId'=>$id));
-	$this->db->where('PageId', $id);			
-	$update_data['FeatureImage'] = '';
-	$result = $this->db->update('tblpages', $update_data);
-	
+	$image_name = $this->admin_model->get_single_data('tblpages','FeatureImage','PageId',$id);
+	for($i=$id;$i<($id+3);$i++){
+		$this->db->where('PageId',$i);	
+		$update_data['FeatureImage'] = '';
+		$result = $this->db->update('tblpages', $update_data);
+	}
 	if($result){
 		if($image_name) {
 			 $dest = './featureImg/';
@@ -342,33 +379,32 @@ class Cms extends MY_Controller {
 			 @unlink($thumb.$image_name);
 			 echo 'success';
 		}
-		
 	}
  }
 
-  public function _get_datas($id) { // get data for subpage
+  public function _get_datas($id) { // get data for page
 	  if($id) {
 			$pages = $this->admin_model->get_single_row('tblpages', 'PageId', $id);
 			if(empty($pages)) {
 				$error['page_msg']   = "Invalid Request!";
 				$this->session->set_flashdata($error);
 				redirect('cms');				
-			}		
+			}	
+			$data['pid'] = intval($id);
 			$data['ptitle'] = $this->admin_model->get_formatted($pages->PageTitle);
 			$data['pslug'] = $this->admin_model->get_formatted($pages->PageSlug);
 			$data['plocation'] = intval($pages->PageLocation);
 			$data['hposition'] = intval($pages->HeaderPosition);
 			$data['fposition'] = intval($pages->FooterPosition);
-			$data['pcontent'] = $this->admin_model->get_formatted($pages->PageContent);
 			$data['status'] = intval($pages->Status);
 		}
 		else {
+			$data['pid'] = '';
 			$data['ptitle'] = '';
 			$data['pslug']  = '';
 			$data['plocation'] = -1;
 			$data['hposition'] = -1;
 			$data['fposition'] = -1;
-			$data['pcontent'] = '';
 			$data['status'] = -1;
 		}
 		return $data;

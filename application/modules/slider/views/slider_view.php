@@ -41,7 +41,7 @@
                             <td><?php echo '<span class="dataSta">'.$sta.'</span>'.$setSta; ?></td>
                             <td class="actiontd">
                                
-                                <a title="Edit" href="<?php echo base_url(); ?>slider/editSlides/<?php echo $slide->SliderId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
+                                <a title="Edit" href="<?php echo base_url(); ?>admin/slider/editSlides/<?php echo $slide->SliderId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
                                 <a id="delpage" onclick="return confirm('Are You Sure To Delete This Slide?');"  title="Delete" href="<?php echo base_url(); ?>slider/delete/<?php echo $slide->SliderId ?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
                             </td>
                         </tr>

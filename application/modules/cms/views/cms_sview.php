@@ -12,6 +12,7 @@
                             <h3><?php echo $this->session->flashdata('spages_msg');?></h3>                        
                         </div>
                     <?php endif; ?>
+                   
                    <div class="widget widget-table">
                         <div class="widget-header">
                             <span class="icon-list"></span>
@@ -44,7 +45,7 @@
                                             <td><?php echo $spage->SPageTitle ; ?></td>
                                             <td><?php echo '<span class="dataSta">'.$sta.'</span>'.$setSta; ?></td>
                                             <td class="actiontd">
-                                                <a title="Edit" href="<?php echo base_url(); ?>cms/editSubpage/<?php echo $spage->SPageId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
+                                                <a title="Edit" href="<?php echo base_url(); ?>admin/cms/editSubpage/<?php echo $spage->SPageId ?>"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
                                                 <a title="Delete" id="delpage" onclick="return confirm('Are You Sure To Delete This SubPage?');" href="<?php echo base_url(); ?>cms/sdelete/<?php echo $spage->SPageId ?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
                                             </td>
                                         </tr>
@@ -73,7 +74,7 @@ $('document').ready(function(){
         var text = $(this).find("option:selected").text();
         $.ajax({
             url:'<?php echo site_url("cms/changeStatus");?>',
-            data:{id:$id,status:$status,tbl:'tblpagechild',tid:'SPageId'},
+            data:{id:$id,status:$status,tbl:'tblpagechild',tid:'PageId'},
             type:'POST',
             dataType:"html",
             success: function(data){

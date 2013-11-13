@@ -33,21 +33,21 @@
                             <!-- .pad --> </div>
                         <div class="dashboard_report defaultState">
                             <div class="cat">
-                               <a href="<?php echo site_url();?>/categories/aeddcategories"><span class="value">CATEGORY</span>
+                               <a href="<?php echo site_url();?>admin/categories/aeddCategories"><span class="value">CATEGORY</span>
                                 Add Category </a>
                             </div>
                             <!-- .pad --> </div>
 
                         <div class="dashboard_report defaultState">
                             <div class="scat">
-                               <a href="<?php echo site_url();?>/categories/aeddscategories"> <span class="value">SUBCATEGORY</span>
+                               <a href="<?php echo site_url();?>admin/categories/aeddSCategories"> <span class="value">SUBCATEGORY</span>
                                 Add New SubCategory</a>
                             </div>
                             <!-- .pad --> </div>
 
                         <div class="dashboard_report defaultState">
                             <div class="slider">
-                               <a href="<?php echo site_url();?>/slider/addSlides"> <span class="value">SLIDER</span>
+                               <a href="<?php echo site_url();?>admin/slider/addSlides"> <span class="value">SLIDER</span>
                                 Add New Slider</a>
                             </div>
                             <!-- .pad --> </div>

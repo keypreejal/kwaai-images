@@ -2,45 +2,48 @@
 
 class ImagesList extends CI_Controller {
 
-/**
+  	/**
 	 * Images for this controller.
 	 *	This page loads a Images Page of Kwaai
 	 */
-  #............begin constructor........................##
-  public function __construct()
-  {
-   	 parent::__construct();    
-	 $this->load->model('front/front_model');
-  }
-  #..............end constructor.......................##
+	#............begin constructor........................##
+	  public function __construct()
+	  {
+	   	 parent::__construct();    
+		 $this->load->model('front/front_model');
+	  }
+	#..............end constructor.......................##
 
 
 	/**
 		*Begin Index function for this controller
 	 	* Thiis function Loads a Front form with a view name images_view.php
 	*/
-
-
-  #...................................##
+  	#............begin Index........................##
 	public function index()
 	{
-		$whereHead = array('status'=>1,'PageLocation'=>2);
-	   	$whereFoot = array('status'=>1,'PageLocation'=>1);
-	   	$data['pages'] = $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead); //Get Page Name on Header
-		$data['slides'] = ''; //No slides Needed in Image
-
-		
-	   	$data['categories'] = $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1)); //Category Name Listing in sidebar & category search
-	   	$data['scategories'] = $this->front_model->get_datas('tblcategorychild','SCategoryName',array('status'=>1)); //SCategory Name Listing in sidebar 
-	   	$data['orientations'] = $this->front_model->get_datas('tblorientation','OrName',array('status'=>1)); //Orientation Name Listing in sidebar 
-
-		$data['fpages'] = $this->front_model->get_datas('tblpages','FooterPosition',$whereFoot);	//Get Page Name on Header
+		$langCode = $this->input->get('lang');
+		$langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
+		$whereHead = array('status'=>1,'PageLocation'=>2,'PageLangId'=>$langId);
+	   	$whereFoot = array('status'=>1,'PageLocation'=>1,'PageLangId'=>$langId);
+	    $whereLang = array('LangStatus'=>1);
+		$data = array(
+					'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
+					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
+					'slides' => '', //No slides Needed in Image as requirement in Design
+					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1,'CatLangId'=>$langId),'CreatedAt'), //Category Name Listing in sidebar & category search
+					'scategories' => $this->front_model->get_datas('tblcategorychild','SCategoryName',array('status'=>1,'SCatLangId'=>$langId),'CreatedAt'), //SCategory Name Listing in sidebar 
+					'orientations' => $this->front_model->get_datas('tblorientation','OrName',array('status'=>1,'OrLangId'=>$langId),'CreatedAt'), //Orientation Name Listing in sidebar 
+					'fpages' => $this->front_model->get_datas('tblpages','FooterPosition',$whereFoot,'PageSlug'),	 //get Footer Menu Name
+					'facebook' => $this->front_model->get_single_data('tblsitesettings','Value','Name','facebook-link'),
+					'twitter' => $this->front_model->get_single_data('tblsitesettings','Value','Name','twitter-link'),
+					'gplus' => $this->front_model->get_single_data('tblsitesettings','Value','Name','google-plus')
+					);
 		$this->template->set_template('defaultfront');
 		$this->template->write_view('content', 'imageslist/images_view',$data);
 		$this->template->render();
 	}
-	//End Index Function
-  #...................................##
+	#.............End Index Function......................##
 
 
   
