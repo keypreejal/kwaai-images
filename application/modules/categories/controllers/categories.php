@@ -260,7 +260,7 @@ class Categories extends MY_Controller {
 			}	
 			$data['cid'] = $this->admin_model->get_formatted($id);
 
-			$data['catid'] = $this->admin_model->get_formatted($scategory->SCatId);
+			$data['catid'] = $this->admin_model->get_formatted($id);
 			$data['featured'] = intval($scategory->IsFeatured );
 			$data['status'] = intval($scategory->Status);
 		}
