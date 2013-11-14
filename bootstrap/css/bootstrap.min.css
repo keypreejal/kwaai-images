@@ -606,7 +606,8 @@ ul ul, ul ol, ol ol, ol ul {
 	margin-bottom:0
 }
 li {
-	line-height:20px
+	line-height:20px;
+	list-style-type:none;
 }
 ul.unstyled, ol.unstyled {
 	margin-left:0;
@@ -3237,7 +3238,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', end
 	margin-top:5px;
 	margin-bottom:0
 }
-.navbar-search label{background-color:#f1f1f1; float:left; border:1px solid #ababab; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
+.navbar-search label{background-color:#f1f1f1;/* float:left;*/ border:1px solid #ababab; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
 .navbar-search .search-query {
 	padding:4px 14px;
 	margin-bottom:0;

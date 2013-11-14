@@ -25,8 +25,8 @@
       <div class="span2">
         <h4><?php echo $need_help;?></h4>
         <ul class="nav  nowidth">
-          <li><a href="#"><?php echo $need_help_search_tips;?></a></li>
           <li><a href="#"><?php echo $need_help_contact_us;?></a></li>
+          <li><a href="#"><?php echo $need_help_faqs?></a></li>
           <li><a href="#"><?php echo $need_help_site_map;?></a></li>
         </ul>
       </div>

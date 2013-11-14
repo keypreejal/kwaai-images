@@ -23,19 +23,36 @@
 </div>
 
 <div id="wrapper" class="container">
-	<section class="header_text">
-	<?php if($content->FeatureImage) { ?>
-		<img class="pageBanner" src="<?php echo site_url().'featureImg/'.$content->FeatureImage;?>" alt="New products" >
-	<?php } ?>
-	
-	</section>			
 	<section class="main-content">				
 		<div class="row">
-			<div class="span10">					
-				<h2 class="titles"><span class="text"><?php echo $content->PageTitle;?> </span></h2>
-				<p><?php echo $content->PageContent;?></p>	
+			<div class="span10">				
+				<!--sidebar-->
+			    <div id="sidebar" class="span3 side-sec">
+			      	<div class="sidey">
+			      		 <?php
+			      		  if(is_array($fpages)>0):
+			      		  	echo "<ul class='nav'>";
+			      		  		$selan = isset($_GET['lang'])==1?"?&lang=$_GET[lang]":'?&lang=en';
+					            foreach($fpages as $fpage){
+					             echo "<li><a href=$fpage->PageSlug$selan>$fpage->PageTitle</a></li>";
+					            }
+				            echo "</ul>";
+				          endif;?>
+			        </div>
+			    </div>
+   				<!-- Sidebar end=============================================== -->    
+    			<div class="span7 sec-span">
+                  <h2 class="titles"><span class="text"><?php echo $content->PageTitle;?></span></h2>
+                  <?php if($content->FeatureImage) { ?>
+						<img class="pageBanner" src="<?php echo site_url().'featureImg/'.$content->FeatureImage;?>" alt="New products" >
+				  <?php } ?>
+                  <div class="text-area">
+                  	<?php echo $content->PageContent;?>
+                   </div>
+               	</div>
+               <!--/account info-->
 			</div>
-				
+					
 		</div>
-	</section>	
-</div>		
+	</section>
+</div>

@@ -18,7 +18,7 @@ Class Front_model extends CI_Model
 	}
 	
 	function get_datas($table_name,$order_field,$where=NULL,$group=NULL){
-		$this->db->order_by($order_field,'DESC');
+		$this->db->order_by($order_field,'ASC');
 		if (is_array($where) && !empty($where)){
 			$this->db->where($where);
 		}

@@ -63,7 +63,7 @@
       <div class="account pull-right">
         <ul class="user-menu">
           <li class="">
-             <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span>Sign in</span></a>
+             <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span><?php echo $sign_in;?></span></a>
              <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="signin" aria-hidden="false" >
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -96,7 +96,7 @@
           </li>
           <span>|</span>
           <li class="">
-   			<a href="register.php"><span>Register</span></a>
+   			<a href="<?php echo site_url();?>register"><span><?php echo $register;?></span></a>
  		  </li>
           <li>
           <a href="cart.php"><?php echo $shopping_baskets;?> </a> <span class="s-basket">
@@ -121,8 +121,14 @@
              echo "<li><a href=$page->PageSlug>$page->PageTitle</a></li>";
             }
           endif;
-          ?>
-          <li><a href="<?php echo site_url();?>imagesList/"><?php echo $lang=='en'?'Images':($lang=='nl'?'afbeeldingen':'圖片');?></a></li>
+		  if(is_array($categories)>0):
+		  	$cat = '';
+            foreach($categories as $category){
+              $cat .= "<li><a href='".site_url()."imagesList/'>".$this->front_model->format_data($category->CategoryName)."</a></li>";
+			} 
+		  endif;
+	 	?>
+          <li><a href=products.html><?php echo $lang=='en'?'Category':($lang=='nl'?'categorie':'類別');?></a><ul><?php echo $cat;?></ul></li>
           <li><a href="<?php echo site_url();?>subscription/"><?php echo $lang=='en'?'Subscription':($lang=='nl'?'abonnement':'訂閱');?></a></li>
           <li><a href="<?php echo site_url();?>contact/"><?php echo $lang=='en'?'Contact Us':($lang=='nl'?'Contacteer ons':'聯繫我們');?></a></li>
         </ul>

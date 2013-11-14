@@ -206,3 +206,4 @@
     </div>
   </div>
 </div>
+<script src="<?php echo site_url();?>themes/js/js/main.js" type="text/javascript"></script>

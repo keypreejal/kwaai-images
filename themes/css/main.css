@@ -379,7 +379,7 @@ iframe{
 
 }
 span6{margin:0}
-#top-bar .user-menu, #top-bar .lang-cur {
+#top-bar .user-menu, #top-bar .user-lang {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -406,32 +406,21 @@ ul#lang-cur li, ul#lang-cur ul.lang-cur-down li {
     list-style-type: none;
     display: inline-block;
 }
-/*Link Appearance*/
-ul#lang-cur li a, ul#lang-cur li ul.lang-cur-down li a {
-    text-decoration: none;
-    font-size: 12px;
-    color: #fff;
-    background: #000;
-    padding:0 5px;
-    display:inline-block;
-}
-ul#lang-cur li i{color:#f1f1f1;}
- ul#lang-cur li ul.lang-cur-down li a:hover{color: #049FEF}
-/*Make the parent of sub-menu relative*/
-ul#lang-cur li {
-    position: relative;
-}
-/*sub menu*/
-ul#lang-cur li ul.lang-cur-down {
-    display:none;
+.language {background-color:#000; border-radius:0 0 3px 3px; -moz-border-radius:0 0 3px 3px; -webkit-border-radius:0 0 3px 3px; margin-bottom:19px; padding-right:5px}
+#top-bar .user-lang li{padding:0 ; display:inline-block; *display: inline;
+	zoom: 1;}
+#top-bar .user-lang li a{color:#fff}
+#top-bar .user-lang li label{position:relative; display:inline-block; margin-bottom:0}
+#top-bar .user-lang li label:after {
+   content: '';
+    width: 23px;
+    height: 23px;
     position: absolute;
-    top: 20px;
-    left: 0;
-    width: 65px;
-    background-color: #000;
-}
-ul#lang-cur li:hover ul.lang-cur-down {
-    display:block;
+    display: inline-block;
+    top: 2px;
+    right: 5px;
+    background:#000 url(../images/drop-dwon-icon.png) no-repeat right center;
+	pointer-events:none
 }
 
 /*target Internet Explorer 9 and Internet Explorer 10:*/
@@ -450,7 +439,7 @@ select.country option, select.currency option{border:none; padding:3px;
 	transition: all 0.4s;}
 .header_text .span4{margin-left:0; border-right:1px solid #c5c5c5}
 .header_text .span6{margin-left:0}
-.header_text .span6 p{margin-bottom:20px}
+.header_text .offer-home p{margin-bottom:0}
 .home-cat h2{font-size:15px; font-weight:normal; margin:0 0 5px 0; line-height:normal}
 .home-cat{width:400px; text-align: center;}
 .offer-home{width: 540px; text-align: center;}
@@ -864,11 +853,12 @@ section.navbar{
 }
 .src-img{position:absolute; top:50%; right:15%; z-index:99; }
 .src-img h2{font-family:'Open Sans',arial,tahoma,sans-serif; font-weight: normal; color:#fff; font-size: 28px; margin: 0; text-shadow: 2px 2px 2px #000; -webkit-text-shadow: 2px 2px 2px #000; -moz-text-shadow: 2px 2px 2px #000;}
-.home-search{background-color:rgba(0, 0, 0, 0.7); padding:10px; border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px}
+.home-search{background-color:rgba(0, 0, 0, 0.7); padding:10px 10px 5px 10px; border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px}
 /*Initialize*/
 ul#search-box, ul#search-box ul.search-down {
     padding:5px 0 0 0;
     margin: 0;
+	display:inline-block
 }
 ul#search-box li, ul#search-box ul.search-down li {
     list-style-type: none;
@@ -906,7 +896,7 @@ ul#search-box li ul.search-down {
     position: absolute;
     top: 20px;
     left: 0;
-    width: 150px;
+    width: 285px;
     padding: 0 0 0 10px;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 3px;

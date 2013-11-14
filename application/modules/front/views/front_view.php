@@ -48,10 +48,7 @@
             </ul>
         </div>
        <div class="span6 pull-right offer-home">
-          <h2>Make money from your images</h2>
-                <p style="margin-bottom:0">Sell your stock images and get <strong>100%</strong> from each sale you make.
-                  This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches.
-              </p>
+          <?php echo $make_money;?>
               <a class="btn btn-primary" href="register.php">Join Now</a>
         </div>
   	</div> 
@@ -60,7 +57,7 @@
     <div class="row">
       <div class="span10">
         <div  class="recent-posts blocky">
-         <h4 class="title"><span class="pull-center"><span class="text"><span class="line">MOST POPULAR PICTURES</span></span></span> <span class="pull-right"></span></h4>
+         <h4 class="title"><span class="pull-center"><span class="text"><span class="line"><?php echo $most_popular_pictures;?></span></span></span> <span class="pull-right"></span></h4>
          <div class="my_carousel">
                <div class="carousel_nav pull-right">
                    <!-- Carousel navigation -->
