@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 12, 2013 at 01:04 PM
+-- Generation Time: Nov 13, 2013 at 07:59 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -121,60 +121,24 @@ CREATE TABLE IF NOT EXISTS `pxl_tblcategorychild` (
 --
 
 INSERT INTO `pxl_tblcategorychild` (`SCatId`, `SCatLangId`, `SCategoryName`, `CatId`, `IsFeatured`, `FeatureImage`, `Status`, `CreatedAt`, `UpdatedAt`) VALUES
-(1, 1, 'People', 1, 0, '1384157957.jpeg', 1, '2013-11-11 09:01:13', '2013-11-12 13:00:15'),
-(2, 2, 'mensen', 1, 0, '1384157957.jpeg', 1, '2013-11-11 09:01:13', '2013-11-12 13:00:15'),
-(3, 3, '人', 1, 0, '1384157957.jpeg', 1, '2013-11-11 09:01:13', '2013-11-12 13:00:15'),
-(7, 1, 'Celebrity', 1, 1, '1384158697.jpeg', 1, '2013-11-11 09:31:31', '2013-11-12 12:41:07'),
-(8, 2, 'beroemdheid', 1, 1, '1384158697.jpeg', 1, '2013-11-11 09:31:31', '2013-11-12 12:41:07'),
-(9, 3, '名人', 1, 1, '1384158697.jpeg', 1, '2013-11-11 09:31:31', '2013-11-12 12:41:07'),
-(10, 1, 'Food', 1, 0, '1384239488.jpeg', 1, '2013-11-12 07:57:56', '2013-11-12 12:40:32'),
-(11, 2, 'voedsel', 1, 0, '1384239488.jpeg', 1, '2013-11-12 07:57:56', '2013-11-12 12:40:32'),
-(12, 3, '食物', 1, 0, '1384239488.jpeg', 1, '2013-11-12 07:57:56', '2013-11-12 12:40:32'),
-(13, 1, 'Culture', 1, 1, '1384239538.jpeg', 1, '2013-11-12 07:58:52', '2013-11-12 12:39:46'),
-(14, 2, 'cultuur', 1, 1, '1384239538.jpeg', 1, '2013-11-12 07:58:52', '2013-11-12 12:39:46'),
-(15, 3, '文化', 1, 1, '1384239538.jpeg', 1, '2013-11-12 07:58:52', '2013-11-12 12:39:46'),
-(16, 1, 'Transportation', 1, 1, '1384239582.jpeg', 1, '2013-11-12 07:59:35', '2013-11-12 12:38:07'),
-(17, 2, 'vervoer', 1, 1, '1384239582.jpeg', 1, '2013-11-12 07:59:35', '2013-11-12 12:38:07'),
-(18, 3, '運輸', 1, 1, '1384239582.jpeg', 1, '2013-11-12 07:59:35', '2013-11-12 12:38:07'),
-(19, 1, 'Architecture', 1, 1, '1384239713.jpeg', 1, '2013-11-12 08:00:15', '2013-11-12 11:57:11'),
-(20, 2, 'architectuur', 1, 1, '1384239713.jpeg', 1, '2013-11-12 08:00:15', '2013-11-12 11:57:11'),
-(21, 3, '建築', 1, 1, '1384239713.jpeg', 1, '2013-11-12 08:00:15', '2013-11-12 11:57:11');
-
--- --------------------------------------------------------
-
---
--- Table structure for table ` pxl_tblconstants`
---
-
-CREATE TABLE IF NOT EXISTS ` pxl_tblconstants` (
-  `ConstantId` int(11) NOT NULL AUTO_INCREMENT,
-  `ConstantCode` varchar(255) NOT NULL,
-  `ConstantStatus` tinyint(4) NOT NULL,
-  PRIMARY KEY (`ConstantId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
-
---
--- Dumping data for table ` pxl_tblconstants`
---
-
-INSERT INTO ` pxl_tblconstants` (`ConstantId`, `ConstantCode`, `ConstantStatus`) VALUES
-(1, 'sign_in', 1),
-(2, 'register', 1),
-(3, 'shopping_baskets', 1),
-(4, 'browse_by_category', 1),
-(5, 'package', 1),
-(6, 'most_popular_pictures', 1),
-(7, 'kwaai_images', 1),
-(8, 'my_account_head', 1),
-(9, 'my_account', 1),
-(10, 'my_account_sign_in', 1),
-(11, 'my_account_sign_up_free', 1),
-(12, 'need_help', 1),
-(13, 'need_help_search_tips', 1),
-(14, 'need_help_contact_us', 1),
-(15, 'need_help_site_map', 1),
-(16, 'follow_us', 1),
-(17, 'all_right_reserve', 1);
+(1, 1, 'People', 7, 0, '1384157957.jpeg', 1, '2013-11-11 09:01:13', '2013-11-13 06:29:53'),
+(2, 2, 'mensen', 7, 0, '1384157957.jpeg', 1, '2013-11-11 09:01:13', '2013-11-13 06:29:53'),
+(3, 3, '人', 7, 0, '1384157957.jpeg', 1, '2013-11-11 09:01:13', '2013-11-13 06:29:53'),
+(7, 1, 'Celebrity', 1, 1, '1384158697.jpeg', 1, '2013-11-11 09:31:31', '2013-11-13 06:12:27'),
+(8, 2, 'beroemdheid', 1, 1, '1384158697.jpeg', 1, '2013-11-11 09:31:31', '2013-11-13 06:12:27'),
+(9, 3, '名人', 1, 1, '1384158697.jpeg', 1, '2013-11-11 09:31:31', '2013-11-13 06:12:27'),
+(10, 1, 'Food', 7, 0, '1384239488.jpeg', 1, '2013-11-12 07:57:56', '2013-11-13 06:01:16'),
+(11, 2, 'voedsel', 7, 0, '1384239488.jpeg', 1, '2013-11-12 07:57:56', '2013-11-13 06:01:16'),
+(12, 3, '食物', 7, 0, '1384239488.jpeg', 1, '2013-11-12 07:57:56', '2013-11-13 06:01:16'),
+(13, 1, 'Culture', 1, 1, '1384239538.jpeg', 1, '2013-11-12 07:58:52', '2013-11-13 06:00:25'),
+(14, 2, 'cultuur', 1, 1, '1384239538.jpeg', 1, '2013-11-12 07:58:52', '2013-11-13 06:00:25'),
+(15, 3, '文化', 1, 1, '1384239538.jpeg', 1, '2013-11-12 07:58:52', '2013-11-13 06:00:25'),
+(16, 1, 'Transportation', 1, 1, '1384239582.jpeg', 1, '2013-11-12 07:59:35', '2013-11-13 06:04:41'),
+(17, 2, 'vervoer', 1, 1, '1384239582.jpeg', 1, '2013-11-12 07:59:35', '2013-11-13 06:04:41'),
+(18, 3, '運輸', 1, 1, '1384239582.jpeg', 1, '2013-11-12 07:59:35', '2013-11-13 06:04:41'),
+(19, 1, 'Architecture', 7, 1, '1384239713.jpeg', 1, '2013-11-12 08:00:15', '2013-11-13 06:48:55'),
+(20, 2, 'architectuur', 7, 1, '1384239713.jpeg', 1, '2013-11-12 08:00:15', '2013-11-13 06:48:55'),
+(21, 3, '建築', 7, 1, '1384239713.jpeg', 1, '2013-11-12 08:00:15', '2013-11-13 06:48:55');
 
 -- --------------------------------------------------------
 
@@ -189,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `pxl_tblconstantsvalue` (
   `KeywordValue` text CHARACTER SET utf8 NOT NULL,
   `KeywordStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`KeywordId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
 
 --
 -- Dumping data for table `pxl_tblconstantsvalue`
@@ -226,12 +190,48 @@ INSERT INTO `pxl_tblconstantsvalue` (`KeywordId`, `ConstantCode`, `KeywordLangId
 (28, 'subscription_options', 1, '<h4>Subscription Options</h4>\r\n<p>Flexible image subscription plans you can tailor to your needs.</p>', 1),
 (29, 'subscription_options', 2, '<h4>Abonnementsopties</h4>\r\n<p>Flexibele afbeelding abonnementen kunt u op maat van uw behoeften.</p>', 1),
 (30, 'subscription_options', 3, '<h4>認購期權</h4>\r\n<p>靈活的圖像套餐，您可以根據您的需求。</p>', 1),
-(31, 'sign_up_for_free', 1, 'Sign up for FREE\r\nSign up for a Corbis account to receive special offers, news, and more.', 1),
-(32, 'sign_up_for_free', 2, 'Sign up for FREE D\r\nSign up for a Corbis account to receive special offers, news, and more.', 1),
-(33, 'sign_up_for_free', 3, 'Sign up for FREE C\r\nSign up for a Corbis account to receive special offers, news, and more.', 1),
+(31, 'sign_up_for_free', 1, '<h4>Sign up for FREE</h4>\r\n<p>Sign up for a Corbis account to receive special offers, news, and more.</p>', 1),
+(32, 'sign_up_for_free', 2, '<h4>Teken</h4>\r\n<p>Aanmelden voor een Corbis account om speciale aanbiedingen, nieuws en meer te ontvangen.</p>', 1),
+(33, 'sign_up_for_free', 3, '<h4>註冊免費</h4>\r\n<p>Corbis的帳戶收取特別優惠，新聞和更多。</p>', 1),
 (34, 'search_tips', 1, 'Search tips\r\nFind the right image quickly and easily with our search tips guide.', 1),
-(35, 'search_tips', 2, 'Search tips D\r\nFind the right image quickly and easily with our search tips guide.', 1),
-(36, 'search_tips', 3, 'Search tips C\r\nFind the right image quickly and easily with our search tips guide.', 1);
+(35, 'search_tips', 2, '<h4>zoektips</h4>\r\n<p>Vind de juiste afbeelding snel en gemakkelijk met onze zoektips gids..</p>', 1),
+(36, 'search_tips', 3, '<h4>搜索提示</h4>\r\n<p>我們的搜索技巧指南快速，輕鬆地找到合適的圖像。</p>', 1),
+(40, 'subscription_options_gstarted', 1, 'Get Started', 1),
+(41, 'subscription_options_gstarted', 2, 'Aan de slag', 1),
+(42, 'subscription_options_gstarted', 3, '開始', 1),
+(43, 'sign_up_for_free_dregister', 1, 'Register', 1),
+(44, 'sign_up_for_free_dregister', 2, 'registreren', 1),
+(45, 'sign_up_for_free_dregister', 3, '註冊', 1),
+(46, 'search_tips_dguide', 1, 'See the guide', 1),
+(47, 'search_tips_dguide', 2, 'Zie de gids', 1),
+(48, 'search_tips_dguide', 3, '請參閱指南', 1),
+(49, 'my_account_head', 1, 'My Account', 1),
+(50, 'my_account_head', 2, 'Mijn account', 1),
+(51, 'my_account_head', 3, '我的帳戶', 1),
+(52, 'my_account_sign_up_free', 1, 'Sign up for free', 1),
+(53, 'my_account_sign_up_free', 2, 'Meld je gratis aan', 1),
+(54, 'my_account_sign_up_free', 3, '免費註冊', 1),
+(55, 'need_help', 1, 'Need Help?', 1),
+(56, 'need_help', 2, 'Hulp nodig?', 1),
+(57, 'need_help', 3, '是否需要幫助？', 1),
+(58, 'need_help_search_tips', 1, 'Search tips &amp; tricks', 1),
+(59, 'need_help_search_tips', 2, 'Zoek tips & tricks', 1),
+(60, 'need_help_search_tips', 3, '搜索提示和技巧', 1),
+(61, 'need_help_contact_us', 1, 'Contact Us', 1),
+(62, 'need_help_contact_us', 2, 'Contacteer ons', 1),
+(63, 'need_help_contact_us', 3, '聯繫我們', 1),
+(64, 'need_help_site_map', 1, 'Site map', 1),
+(65, 'need_help_site_map', 2, 'Sitemap', 1),
+(66, 'need_help_site_map', 3, '網站地圖', 1),
+(67, 'follow_us', 1, 'Follow us:', 1),
+(68, 'follow_us', 2, 'Volg ons op:', 1),
+(69, 'follow_us', 3, '跟隨我們：', 1),
+(70, 'all_right_reserve', 1, 'All contents &copy; copyright 2013 Kwaai Images, Inc. All rights reserved.', 1),
+(71, 'all_right_reserve', 2, 'Alle content © copyright 2013 Kwaai Images, Inc Alle rechten voorbehouden.', 1),
+(72, 'all_right_reserve', 3, '的所有內容©版權所有2013 Kwaai的圖片，公司保留所有權利。', 1),
+(73, 'site_title', 1, 'Kwaai-Images.com | is a photo stock company for professionals and amateurs', 1),
+(74, 'site_title', 2, '\r\nKwaai-Images.com | is een foto stock onderneming voor professionals en amateurs', 1),
+(75, 'site_title', 3, 'Kwaai Images.com |是一個照片的股份公司，為專業人士和業餘愛好者', 1);
 
 -- --------------------------------------------------------
 
@@ -285,9 +285,9 @@ CREATE TABLE IF NOT EXISTS `pxl_tblpagechild` (
 --
 
 INSERT INTO `pxl_tblpagechild` (`SPageId`, `SPageLangId`, `PageId`, `SPageTitle`, `SPageSlug`, `SPageContent`, `Status`, `CreatedAt`, `UpdatedAt`) VALUES
-(9, 1, 1, 'Our Objectives', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..\r\n<ol>\r\n	<li>\r\n		&nbsp;Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n</ol>\r\n', 1, '2013-11-11 16:28:17', '0000-00-00 00:00:00'),
-(10, 2, 1, 'onze Doelstellingen', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..\r\n<ol>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n</ol>\r\n', 1, '2013-11-12 16:45:00', '0000-00-00 00:00:00'),
-(11, 3, 1, '我們的目標', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..\r\n<ol>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n</ol>\r\n', 1, '2013-11-12 16:45:19', '0000-00-00 00:00:00');
+(9, 1, 1, 'Our Objectives', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..\r\n<ol>\r\n	<li>\r\n		&nbsp;Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n</ol>\r\n', 0, '2013-11-13 11:30:29', '0000-00-00 00:00:00'),
+(10, 2, 1, 'onze Doelstellingen', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..\r\n<ol>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n</ol>\r\n', 0, '2013-11-13 11:30:29', '0000-00-00 00:00:00'),
+(11, 3, 1, '我們的目標', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..\r\n<ol>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n</ol>\r\n', 0, '2013-11-13 11:30:29', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -316,14 +316,14 @@ CREATE TABLE IF NOT EXISTS `pxl_tblpages` (
 
 INSERT INTO `pxl_tblpages` (`PageId`, `PageLangId`, `FeatureImage`, `PageTitle`, `PageContent`, `PageSlug`, `PageLocation`, `HeaderPosition`, `FooterPosition`, `Status`, `HasSubPage`) VALUES
 (1, 1, '1384168164.png', 'About Us', '<span style="color:#800000;">About Us</span> Content here...\r\n<ol>\r\n	<li>\r\n		about us in english</li>\r\n	<li>\r\n		about us in english</li>\r\n	<li>\r\n		about us in english</li>\r\n	<li>\r\n		about us in english</li>\r\n	<li>\r\n		about us in english</li>\r\n</ol>\r\n', 'http://localhost/pixelci/about-us.html', 2, 0, 0, 1, 1),
-(2, 2, '1384168164.png', 'over ons', '<span style="color:#800000;">About Us</span> Content here...\r\n<ol>\r\n	<li>\r\n		about us in Dutch</li>\r\n	<li>\r\n		about us in Dutch</li>\r\n	<li>\r\n		about us in Dutch</li>\r\n	<li>\r\n		about us in Dutch</li>\r\n	<li>\r\n		about us in Dutch</li>\r\n</ol>\r\n', 'http://localhost/pixelci/about-us.html', 2, 0, 0, 1, 1),
-(3, 3, '1384168164.png', '關於我們', '<span style="color:#800000;">About Us</span> Content here...\r\n<ol>\r\n	<li>\r\n		about us in Chinese</li>\r\n	<li>\r\n		about us in Chinese</li>\r\n	<li>\r\n		about us in Chinese</li>\r\n	<li>\r\n		about us in Chinese</li>\r\n	<li>\r\n		about us in Chinese</li>\r\n</ol>\r\n', 'http://localhost/pixelci/about-us.html', 2, 0, 0, 1, 1),
+(2, 2, '1384168164.png', 'over ons', '<span class="short_text" id="result_box" lang="nl"><span style="color:#800000;"><span class="hps">Over ons</span></span> <span class="hps">Content</span> <span class="hps">in het Nederlands</span> <span class="hps">hier</span> <span class="hps">...</span></span>\r\n<ol>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="nl"><span class="hps">Over ons</span> <span class="hps">Content</span> <span class="hps">in het Nederlands</span> <span class="hps">hier</span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="nl"><span class="hps">Over ons</span> <span class="hps">Content</span> <span class="hps">in het Nederlands</span> <span class="hps">hier</span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="nl"><span class="hps">Over ons</span> <span class="hps">Content</span> <span class="hps">in het Nederlands</span> <span class="hps">hier</span> </span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="nl"><span class="hps">Over ons</span> <span class="hps">Content</span> <span class="hps">in het Nederlands</span> <span class="hps">hier</span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="nl"><span class="hps">Over ons</span> <span class="hps">Content</span> <span class="hps">in het Nederlands</span> <span class="hps">hier</span></span></li>\r\n</ol>\r\n', 'http://localhost/pixelci/about-us.html', 2, 0, 0, 1, 1),
+(3, 3, '1384168164.png', '關於我們', '<span class="short_text" id="result_box" lang="zh-TW"><span>關於我們</span><span>在</span><span>中國</span><span>的</span><span>內容</span><span>在這裡......</span></span>\r\n<ol>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span>關於我們</span><span>在</span><span>中國</span><span>的</span><span>內容</span><span>在這裡</span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span>關於我們</span><span>在</span><span>中國</span><span>的</span><span>內容</span><span>在這裡</span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span>關於我們</span><span>在</span><span>中國</span><span>的</span><span>內容</span><span>在這裡</span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span>關於我們</span><span>在</span><span>中國</span><span>的</span><span>內容</span><span>在這裡.</span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span>關於我們</span><span>在</span><span>中國</span><span>的</span><span>內容</span><span>在這裡</span></span></li>\r\n</ol>\r\n', 'http://localhost/pixelci/about-us.html', 2, 0, 0, 1, 1),
 (4, 1, NULL, 'Website terms', '<span style="color:#800000;">Website terms</span> content\r\n<ol>\r\n	<li>\r\n		Website terms in English</li>\r\n	<li>\r\n		Website terms in English</li>\r\n	<li>\r\n		Website terms in English</li>\r\n	<li>\r\n		Website terms in English</li>\r\n	<li>\r\n		Website terms in English</li>\r\n</ol>\r\n', 'http://localhost/pixelci/website-terms.html', 1, -1, 1, 1, 0),
 (5, 2, NULL, 'website termen', '<span style="color:#800000;">Website terms</span> content\r\n<ol>\r\n	<li>\r\n		Website terms in Dutch</li>\r\n	<li>\r\n		Website terms in Dutch</li>\r\n	<li>\r\n		Website terms in Dutch</li>\r\n	<li>\r\n		Website terms in Dutch</li>\r\n	<li>\r\n		Website terms in Dutch</li>\r\n</ol>\r\n', 'http://localhost/pixelci/website-terms.html', 1, -1, 1, 1, 0),
 (6, 3, NULL, '網站條款', '<span style="color:#800000;">Website terms</span> content\r\n<ol>\r\n	<li>\r\n		Website terms in Chinese</li>\r\n	<li>\r\n		Website terms in Chinese</li>\r\n	<li>\r\n		Website terms in Chinese</li>\r\n	<li>\r\n		Website terms in Chinese</li>\r\n	<li>\r\n		Website terms in Chinese</li>\r\n</ol>\r\n', 'http://localhost/pixelci/website-terms.html', 1, -1, 1, 1, 0),
 (7, 1, NULL, 'Privacy', '<span style="color:#800000;">Privacy in English Content Here...</span>\r\n<ol>\r\n	<li>\r\n		english content</li>\r\n	<li>\r\n		english content</li>\r\n	<li>\r\n		english content</li>\r\n	<li>\r\n		english content</li>\r\n</ol>\r\n', 'http://localhost/pixelci/privacy.html', 1, -1, 6, 1, NULL),
 (8, 2, NULL, 'Privacy in Dutch', '<span style="color:#800000;">Privacy in Dutch Content Here...</span>\r\n<ol>\r\n	<li>\r\n		<span style="color:#800000;">Dutch </span>content</li>\r\n	<li>\r\n		<span style="color:#800000;">Dutch </span>content</li>\r\n	<li>\r\n		<span style="color:#800000;">Dutch </span>content</li>\r\n	<li>\r\n		<span style="color:#800000;">Dutch </span>content</li>\r\n</ol>\r\n', 'http://localhost/pixelci/privacy.html', 1, -1, 6, 1, NULL),
-(9, 3, NULL, '隱私', '<span style="color:#800000;">Privacy in Chinese Content Here...</span>\r\n<ol>\r\n	<li>\r\n		<span style="color:#800000;">Chinese </span>content</li>\r\n	<li>\r\n		<span style="color:#800000;">Chinese </span>content</li>\r\n	<li>\r\n		<span style="color:#800000;">Chinese </span>content</li>\r\n	<li>\r\n		<span style="color:#800000;">Chinese </span>content</li>\r\n</ol>\r\n', 'http://localhost/pixelci/privacy.html', 1, -1, 6, 1, 0),
+(9, 3, NULL, '隱私', '<span style="color:#800000;">Privacy in Chinese Content Here...</span>\r\n<ol>\r\n	<li>\r\n		<span style="color:#800000;">Chinese </span>content</li>\r\n	<li>\r\n		<span style="color:#800000;">Chinese </span>content</li>\r\n	<li>\r\n		<span style="color:#800000;">Chinese </span>content</li>\r\n	<li>\r\n		<span style="color:#800000;">Chinese </span>content</li>\r\n</ol>\r\n', 'http://localhost/pixelci/privacy.html', 1, -1, 6, 1, 1),
 (10, 1, NULL, 'License information', '<span style="color:#ffd700;">License information</span> content here\r\n<ol>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n</ol>\r\n', 'http://localhost/pixelci/license-information.html', 1, -1, 2, 1, 0),
 (11, 2, NULL, 'Licentie-informatie', '<span style="color:#ffd700;">License information</span> content here\r\n<ol>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n</ol>\r\n', 'http://localhost/pixelci/license-information.html', 1, -1, 2, 1, 0),
 (12, 3, NULL, '許可信息', '<span style="color:#ffd700;">License information</span> content here\r\n<ol>\r\n	<li>\r\n		License information in Chinese</li>\r\n	<li>\r\n		License information in Chinese</li>\r\n	<li>\r\n		License information in Chinese</li>\r\n	<li>\r\n		License information in Chinese</li>\r\n</ol>\r\n', 'http://localhost/pixelci/license-information.html', 1, -1, 2, 1, 0);

@@ -40,11 +40,7 @@ class Front extends CI_Controller {
 				$randomfive = $subcats;
 			}	
 		}
-		$constant = array(
-						
-					);
-		
-	   	$data = array(
+		$data = array(
 	   				'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
 					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
 					'slides' => $this->front_model->get_datas('tblslider','SliderId'.''), //get slider 
@@ -68,17 +64,22 @@ class Front extends CI_Controller {
 					'most_popular_pictures' =>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','most_popular_pictures',$langId),
 					'package' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_in',$langId),
 					'most_popular_pictures' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','most_popular_pictures',$langId),
-					'kwaai_images' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','kwaai_images',$langId),
+					'subscription_options' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','subscription_options',$langId),
+					'subscription_options_gstarted' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','subscription_options_gstarted',$langId),
+					'sign_up_for_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_up_for_free',$langId),
+					'sign_up_for_free_dregister' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_up_for_free_dregister',$langId),
+					'search_tips' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_tips',$langId),
+					'search_tips_dguide' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_tips_dguide',$langId),
 					'my_account_head' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_head',$langId),
-					'my_account' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account',$langId),
-					'my_account_sign_in' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_sign_in',$langId),
 					'my_account_sign_up_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_sign_up_free',$langId),
 					'need_help' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help',$langId),
 					'need_help_search_tips' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_search_tips',$langId),
 					'need_help_contact_us' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_contact_us',$langId),
 					'need_help_site_map' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_site_map',$langId),
 					'follow_us' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','follow_us',$langId),
-					'all_right_reserve' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','all_right_reserve',$langId)
+					'all_right_reserve' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','all_right_reserve',$langId),
+					'site_title'=> $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','site_title',$langId),
+
 					);
 		
 		$this->template->set_template('defaultfront');
@@ -104,7 +105,6 @@ class Front extends CI_Controller {
 	    $data = array(
 	    			'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
 					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
-					'slides' => '', //No slides Needed in Pages as requirement in Design
 					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1,'CatLangId'=>$langId),'CreatedAt'), //Category Name Listing in sidebar & category search
 					'content' => $this->front_model->get_single_row('tblpages', 'PageSlug', $slug, 'PageLangId',$langId),  // get content of that page
 					'fpages' => $this->front_model->get_datas('tblpages','FooterPosition',$whereFoot,'PageSlug'),	 //get Footer Menu Name
@@ -124,17 +124,21 @@ class Front extends CI_Controller {
 					'most_popular_pictures' =>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','most_popular_pictures',$langId),
 					'package' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_in',$langId),
 					'most_popular_pictures' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','most_popular_pictures',$langId),
-					'kwaai_images' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','kwaai_images',$langId),
+					'subscription_options' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','subscription_options',$langId),
+					'subscription_options_gstarted' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','subscription_options_gstarted',$langId),
+					'sign_up_for_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_up_for_free',$langId),
+					'sign_up_for_free_dregister' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_up_for_free_dregister',$langId),
+					'search_tips' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_tips',$langId),
+					'search_tips_dguide' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_tips_dguide',$langId),
 					'my_account_head' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_head',$langId),
-					'my_account' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account',$langId),
-					'my_account_sign_in' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_sign_in',$langId),
 					'my_account_sign_up_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_sign_up_free',$langId),
 					'need_help' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help',$langId),
 					'need_help_search_tips' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_search_tips',$langId),
 					'need_help_contact_us' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_contact_us',$langId),
 					'need_help_site_map' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_site_map',$langId),
 					'follow_us' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','follow_us',$langId),
-					'all_right_reserve' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','all_right_reserve',$langId)
+					'all_right_reserve' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','all_right_reserve',$langId),
+					'site_title'=> $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','site_title',$langId),
 					);
 	   	
 	   	

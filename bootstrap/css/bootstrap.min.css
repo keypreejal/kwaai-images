@@ -659,9 +659,9 @@ dd {
 	margin-left:180px
 }
 hr {
-	margin:20px 0;
+	margin:5px 0;
 	border:0;
-	border-top:1px solid #eee;
+	border-top:1px solid #c5c5c5;
 	border-bottom:1px solid #fff
 }
 abbr[title], abbr[data-original-title] {
@@ -797,15 +797,15 @@ input, button, select, textarea {
 }
 label {
 	display:block;
-	margin-bottom:5px
+	/*margin-bottom:5px*/
 }
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
 	display:inline-block;
-	height:20px;
+	height:18px;
 	padding:4px 6px;
-	margin-bottom:10px;
-	font-size:14px;
-	line-height:20px;
+	margin-bottom:5px;
+	font-size:13px;
+	line-height:18px;
 	color:#555;
 	vertical-align:middle;
 	-webkit-border-radius:3px;
@@ -820,7 +820,7 @@ textarea {
 }
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
 	background-color:#fff;
-	border:1px solid #f1f1f1;
+	border:1px solid #ccc;
 	/*-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
 	-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
 	box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);*/
@@ -1292,7 +1292,7 @@ input.search-query {
 	margin-left:0
 }
 .control-group {
-	margin-bottom:10px
+	margin-bottom:5px
 }
 legend+.control-group {
 	margin-top:20px;
@@ -1362,7 +1362,9 @@ table {
 	text-align:left
 }
 .table thead th {
-	vertical-align:bottom
+	vertical-align:bottom;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #ccc
 }
 .subsribe-box p{font-size:15px; color:#000}
 .subsribe-box a{font-size:15px; color:#fff; background-color:#049fef; text-transform:uppercase; padding:5px 10px; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px}
@@ -1538,7 +1540,7 @@ margin-top:1px;
 *margin-right:.3em;
 line-height:14px;
 vertical-align:text-top;
-background-image:url("../img/glyphicons-halflings.png");
+/*background-image:url("../img/glyphicons-halflings.png");*/
 background-position:14px 14px;
 background-repeat:no-repeat
 }
@@ -1892,7 +1894,8 @@ background-image:url("../img/glyphicons-halflings-white.png")
 	background-position:-336px -120px
 }
 .icon-shopping-cart {
-	background-position:-360px -120px
+	background-position:-360px -120px;
+	line-height: 22px
 }
 .icon-folder-close {
 	width:16px;
@@ -2908,7 +2911,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 .nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus {
 	color:#000;
-	font-size:15px;
+	font-size:13px;
 	font-weight:normal;
 	cursor:default;
 	background-color:#dfdfdf;
@@ -3230,11 +3233,11 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', end
 }
 .navbar-search {
 	position:relative;
-	float:left;
+	/*float:left;*/
 	margin-top:5px;
 	margin-bottom:0
 }
-.navbar-search label{background-color:#f1f1f1; border:1px solid #ababab; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
+.navbar-search label{background-color:#f1f1f1; float:left; border:1px solid #ababab; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
 .navbar-search .search-query {
 	padding:4px 14px;
 	margin-bottom:0;

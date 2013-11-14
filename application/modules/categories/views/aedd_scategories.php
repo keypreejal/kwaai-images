@@ -29,7 +29,7 @@
                                       	<?php  
 										  $tabs = ''; $contents = '';      
 																													
-										  $id = $cid; 
+										  $id = $scid; 
                                          
 										  foreach($languages as $language){
 											$tabs .= "<li><a href=#tab_".intval($language->LangId).">".$this->admin_model->format_data($language->LangName)."</a></li>";         

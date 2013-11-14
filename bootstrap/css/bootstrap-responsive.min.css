@@ -802,6 +802,8 @@ margin-left:0
 .modal.fade.in {
 	top:20px
 }
+.product-span{max-width: 940px; margin-left:0!important; }
+.thumbnails > li{float: left;}
 }
 
 @media(max-width:480px) {
@@ -852,13 +854,13 @@ input[type="checkbox"], input[type="radio"] {
 .carousel-caption {
 	position:static
 }
+.product-span{margin-left:0!important; }
 /*----custom css---*/
 .home-cat{width:auto!important}
 .header_text .span4{border-right:none!important}
 .offer-home{width:auto!important; margin-top:10px; border-top:1px solid #ccc; padding-top:10px}
 .product-box{overflow:hidden}
 .big-txt{padding:10px 0 0 0}
-#myCarousel .product-box img{width:300px}
 .caption{margin-left:77px}
 }
 @media(max-width:979px) {

@@ -199,7 +199,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
 .icon-chevron-up:before           { content: "\f077"; }
 .icon-chevron-down:before         { content: "\f078"; }
 .icon-retweet:before              { content: "\f079"; }
-.icon-shopping-cart:before        { content: "\f07a"; font-size:22px; line-height:28px; opacity:0.5}
+.icon-shopping-cart:before        { content: "\f07a";}
 .icon-folder-close:before         { content: "\f07b"; }
 .icon-folder-open:before          { content: "\f07c"; }
 .icon-resize-vertical:before      { content: "\f07d"; }
@@ -212,7 +212,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
 .icon-key:before                  { content: "\f084"; }
 .icon-cogs:before                 { content: "\f085"; }
 .icon-comments:before             { content: "\f086"; }
-.icon-thumbs-up:before            { content: "\f087";  font-size:22px; line-height:normal; opacity:0.5; padding:4px 0 0 0}
+.icon-thumbs-up:before            { content: "\f087";  font-size:22px; line-height:normal; padding:4px 0 0 0}
 .icon-thumbs-down:before          { content: "\f088"; }
 .icon-star-half:before            { content: "\f089"; }
 .icon-heart-empty:before          { content: "\f08a"; }

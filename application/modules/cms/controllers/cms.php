@@ -141,8 +141,9 @@ class Cms extends MY_Controller {
 			  	 }
 			   }
 				if($result) {
-					$j = $pid+3;
-					for($i=$pid;$i<$j;$i++){
+					$i = $pid;
+					$j = $i+3;
+					for($i; $i<$j; $i++){
 						$this->db->where('PageId',$i);	
 						$update_data['HasSubPage'] = 1;
 						$result = $this->db->update('tblpages', $update_data);
@@ -172,7 +173,7 @@ class Cms extends MY_Controller {
 	}	
 	 $where = array('LangStatus'=>1); 
  	 $data = array(
- 	 			'pid' =>intval($id),
+ 	 			'spid' =>$spid,
  	 			'pageId' => $this->admin_model->get_formatted($spages->PageId),
  	 			'languages' => $this->admin_model->get_all_datas('languagetypes','LangName',$where), 
 				'pageTitle' => $this->admin_model->get_single_data('tblpages', 'PageTitle', 'PageId',$spages->PageId),
@@ -207,9 +208,9 @@ class Cms extends MY_Controller {
 					$result = $this->db->update('tblpagechild', $update_data);
 				}
 				if($result){
-					$i = $id;
-					$j = $id+3;
-					for($i;$i<$j;$i++){
+					$i = $spages->PageId;
+					$j = $i+3;
+					for($i ; $i<$j; $i++){
 						$this->db->where('PageId',$i);	
 						$update_data_parent['HasSubPage'] = 1;
 						$result = $this->db->update('tblpages', $update_data_parent);

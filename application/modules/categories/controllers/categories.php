@@ -258,14 +258,14 @@ class Categories extends MY_Controller {
 				$this->session->set_flashdata($error);
 				redirect('categories');				
 			}	
-			$data['cid'] = $this->admin_model->get_formatted($id);
+			$data['scid'] = $this->admin_model->get_formatted($id);
 
-			$data['catid'] = $this->admin_model->get_formatted($id);
+			$data['catid'] = $this->admin_model->get_formatted($scategory->CatId);
 			$data['featured'] = intval($scategory->IsFeatured );
 			$data['status'] = intval($scategory->Status);
 		}
 		else {
-			$data['cid'] = '';
+			$data['scid'] = '';
 			$data['catid'] = '';
 			$data['featured'] = -1;
 			$data['status'] = -1;

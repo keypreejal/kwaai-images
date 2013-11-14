@@ -24,7 +24,7 @@
                         <?php
                            $selected = ($status ==1)?'selected="selected"':'';
 							 	           $stabs = ''; $contents = '';      
-                           $id = $pid;
+                           $id = $spid;
                            foreach($languages as $language){
                              $stabs .= "<li><a href=#tab_".intval($language->LangId).">".$this->admin_model->format_data($language->LangName)."</a></li>"; 
 								   
