@@ -25,15 +25,21 @@ Class Front_model extends CI_Model
 		if(!empty($group)){
 			$this->db->group_by($group);
 		}
-		$query = $this->db->get($table_name);			
+		
+		$query = $this->db->get($table_name);
+		//echo $this->db->last_query();	
 		return $query->result();
 	}
 	
-	function get_single_data($table_name, $field, $field_name, $field_value)
+	function get_single_data($table_name, $field, $field_name, $field_value,$group=NULL)
 	{
 		$this->db->select($field);
 		$this->db->where($field_name, $field_value);
-		$query = $this->db->get($table_name)->row();		
+		if(!empty($group)){
+			$this->db->group_by($group);
+		}
+		$query = $this->db->get($table_name)->row();
+		//echo $this->db->last_query();
 		if($query) {
 			return $query->$field;
 		}

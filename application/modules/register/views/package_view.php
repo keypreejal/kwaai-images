@@ -28,36 +28,46 @@
         <h2 class="titles"><span class="text">Subscriptions</h2> 
         <h3>Build your own Subscription plans</h3>
         <div class="row feature_box">
+
           <div class="span3">
+            <form action="<?php echo site_url().'register/cdashboard';?>">
             <div class="subscription">
               <div class="one"> 
                 <h2 class="titles"><span class="texzt">Silver</span></h2>
                 <span class="n-big">&euro; 200</span>
                 <p>Space for 1GB</p>
-                <a class="btn btn-primary" href="#">BUY</a>
+                <input class="btn btn-primary" type="submit" name="submit" value="Buy">
               </div>
             </div>
+          </form>
           </div>
+
           <div class="span3">
+            <form action="<?php echo site_url().'register/cdashboard';?>">
             <div class="subscription">
               <div class="two"> 
                 <h2 class="titles"><span class="text">Gold</span></h2>
                 <span class="n-big">&euro; 200</span>
                 <p>Space for 2GB</p>
-                <a class="btn btn-primary" href="#">BUY</a>
+                <input class="btn btn-primary" type="submit" name="submit" value="Buy">
               </div>
             </div>
+          </form>
           </div>
+
           <div class="span3">
+            <form action="<?php echo site_url().'register/cdashboard';?>">
             <div class="subscription">
               <div class="three"> 
                 <h2 class="titles"><span class="text">Platinum</span></h2>
                 <span class="n-big">&euro; 200</span>
                 <p>Space for 3GB</p>
-                <a class="btn btn-primary" href="#">BUY</a>
+                <input class="btn btn-primary" type="submit" name="submit" value="Buy">
               </div>
             </div>
+          </form>
           </div>
+
         </div>
       <!--/feature box-->
       </div>      

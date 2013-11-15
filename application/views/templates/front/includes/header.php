@@ -114,23 +114,23 @@
       <nav id="menu" class="pull-right">
         <ul>
           <?php $lang = isset($_GET['lang'])?$_GET['lang']:'en';?>
-          <li><a href="<?php echo site_url();?>"><?php echo $lang=='en'?'Home':($lang=='nl'?'huis':'家');?></a></li>
+          <li><a href="<?php echo site_url().'?lang='.$lang;?>"><?php echo $lang=='en'?'Home':($lang=='nl'?'huis':'家');?></a></li>
           <?php 
           if(is_array($pages)>0):
             foreach($pages as $page){
-             echo "<li><a href=$page->PageSlug>$page->PageTitle</a></li>";
+             echo "<li><a href=$page->PageSlug?lang=$lang>$page->PageTitle</a></li>";
             }
           endif;
 		  if(is_array($categories)>0):
 		  	$cat = '';
             foreach($categories as $category){
-              $cat .= "<li><a href='".site_url()."imagesList/'>".$this->front_model->format_data($category->CategoryName)."</a></li>";
+              $cat .= "<li><a href='".site_url()."imagesList/$category->CategoryName?lang=".$lang."'>".$this->front_model->format_data($category->CategoryName)."</a></li>";
 			} 
 		  endif;
 	 	?>
-          <li><a href=products.html><?php echo $lang=='en'?'Category':($lang=='nl'?'categorie':'類別');?></a><ul><?php echo $cat;?></ul></li>
-          <li><a href="<?php echo site_url();?>subscription/"><?php echo $lang=='en'?'Subscription':($lang=='nl'?'abonnement':'訂閱');?></a></li>
-          <li><a href="<?php echo site_url();?>contact/"><?php echo $lang=='en'?'Contact Us':($lang=='nl'?'Contacteer ons':'聯繫我們');?></a></li>
+          <li><a href="<?php echo site_url().'imagesList?lang='.$lang;?>"><?php echo $lang=='en'?'Category':($lang=='nl'?'categorie':'類別');?></a><ul><?php echo $cat;?></ul></li>
+          <li><a href="<?php echo site_url().'subscription?lang='.$lang;?>"><?php echo $lang=='en'?'Subscription':($lang=='nl'?'abonnement':'訂閱');?></a></li>
+          <li><a href="<?php echo site_url().'contact?lang='.$lang;?>"><?php echo $lang=='en'?'Contact Us':($lang=='nl'?'Contacteer ons':'聯繫我們');?></a></li>
         </ul>
       </nav>
     </div>

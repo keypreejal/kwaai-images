@@ -27,7 +27,7 @@
       <div class="span10">
         <div class="span4" style="margin-left:0; ">         
           <h2 class="titles"><span class="text">Tell us about yourself</h2> 
-          <form action="<?php echo site_url();?>/register/user" method="post" class="form-stacked">
+          <form action="<?php echo site_url();?>register/user" method="post" class="form-stacked">
             <p>You are primarily purchasing content for?</p>  
             <fieldset>
               <div class="control-group">

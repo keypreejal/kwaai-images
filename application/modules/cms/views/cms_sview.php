@@ -74,7 +74,7 @@ $('document').ready(function(){
         var text = $(this).find("option:selected").text();
         $.ajax({
             url:'<?php echo site_url("cms/changeStatus");?>',
-            data:{id:$id,status:$status,tbl:'tblpagechild',tid:'PageId'},
+            data:{id:$id,status:$status,tbl:'tblpagechild',tid:'SPageId'},
             type:'POST',
             dataType:"html",
             success: function(data){

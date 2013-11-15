@@ -16,7 +16,8 @@ class Front extends CI_Controller {
 		$langCode = $this->input->get('lang');
 		$this->langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
 		$whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$this->langId);
-	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$this->langId);
+	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'FooterPosition <'=>1000,'PageLangId'=>$this->langId);
+	   	$whereSide = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$this->langId);
 	   	$whereLang = array('LangStatus'=>1);
 	   	$this->data = array(
 	   				'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
@@ -25,6 +26,7 @@ class Front extends CI_Controller {
 					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1,'CatLangId'=>$this->langId),'CreatedAt'), //Category Name Listing category search
 					'scategories' => $this->front_model->get_datas('tblcategorychild','SCategoryName',array('status'=>1,'IsFeatured'=>1,'SCatLangId'=>$this->langId),'CreatedAt'), //SCategory Name Listing in Browse by category 
 					'fpages' => $this->front_model->get_datas('tblpages','FooterPosition',$whereFoot,'PageSlug'),	 //get Footer Menu Name
+					'sidepages' => $this->front_model->get_datas('tblpages','FooterPosition',$whereSide,'PageSlug'),	 //get Footer Menu Name
 					'facebook' => $this->front_model->get_single_data('tblsitesettings','Value','Name','facebook-link'),
 					'twitter' => $this->front_model->get_single_data('tblsitesettings','Value','Name','twitter-link'),
 					'gplus' => $this->front_model->get_single_data('tblsitesettings','Value','Name','google-plus'),
@@ -97,10 +99,19 @@ class Front extends CI_Controller {
  	#............begin pages Function.......................##
 	public function pages($slug)
 	{
-		$slug = site_url().$slug.'.html'; 
-		$this->data['content'] = $this->front_model->get_single_row('tblpages', 'PageSlug', $slug, 'PageLangId',$this->langId);  // get content of that page
+		$slug = $slug.'.html'; 
+		$snslug = site_url().$slug; 
+		$this->data['content'] = $this->front_model->get_single_row('tblpages', 'PageSlug', $snslug, 'PageLangId',$this->langId);  // get content of that page
 	   	
-		$this->template->set_template('defaultfront');
+	   	$hsp = $this->front_model->get_single_data('tblpages','HasSubPage','PageSlug',$this->data['content']->PageSlug); //see if it got subpage:1 or 0/Null
+	   	$this->data['scontents'] ='';$pageid='';
+	   	if($hsp == 1) { 
+	   		$pagid = $this->data['content']->PageId;
+	   		$pageid = $this->langId==3?$pagid-2:($this->langId==2?$pagid-1:$pagid);
+	   		$this->data['scontents'] = $this->front_model->get_datas('tblpagechild', 'SPageTitle',array('PageId'=>$pageid,'Status'=>1,'SPageLangId'=>$this->langId),'CreatedAt');  // get content of that Subpage
+	   	}
+
+	 	$this->template->set_template('defaultfront');
 		$this->template->write_view('content', 'front/page_view',$this->data);
 		$this->template->render();
 		
@@ -108,5 +119,5 @@ class Front extends CI_Controller {
 	#............End pages Function......................
  }
 
-/* End of file Front.php */
+/* End of file Front.php 
 /* Location: ./application/modules/front/controllers/front.php */

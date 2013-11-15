@@ -20,7 +20,7 @@ class Cms extends MY_Controller {
 
   public function subPages($id=Null) {
   	$where = array('PageId'=>$id);
-  	$data['spages'] = $this->admin_model->get_grid('tblpagechild','SPageId',$where,'PageId');
+  	$data['spages'] = $this->admin_model->get_grid('tblpagechild','SPageId',$where,'CreatedAt');
 	$data['pageTitle'] = $this->admin_model->get_single_data('tblpages', 'PageTitle', 'PageId',$id);
 	$this->template->write_view('content', 'cms/cms_sview',$data);
 	$this->template->render();
@@ -105,7 +105,7 @@ class Cms extends MY_Controller {
  	 // prepare data for add subpage
  	 $where = array('LangStatus'=>1); 
  	 $data = array(
- 	 			'pid' =>'',
+ 	 			'spid' =>'',
  	 			'pageId' => $pid,
  	 			'languages' => $this->admin_model->get_all_datas('languagetypes','LangName',$where), 
 				'pageTitle' => $this->admin_model->get_single_data('tblpages', 'PageTitle', 'PageId',$pid),
@@ -126,20 +126,22 @@ class Cms extends MY_Controller {
 			   $slug = $this->input->post('spage_slug');
 			   $status = $this->input->post('status');
 			   
-			   //insert here
-			   for($i=0;$i<count($sptitle);$i++){
-			  	 if($this->admin_model->count_no_fields('tblpagechild','SPageTitle', $sptitle[$i] ) == '0') {
-					$data = array(
-						'PageId' => $this->admin_model->format_data($this->input->post('page_id')),		
-						'SPageTitle' => $this->admin_model->format_data($sptitle[$i]),
-						'SPageLangId' => $i+1,
-						'SPageContent' => $content[$i],
-						'SPageSlug' => $this->admin_model->format_data($slug),
-						'Status' => intval($status)
-					);
-					$result = $this->db->insert('tblpagechild',$data);
-			  	 }
-			   }
+			    if($this->admin_model->count_no_fields('tblpagechild','SPageTitle', $sptitle[0] ) == '0') {
+				   //insert here
+				   for($i=0;$i<count($sptitle);$i++){
+				  	 
+						$data = array(
+							'PageId' => $this->admin_model->format_data($this->input->post('page_id')),		
+							'SPageTitle' => $this->admin_model->format_data($sptitle[$i]),
+							'SPageLangId' => $i+1,
+							'SPageContent' => $content[$i],
+							'SPageSlug' => $this->admin_model->format_data($slug),
+							'Status' => intval($status)
+						);
+						$result = $this->db->insert('tblpagechild',$data);
+				  	 
+				   }
+				}	
 				if($result) {
 					$i = $pid;
 					$j = $i+3;

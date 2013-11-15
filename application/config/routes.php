@@ -85,10 +85,9 @@ $route['admin/siteSettings/(:any)'] = "siteSettings/$1";
 //$route['front/(:any)']  = 'front/$1';
 /*$route['(:any)'] = 'front';
 $route['front(:any)'] = 'front/$1';*/
-$route['front/en'] = 'front/';
+//$route['front/en'] = 'front/';
+
 $route['([^/]+)\.html?'] = 'front/pages/$1';
-
-
 $route['404_override'] = '';
 
 

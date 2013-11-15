@@ -30,11 +30,12 @@
 			    <div id="sidebar" class="span3 side-sec">
 			      	<div class="sidey">
 			      		 <?php
-			      		  if(is_array($fpages)>0):
+			      		  if(is_array($sidepages)>0):
 			      		  	echo "<ul class='nav'>";
 			      		  		$selan = isset($_GET['lang'])==1?"?&lang=$_GET[lang]":'?&lang=en';
-					            foreach($fpages as $fpage){
-					             echo "<li><a href=$fpage->PageSlug$selan>$fpage->PageTitle</a></li>";
+			      		  		
+					            foreach($sidepages as $sidepage){
+					             echo "<li><a href=$sidepage->PageSlug$selan>$sidepage->PageTitle</a></li>";
 					            }
 				            echo "</ul>";
 				          endif;?>
@@ -48,7 +49,39 @@
 				  <?php } ?>
                   <div class="text-area">
                   	<?php echo $content->PageContent;?>
-                   </div>
+                  </div>
+
+                  	<?php if(is_array($scontents)>0) :
+                  			$subpage = '';
+                  			foreach($scontents as $scontent){
+                  		   	$subpage .="<div class='accordion-group'>
+									  <div class='accordion-heading'>
+										<h4><a class='accordion-toggle collapsed' data-toggle='collapse' data-parent='#accordion2' href=#$scontent->SPageId>$scontent->SPageTitle</a></h4>
+									  </div>
+									  <div id=$scontent->SPageId class='accordion-body collapse'>
+										<div class='accordion-inner'>
+											$scontent->SPageContent;
+										</div>
+									  </div>
+									</div>
+								";
+                  		   }
+                  	?>
+		                  	<div class='accordion' id='accordion2'>
+                            	<?php echo $subpage;?>
+					        </div>
+
+
+					       
+          
+        					
+			    	<?php endif; ?>
+
+
+
+
+
+
                	</div>
                <!--/account info-->
 			</div>
@@ -56,3 +89,14 @@
 		</div>
 	</section>
 </div>
+<script type="text/javascript">
+$(function(){
+	$curlocation = $(location).attr('href');
+	//alert($curlocation);
+	$('ul.nav>li a').each(function(){
+		if($(this).attr('href') == $curlocation) {
+			$(this).parent().addClass('active');
+		}
+	});
+});
+</script>

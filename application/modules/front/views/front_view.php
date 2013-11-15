@@ -276,12 +276,12 @@
       </div>
     </div>
   </section>   
-</div><!---/main container--->
+</div><!-- main container !-->
 
-<script src="themes/js/common.js"></script> 
-<script src="themes/js/jquery.flexslider-min.js"></script> 
-<script src="themes/js/jquery.carouFredSel-6.2.1-packed.js"></script> 
-<script src="themes/js/custom.js"></script>
+<script src="<?php echo site_url();?>themes/js/common.js"></script> 
+<script src="<?php echo site_url();?>themes/js/jquery.flexslider-min.js"></script> 
+<script src="<?php echo site_url();?>themes/js/jquery.carouFredSel-6.2.1-packed.js"></script> 
+<script src="<?php echo site_url();?>themes/js/custom.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('.flexslider').flexslider({

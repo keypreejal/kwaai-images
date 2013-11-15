@@ -606,8 +606,7 @@ ul ul, ul ol, ol ol, ol ul {
 	margin-bottom:0
 }
 li {
-	line-height:20px;
-	list-style-type:none;
+	line-height:20px
 }
 ul.unstyled, ol.unstyled {
 	margin-left:0;
@@ -2911,11 +2910,11 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	border-color:#eee #eee #ddd
 }
 .nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus {
-	color:#000;
+	color:#fff;
 	font-size:13px;
 	font-weight:normal;
 	cursor:default;
-	background-color:#dfdfdf;
+	background-color:grey;
 	border:1px solid #ddd;
 	border-bottom-color:transparent
 }
@@ -3238,7 +3237,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', end
 	margin-top:5px;
 	margin-bottom:0
 }
-.navbar-search label{background-color:#f1f1f1;/* float:left;*/ border:1px solid #ababab; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
+.navbar-search label{background-color:#f1f1f1; float:left; border:1px solid #ababab; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
 .navbar-search .search-query {
 	padding:4px 14px;
 	margin-bottom:0;
@@ -4381,7 +4380,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffbb450', end
 }
 .accordion-heading .accordion-toggle {
 	display:block;
-	padding:8px 15px
+	padding:5px 10px
 }
 .accordion-toggle {
 	cursor:pointer

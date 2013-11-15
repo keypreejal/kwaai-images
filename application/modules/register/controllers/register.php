@@ -111,23 +111,32 @@ class Register extends CI_Controller {
 
 	/**
 		*Begin package function for this controller
-	 	*This function is used to save the package the contributor chooses and redirect to the dashboard.
+	 	*This function is used to save the package the contributor chooses.
 	*/
  	#............begin user Function.......................##
 	public function package()
 	{
-		$this->template->set_template('defaultfront');
-		$this->template->write_view('content', 'package_view',$this->data);
-		$this->template->render();
 		if ($this->input->post('submit')) {
-			/*
-			get all user data
-			$this->data[''] = .......
-			*/
 			$this->template->set_template('defaultfront');
-			$this->template->write_view('content', 'contributor_dashboard_view',$this->data);
+			$this->template->write_view('content', 'package_view',$this->data);
 			$this->template->render();
-		}
+		} 
+	}
+
+	/**
+		*Begin cdashboard function for this controller
+	 	*This function is used to save the package the contributor chooses and redirect to the contributor dashboard.
+	*/
+ 	#............begin user Function.......................##
+	public function cdashboard()
+	{
+		/*
+		get all user data
+		$this->data[''] = .......
+		*/
+		$this->template->set_template('defaultfront');
+		$this->template->write_view('content', 'contributor_dashboard_view',$this->data);
+		$this->template->render();
 	}
  }
 
