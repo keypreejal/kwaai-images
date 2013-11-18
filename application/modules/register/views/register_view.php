@@ -4,10 +4,10 @@
       <form class="form-inline navbar-search" method="post" action="products.html" >
         <label>
           <input id="srchFld" class="srchTxt" type="text" placeholder="Enter Keyword(s)" style="border:none; background-color:#f1f1f1" />
-          <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+          <button type="submit" id="submitButton" class="btn btn-primary"><?php echo $search_btn;?></button>
         </label>
     <ul id="search-box">
-          <li><a class="t-grey">Category Search<i class="icon-caret-down"></i></a>
+          <li><a class="t-grey"><?php echo $category_search;?><i class="icon-caret-down"></i></a>
               <ul class="search-down">
                <?php 
           foreach($categories as $category){
@@ -27,66 +27,64 @@
       <div class="span10">
 
         <div class="span5 span5-box">          
-          <h2 class="titles"><span class="text">Thanks for choosing Kwaai Images</span></h2>
-          <p><strong>Everything you need</strong></p>
-          <p>Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches. Particular for photographers and artist. You can upload and give the pictures a smile or more (rating) and give a short messages (what say people of this Image or Sketch) to the picture or sketch.</p>
+          <?php echo $register_right_thanku;?>
         </div>
         <!-- /thanks -->
 
         <div class="span4" style="margin-left:0; ">          
-          <h2 class="titles"><span class="text">Register Form</h2>  
+          <h2 class="titles"><span class="text"><?php echo $register_left_ftitle;?></h2>  
           <form action="<?php echo site_url();?>register/user" method="post" class="form-stacked">
-            <a class="a-singin" name="#login">Already a member? Sign in...</a>  
+            <a class="a-singin" name="#login"><?php echo $register_left_amsignin;?></a>  
               <fieldset>
                 <div class="control-group">
-                  <label class="control-label">Full Name<span>*</span></label>
+                  <label class="control-label"><?php echo $name;?><span>*</span></label>
                   <div class="controls">
                     <input type="text" class="input-xxlarge">
                   </div>
                 </div>
                 <!--/control-group-->
                 <div class="control-group">
-                  <label class="control-label">Company Name</label>
+                  <label class="control-label"><?php echo $register_left_companyname;?></label>
                   <div class="controls">
                     <input type="text" class="input-xxlarge">
                   </div>
                 </div>
                 <!--/control-group-->
                 <div class="control-group">
-                  <label class="control-label">Phone<span>*</span></label>
+                  <label class="control-label"><?php echo $phone;?><span>*</span></label>
                   <div class="controls">
                     <input type="text" class="input-xxlarge">
                   </div>
                 </div>
                 <!--/control-group-->
                 <div class="control-group">
-                  <label class="control-label">Email address<span>*</span></label>
+                  <label class="control-label"><?php echo $email_address;?><span>*</span></label>
                   <div class="controls">
                     <input type="password" class="input-xxlarge">
                   </div>
                 </div>
                 <!--/control-group-->
                 <div class="control-group">
-                  <label class="control-label">Password<span>*</span></label>
+                  <label class="control-label"><?php echo $password;?><span>*</span></label>
                   <div class="controls">
                     <input type="password" class="input-xxlarge">
                   </div>
                 </div> 
                 <!--/control-group-->  
                 <div class="control-group">
-                  <label class="control-label">Confirm Password<span>*</span></label>
+                  <label class="control-label"><?php echo $password;?><span>*</span></label>
                   <div class="controls">
                     <input type="password" class="input-xxlarge">
                   </div>
                 </div> 
                 <!--/control-group-->                                         
                 <div class="control-group">
-                  <label>(* required field...)</label>
+                  <label><?php echo $required;?></label>
                   <input type="checkbox" name="agreebox" style="float:left; margin-right:10px">
-                    <label>I agree to the <a href="#">Terms of Service</a></label>
+                    <label><?php echo $agree;?> <a href="#"><?php echo $register_left_terms_of_service;?></a></label>
                 </div>
                 <!--/control-group-->
-                <div class="actions"><input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="Create your account"></div>
+                <div class="actions"><input type="submit" name="create" tabindex="9" class="btn btn-inverse btn-signin"  value="<?php echo $register_left_create_account;?>"></div>
               </fieldset>
           </form>         
         </div>

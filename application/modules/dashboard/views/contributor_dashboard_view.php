@@ -33,10 +33,10 @@
                 <h3>Account Information</h3>
               </div>
               <div class="block-title">
-                <h3>Paypal Configuration <span class="pull-right"><a class="show" id="paypal-conf" href="javascript:void(0)">Edit</a></span></h3>
+                <h3>Paypal Configuration <span class="pull-right"><a id="paypal-conf" href="javascript:void(0)">Edit</a></span></h3>
               </div>
               <div class="block-title">
-                <h3>Personal Information<span class="pull-right"><a class="show" id="personal-info" href="javascript:void(0)">Edit</a></span></h3>
+                <h3>Personal Information<span class="pull-right"><a id="personal-info" href="javascript:void(0)">Edit</a></span></h3>
               </div>
               <ul class="dashbar">
                 <li><span>Member ID:</span>A1234</li>
@@ -126,7 +126,7 @@
                 </div>
                 <!--/control-group-->
                 <div class="actions">
-                  <input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="Save">
+                  <input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="<?php echo $save_btn; ?>">
                 </div>
               </fieldset>
             </form>
@@ -229,7 +229,7 @@
                       </div>
                       <!--/control-group-->
                       <div class="actions">
-                        <input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="Save">
+                        <input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="<?php echo $save_btn; ?>">
                       </div>
                     </div>
                   </fieldset>
@@ -272,7 +272,7 @@
                       </div>
                       <!--/control-group-->
                       <div class="control-group">
-                        <label class="control-label">Company Name</label>
+                        <label class="control-label"><?php echo $register_left_companyname; ?></label>
                         <div class="controls">
                           <input type="text" class="input-xxlarge">
                         </div>
@@ -300,7 +300,7 @@
                       </div>
                       <!--/control-group-->
                       <div class="actions">
-                        <input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="Save">
+                        <input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="<?php echo $save_btn; ?>">
                       </div>
                     </div>
                   </fieldset>
@@ -313,31 +313,31 @@
 
           <!-- change password -->
           <div class="change-password" style="display:none;">
-            <h3>Enter your new password information:</h3>
+            <h3><?php echo $client_dashboard_pinformation; ?></h3>
             <form action="#" method="post" class="form-stacked">
               <fieldset>
                 <div class="control-group">
-                  <label class="control-label">Old Password</label>
+                  <label class="control-label"><?php echo $old.' '.$password; ?></label>
                   <div class="controls">
                     <input type="password" class="input-xlarge">
                   </div>
                 </div> 
                 <!--/control-group-->  
               <div class="control-group">
-                  <label class="control-label">New Password</label>
+                  <label class="control-label"><?php echo $new.' '.$password; ?></label>
                   <div class="controls">
                     <input type="password" class="input-xlarge">
                   </div>
                 </div> 
                 <!--/control-group-->  
                 <div class="control-group">
-                  <label class="control-label">Retype Password</label>
+                  <label class="control-label"><?php echo $retype.' '.$password; ?></label>
                   <div class="controls">
                     <input type="password" class="input-xlarge">
                   </div>
                 </div> 
                 <!--/control-group-->             
-                <div class="actions"><input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="Save"></div>
+                <div class="actions"><input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="<?php echo $save_btn; ?>"></div>
               </fieldset>
             </form>  
           </div>
@@ -353,7 +353,7 @@
     <div class="row">
       <div class="span10">
         <div  class="recent-posts blocky">
-          <h4 class="title"> <span class="pull-center"><span class="text"><span class="line">MOST POPULAR PICTURES</span></span></span> <span class="pull-right"> </span> </h4>
+          <h4 class="title"> <span class="pull-center"><span class="text"><span class="line"><?php echo $most_popular_pictures; ?></span></span></span> <span class="pull-right"> </span> </h4>
           <div class="my_carousel">
             <div class="carousel_nav pull-right"> 
               <!-- Carousel navigation --> 
@@ -484,12 +484,19 @@
 
 <script src="<?php echo site_url();?>themes/js/jquery.carouFredSel-6.2.1-packed.js"></script> 
 <script src="<?php echo site_url();?>themes/js/custom.js"></script>
+
 <script type="text/javascript">
 $(function() {
-  $('a.show').click(function(){
+  $('div.dashboard a,a#home').click(function(){
       var show = $(this).attr('id');
-      $('div.home').hide();
-      $('div.'+show).show();
-  }) 
+      $('div.sec-span > div').hide();
+      $('div.sec-span > div.'+show).show();
+  });
+
+  $('#myTab a:first').tab('show');
+  $('#myTab a').live('click',function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  }); 
 });
 </script>

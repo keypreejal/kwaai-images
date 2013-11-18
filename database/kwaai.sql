@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 14, 2013 at 12:03 PM
+-- Generation Time: Nov 18, 2013 at 11:04 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `pxl_tblconstantsvalue` (
   `KeywordValue` text CHARACTER SET utf8 NOT NULL,
   `KeywordStatus` tinyint(4) NOT NULL,
   PRIMARY KEY (`KeywordId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=199 ;
 
 --
 -- Dumping data for table `pxl_tblconstantsvalue`
@@ -171,7 +171,7 @@ INSERT INTO `pxl_tblconstantsvalue` (`KeywordId`, `ConstantCode`, `KeywordLangId
 (9, 'shopping_baskets', 3, '購物籃', 1),
 (10, 'search_for_images', 1, 'Search For Images', 1),
 (11, 'search_for_images', 2, 'Search For afbeeldingen\r\n', 1),
-(12, 'search_for_images', 3, '圖像搜索\r\n\r\n\r\n', 1),
+(12, 'search_for_images', 3, '圖像搜索', 1),
 (13, 'search_btn', 1, 'Search ', 1),
 (14, 'search_btn', 2, 'zoeken', 1),
 (15, 'search_btn', 3, '搜索', 1),
@@ -231,7 +231,130 @@ INSERT INTO `pxl_tblconstantsvalue` (`KeywordId`, `ConstantCode`, `KeywordLangId
 (72, 'all_right_reserve', 3, '的所有內容©版權所有2013 Kwaai的圖片，公司保留所有權利。', 1),
 (73, 'site_title', 1, 'Kwaai-Images.com | is a photo stock company for professionals and amateurs', 1),
 (74, 'site_title', 2, '\r\nKwaai-Images.com | is een foto stock onderneming voor professionals en amateurs', 1),
-(75, 'site_title', 3, 'Kwaai Images.com |是一個照片的股份公司，為專業人士和業餘愛好者', 1);
+(75, 'site_title', 3, 'Kwaai Images.com |是一個照片的股份公司，為專業人士和業餘愛好者', 1),
+(76, 'sidebar_search_fliter_title', 1, 'Filter search results', 1),
+(77, 'sidebar_search_fliter_title', 2, 'Filter de zoekresultaten', 1),
+(78, 'sidebar_search_fliter_title', 3, '篩選搜索結果', 1),
+(79, 'sidebar_search_fliter_image_type', 1, 'Image Type', 1),
+(80, 'sidebar_search_fliter_image_type', 2, 'Beeldtypen', 1),
+(81, 'sidebar_search_fliter_image_type', 3, '圖像類型', 1),
+(82, 'sidebar_search_fliter_category', 1, 'Category', 1),
+(83, 'sidebar_search_fliter_category', 2, 'categorie', 1),
+(84, 'sidebar_search_fliter_category', 3, '類別', 1),
+(85, 'sidebar_search_fliter_orientation', 1, 'Orientation', 1),
+(86, 'sidebar_search_fliter_orientation', 2, 'oriëntering', 1),
+(87, 'sidebar_search_fliter_orientation', 3, '方向', 1),
+(88, 'register_left_ftitle', 1, 'Register Form', 1),
+(89, 'register_left_ftitle', 2, 'Registreer Form', 1),
+(90, 'register_left_ftitle', 3, '登記表格', 1),
+(91, 'register_left_amsignin', 1, 'Already a member? Sign in...', 1),
+(92, 'register_left_amsignin', 2, 'Bent u al lid? Log dan in ..', 1),
+(93, 'register_left_amsignin', 3, '已經是會員？註冊...', 1),
+(94, 'name', 1, 'Full Name', 1),
+(95, 'name', 2, 'volledige Naam', 1),
+(96, 'name', 3, '全名', 1),
+(97, 'register_left_companyname', 1, 'Company Name', 1),
+(98, 'register_left_companyname', 2, 'Bedrijfsnaam', 1),
+(99, 'register_left_companyname', 3, '公司名稱', 1),
+(100, 'phone', 1, 'Phone', 1),
+(101, 'phone', 2, 'telefoon', 1),
+(102, 'phone', 3, '電話', 1),
+(103, 'email_address', 1, 'Email Address', 1),
+(104, 'email_address', 2, 'e-mail adres', 1),
+(105, 'email_address', 3, '電子郵件地址', 1),
+(106, 'password', 1, 'Password', 1),
+(107, 'password', 2, 'wachtwoord', 1),
+(108, 'password', 3, '密碼', 1),
+(109, 'cpassword', 1, 'Confirm Password', 1),
+(110, 'cpassword', 2, 'Wachtwoord bevestigen', 1),
+(111, 'cpassword', 3, '確認密碼', 1),
+(112, 'required', 1, '(* required field...)', 1),
+(113, 'required', 2, '(* Verplicht veld ...)', 1),
+(114, 'required', 3, '（*為必填項）', 1),
+(115, 'agree', 1, 'I agree to the', 1),
+(116, 'agree', 2, 'Ik ga akkoord met de', 1),
+(117, 'agree', 3, '我同意', 1),
+(118, 'register_left_terms_of_service', 1, 'Terms of Service', 1),
+(119, 'register_left_terms_of_service', 2, 'Gebruiksvoorwaarden', 1),
+(120, 'register_left_terms_of_service', 3, '服務條款', 1),
+(121, 'register_left_create_account', 1, 'Create Account', 1),
+(122, 'register_left_create_account', 2, 'Account aanmaken', 1),
+(123, 'register_left_create_account', 3, '創建帳戶', 1),
+(124, 'register_right_thanku', 1, '<h2 class="titles"><span class="text">Thanks for choosing Kwaai Images</span></h2><p><strong>Everything you need</strong></p><p>Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches. Particular for photographers and artist. You can upload and give the pictures a smile or more (rating) and give a short messages (what say people of this Image or Sketch) to the picture or sketch.</p>', 1),
+(125, 'register_right_thanku', 2, '<h2 class="titles"><span class="text">\r\nBedankt voor het kiezen Kwaai Images</span></h2><p><strong>\r\nAlles wat je nodig hebt</strong></p><p>Kwaai-Beelden is een in Amsterdam gevestigd Microstock fotografie bedrijf (laag geprijsde en inclusieve stock photography) voor afbeeldingen, schetsen en schilderijen. Dit platform is gebouwd voor professionals en amateurs, te uploaden, verkoop en wederverkoop foto''s en schetsen. Vooral voor fotografen en kunstenaar. U kunt uploaden en geven de foto''s een glimlach of meer (rating) en geef een korte berichten (wat zeggen de mensen van Beeld of Sketch) om de foto of schets.</p>', 1),
+(126, 'register_right_thanku', 3, '<h2 class="titles"><span class="text">\r\n感謝選擇Kwaai圖像</span></h2><p><strong>你需要的一切</strong></p><p>Kwaai圖片是總部設在阿姆斯特丹的微利攝影公司（低價和包容性的攝影）的圖像，素描和繪畫。此平台打造為專業人士和業餘愛好者，上傳，銷售和轉售圖片和草圖。特別為攝影師和藝術家。您可以上傳給圖片一個微笑或以上（額定），並給一個簡短的消息（本圖片或素描的人還有什麼好說的）的照片或草圖。</p>', 1),
+(127, 'register_user_tell_us', 1, 'Tell us about yourself', 1),
+(128, 'register_user_tell_us', 2, 'Vertel iets over uzelf', 1),
+(129, 'register_user_tell_us', 3, '談談你自己吧', 1),
+(130, 'register_user_purpose', 1, 'You are primarily purchasing content for?', 1),
+(131, 'register_user_purpose', 2, 'U bent de eerste aankoop van content voor?', 1),
+(132, 'register_user_purpose', 3, '您主要購買的內容嗎？', 1),
+(133, 'register_user_client', 1, 'I&acute;m signing up to become Your Client', 1),
+(134, 'register_user_client', 2, 'Ik ben het aanmelden om uw klant te worden', 1),
+(135, 'register_user_client', 3, '我簽署了成為你的客戶', 1),
+(136, 'register_user_contributor', 1, 'I&acute;m signing up to become Kwaai Images Contributor', 1),
+(137, 'register_user_contributor', 2, 'Ik ben het intekenen op Kwaai Images bijdrager geworden', 1),
+(138, 'register_user_contributor', 3, '我簽署了成為所有Kwaai圖片貢獻者', 1),
+(139, 'register_user_join', 1, 'Join', 1),
+(140, 'register_user_join', 2, 'toetreden tot', 1),
+(141, 'register_user_join', 3, '加入', 1),
+(142, 'client_dashboard_ohistory', 1, 'Order History', 1),
+(143, 'client_dashboard_ohistory', 2, 'Bestel Geschiedenis', 1),
+(144, 'client_dashboard_ohistory', 3, '訂單歷史', 1),
+(145, 'client_dashboard_eprofile', 1, 'Edit Profile', 1),
+(146, 'client_dashboard_eprofile', 2, 'Profiel bewerken', 1),
+(147, 'client_dashboard_eprofile', 3, '編輯個人資料', 1),
+(148, 'client_dashboard_cpassword', 1, 'Change Password', 1),
+(149, 'client_dashboard_cpassword', 2, 'Wachtwoord wijzigen', 1),
+(150, 'client_dashboard_cpassword', 3, '更改密碼', 1),
+(151, 'client_dashboard_mrpurchase', 1, 'My Recent Purchases', 1),
+(152, 'client_dashboard_mrpurchase', 2, 'Mijn recent Aankopen', 1),
+(153, 'client_dashboard_mrpurchase', 3, '我的最新採購', 1),
+(154, 'client_dashboard_date', 1, 'Date', 1),
+(155, 'client_dashboard_date', 2, 'datum', 1),
+(156, 'client_dashboard_date', 3, '日', 1),
+(157, 'client_dashboard_ithumbnail', 1, 'Image Thumbnail', 1),
+(158, 'client_dashboard_ithumbnail', 2, 'Thumbnail image', 1),
+(159, 'client_dashboard_ithumbnail', 3, '圖片縮略圖', 1),
+(160, 'client_dashboard_imgid', 1, 'Image ID', 1),
+(161, 'client_dashboard_imgid', 2, 'afbeelding ID', 1),
+(162, 'client_dashboard_imgid', 3, '圖片ID', 1),
+(163, 'client_dashboard_price', 1, 'Price', 1),
+(164, 'client_dashboard_price', 2, 'prijs', 1),
+(165, 'client_dashboard_price', 3, '價格', 1),
+(166, 'client_dashboard_status', 1, 'Status', 1),
+(167, 'client_dashboard_status', 2, 'toestand', 1),
+(168, 'client_dashboard_status', 3, '狀態', 1),
+(169, 'register_user_subscription', 1, 'Subscriptions', 1),
+(170, 'register_user_subscription', 2, 'abonnementen', 1),
+(171, 'register_user_subscription', 3, '訂閱', 1),
+(172, 'register_user_subscription_plan', 1, 'Build your own Subscription plans', 1),
+(173, 'register_user_subscription_plan', 2, 'Bouw je eigen Abonnementen', 1),
+(174, 'register_user_subscription_plan', 3, '構建自己的套餐', 1),
+(175, 'register_user_subscription_tlbpackage', 1, 'Package', 1),
+(176, 'register_user_subscription_tlbpackage', 2, 'verpakking', 1),
+(177, 'register_user_subscription_tlbpackage', 3, '包', 1),
+(178, 'register_user_subscription_tlbsize', 1, 'Size', 1),
+(179, 'register_user_subscription_tlbsize', 2, 'maat', 1),
+(180, 'register_user_subscription_tlbsize', 3, '大小', 1),
+(181, 'register_user_subscription_tlbyear', 1, 'Year', 1),
+(182, 'register_user_subscription_tlbyear', 2, 'jaar', 1),
+(183, 'register_user_subscription_tlbyear', 3, '年', 1),
+(184, 'save_btn', 1, 'Save', 1),
+(185, 'save_btn', 2, 'sparen', 1),
+(186, 'save_btn', 3, '節省', 1),
+(187, 'client_dashboard_pinformation', 1, 'Enter your new password information:', 1),
+(188, 'client_dashboard_pinformation', 2, 'Voer uw nieuwe wachtwoord informatie:', 1),
+(189, 'client_dashboard_pinformation', 3, '請輸入您的新密碼信息：', 1),
+(190, 'old', 1, 'Old', 1),
+(191, 'old', 2, 'oud', 1),
+(192, 'old', 3, '老', 1),
+(193, 'new', 1, 'New', 1),
+(194, 'new', 2, 'nieuw', 1),
+(195, 'new', 3, '新', 1),
+(196, 'retype', 1, 'Retype', 1),
+(197, 'retype', 2, 'overgetypt', 1),
+(198, 'retype', 3, '重新輸入', 1);
 
 -- --------------------------------------------------------
 
@@ -242,7 +365,7 @@ INSERT INTO `pxl_tblconstantsvalue` (`KeywordId`, `ConstantCode`, `KeywordLangId
 CREATE TABLE IF NOT EXISTS `pxl_tblorientation` (
   `OrId` int(11) NOT NULL AUTO_INCREMENT,
   `OrLangId` int(11) NOT NULL,
-  `OrName` varchar(255) NOT NULL,
+  `OrName` varchar(255) CHARACTER SET utf8 NOT NULL,
   `Status` tinyint(4) NOT NULL,
   `CreatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -254,12 +377,12 @@ CREATE TABLE IF NOT EXISTS `pxl_tblorientation` (
 --
 
 INSERT INTO `pxl_tblorientation` (`OrId`, `OrLangId`, `OrName`, `Status`, `CreatedAt`, `UpdatedAt`) VALUES
-(1, 1, 'Landscape', 1, '2013-11-11 11:27:17', '2013-11-11 11:27:43'),
-(2, 2, 'Landscape D', 1, '2013-11-11 11:27:17', '2013-11-11 11:27:43'),
-(3, 3, 'Landscape C', 1, '2013-11-11 11:27:17', '2013-11-11 11:27:43'),
-(4, 1, 'Portrait', 1, '2013-11-11 11:29:51', '0000-00-00 00:00:00'),
-(5, 2, 'Portrait D', 1, '2013-11-11 11:29:51', '0000-00-00 00:00:00'),
-(6, 3, 'Portrait C', 1, '2013-11-11 11:29:51', '0000-00-00 00:00:00');
+(1, 1, 'Landscape', 1, '2013-11-11 11:27:17', '2013-11-17 09:15:34'),
+(2, 2, 'landschap', 1, '2013-11-11 11:27:17', '2013-11-17 09:15:34'),
+(3, 3, '景觀', 1, '2013-11-11 11:27:17', '2013-11-17 09:15:34'),
+(4, 1, 'Portrait', 1, '2013-11-11 11:29:51', '2013-11-17 09:16:07'),
+(5, 2, 'portret', 1, '2013-11-11 11:29:51', '2013-11-17 09:16:07'),
+(6, 3, '肖像', 1, '2013-11-11 11:29:51', '2013-11-17 09:16:07');
 
 -- --------------------------------------------------------
 
@@ -275,19 +398,28 @@ CREATE TABLE IF NOT EXISTS `pxl_tblpagechild` (
   `SPageSlug` varchar(255) DEFAULT NULL,
   `SPageContent` text CHARACTER SET utf8,
   `Status` int(11) DEFAULT NULL,
-  `CreatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CreatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`SPageId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `pxl_tblpagechild`
 --
 
 INSERT INTO `pxl_tblpagechild` (`SPageId`, `SPageLangId`, `PageId`, `SPageTitle`, `SPageSlug`, `SPageContent`, `Status`, `CreatedAt`, `UpdatedAt`) VALUES
-(9, 1, 1, 'Our Objectives', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..\r\n<ol>\r\n	<li>\r\n		&nbsp;Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n</ol>\r\n', 0, '2013-11-13 11:30:29', '0000-00-00 00:00:00'),
-(10, 2, 1, 'onze Doelstellingen', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..\r\n<ol>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n</ol>\r\n', 0, '2013-11-13 11:30:29', '0000-00-00 00:00:00'),
-(11, 3, 1, '我們的目標', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..\r\n<ol>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n</ol>\r\n', 0, '2013-11-13 11:30:29', '0000-00-00 00:00:00');
+(9, 1, 1, 'Our Objectives', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content ..<br />\r\nAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.\r\n<ol>\r\n	<li>\r\n		&nbsp;Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n	<li>\r\n		Our Objectives in English</li>\r\n</ol>\r\n', 1, '2013-11-15 14:37:17', '0000-00-00 00:00:00'),
+(10, 2, 1, 'onze Doelstellingen', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content In Dutch..<br />\r\n<br />\r\nAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.\r\n<ol>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n	<li>\r\n		Our Objectives in Dutch</li>\r\n</ol>\r\n', 1, '2013-11-15 14:37:17', '0000-00-00 00:00:00'),
+(11, 3, 1, '我們的目標', 'http://localhost/pixelci/about-us/our-objectives.html', 'Our Objectives content in chinese ..<br />\r\n<br />\r\nAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.\r\n<ol>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n	<li>\r\n		Our Objectives in chinese</li>\r\n</ol>\r\n', 1, '2013-11-15 14:37:17', '0000-00-00 00:00:00'),
+(12, 1, 1, 'Our members', 'http://localhost/pixelci/about-us/our-members.html', 'Our members in English content<br />\r\n<br />\r\nAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.', 1, '2013-11-15 14:37:50', '0000-00-00 00:00:00'),
+(13, 2, 1, 'onze leden', 'http://localhost/pixelci/about-us/our-members.html', 'Our members in Dutch content here<br />\r\nAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.', 1, '2013-11-15 14:37:50', '0000-00-00 00:00:00'),
+(14, 3, 1, '我們的會員', 'http://localhost/pixelci/about-us/our-members.html', 'Our members in chinese content herer<br />\r\nAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam elementum varius dapibus. Sed hendrerit porta felis at sollicitudin. Sed at nunc ac neque semper fermentum. Proin diam sem, semper fermentum eleifend nec, viverra ac est. Sed ultricies, lectus et vehicula imperdiet, felis tortor vehicula turpis, non fermentum enim est et sapien. Nam justo mi, dignissim a euismod ut, pretium sed leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In viverra porta est, consequat elementum metus tristique a. Mauris tempus tellus a metus dapibus faucibus egestas lectus consectetur. Integer libero dolor, luctus non congue vitae, tempus ut neque. Nunc eleifend lorem quis diam pharetra sagittis. Aliquam ut dolor dui. Fusce dictum facilisis ipsum eu porttitor. In ultricies rhoncus tortor vitae tincidunt.', 1, '2013-11-15 14:37:50', '0000-00-00 00:00:00'),
+(15, 1, 16, 'how to be a contributor', 'http://localhost/pixelci/faqs/how-to-be-a-contributor.html', 'how to be a contributor in English content\r\n<ol>\r\n	<li>\r\n		how to be a contributor in English content</li>\r\n	<li>\r\n		how to be a contributor in English content</li>\r\n	<li>\r\n		how to be a contributor in English content</li>\r\n</ol>\r\n', 1, '2013-11-17 12:36:24', '0000-00-00 00:00:00'),
+(16, 2, 16, 'hoe je een bijdrage worden', 'http://localhost/pixelci/faqs/how-to-be-a-contributor.html', 'hoe je een bijdrage worden\r\n<ol>\r\n	<li>\r\n		hoe je een bijdrage worden</li>\r\n	<li>\r\n		hoe je een bijdrage worden</li>\r\n	<li>\r\n		hoe je een bijdrage worden</li>\r\n	<li>\r\n		hoe je een bijdrage worden</li>\r\n</ol>\r\n', 1, '2013-11-17 12:36:24', '0000-00-00 00:00:00'),
+(17, 3, 16, '如何成為一個貢獻者', 'http://localhost/pixelci/faqs/how-to-be-a-contributor.html', '<span class="short_text" id="result_box" lang="zh-TW"><span>如何成為一個</span><span>貢獻者</span></span>\r\n<ol>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span>如何成為一個</span><span>貢獻者</span></span></span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span>如何成為一個</span><span>貢獻者</span></span></span></span></span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span>如何成為一個</span><span>貢獻者</span></span></span></span></span></span></span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" id="result_box" lang="zh-TW"><span>如何成為一個</span><span>貢獻者</span></span></span></span></span></span></span></span></span></span></li>\r\n</ol>\r\n', 1, '2013-11-17 12:36:24', '0000-00-00 00:00:00'),
+(18, 1, 16, 'Terms of Service', 'http://localhost/pixelci/faqs/terms-of-service.html', 'Terms of Service English content\r\n<ol>\r\n	<li>\r\n		Terms of Service English content</li>\r\n	<li>\r\n		Terms of Service English content</li>\r\n	<li>\r\n		Terms of Service English content</li>\r\n	<li>\r\n		Terms of Service English content</li>\r\n</ol>\r\n', 1, '2013-11-17 12:38:56', '0000-00-00 00:00:00'),
+(19, 2, 16, 'Gebruiksvoorwaarden', 'http://localhost/pixelci/faqs/terms-of-service.html', 'Gebruiksvoorwaarden\r\n<ol>\r\n	<li>\r\n		Gebruiksvoorwaarden</li>\r\n	<li>\r\n		Gebruiksvoorwaarden Gebruiksvoorwaarden</li>\r\n	<li>\r\n		Gebruiksvoorwaarden</li>\r\n</ol>\r\n', 1, '2013-11-17 12:38:56', '0000-00-00 00:00:00'),
+(20, 3, 16, '服務條款', 'http://localhost/pixelci/faqs/terms-of-service.html', '<span class="short_text" id="result_box" lang="zh-TW"><span>服務條款</span></span>\r\n<ol>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span>服務條款</span></span></span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span>服務條款</span></span></span></span></span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span><span class="short_text" lang="zh-TW"><span>服務條款</span></span></span></span></span></span></span></span></li>\r\n	<li>\r\n		<span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" id="result_box" lang="zh-TW"><span><span class="short_text" id="result_box" lang="zh-TW"><span>服務條款</span></span></span></span></span></span></span></span></span></span></li>\r\n</ol>\r\n', 1, '2013-11-17 12:38:56', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -308,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `pxl_tblpages` (
   `Status` int(11) DEFAULT NULL,
   `HasSubPage` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`PageId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `pxl_tblpages`
@@ -327,9 +459,12 @@ INSERT INTO `pxl_tblpages` (`PageId`, `PageLangId`, `FeatureImage`, `PageTitle`,
 (10, 1, NULL, 'License information', '<span style="color:#ffd700;">License information</span> content here\r\n<ol>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n</ol>\r\n', 'http://localhost/pixelci/license-information.html', 1, -1, 3, 1, 0),
 (11, 2, NULL, 'Licentie-informatie', '<span style="color:#ffd700;">License information</span> content here\r\n<ol>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n	<li>\r\n		License information in English</li>\r\n</ol>\r\n', 'http://localhost/pixelci/license-information.html', 1, -1, 3, 1, 0),
 (12, 3, NULL, '許可信息', '<span style="color:#ffd700;">License information</span> content here\r\n<ol>\r\n	<li>\r\n		License information in Chinese</li>\r\n	<li>\r\n		License information in Chinese</li>\r\n	<li>\r\n		License information in Chinese</li>\r\n	<li>\r\n		License information in Chinese</li>\r\n</ol>\r\n', 'http://localhost/pixelci/license-information.html', 1, -1, 3, 1, 0),
-(13, 1, NULL, 'Sell pictures', '<p>\r\n	Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches. Particular for photographers and artist. You can upload and give the pictures a smile or more (rating) and give a short messages (what say people of this Image or Sketch) to the picture or sketch.</p>\r\n<hr />\r\n<h3>\r\n	How to Sell Stock in Three Easy Steps</h3>\r\n<div class="steps">\r\n	<h3>\r\n		Sign Up</h3>\r\n	<p>\r\n		You need to be an iStock member before you can contribute your stock. But don&#39;t worry &ndash; joining only takes a minute and it doesn&rsquo;t cost a thing.</p>\r\n	<a href="#login">Join</a></div>\r\n<!--/steps-->\r\n<div class="steps">\r\n	<h3>\r\n		Upload Your Images</h3>\r\n	<p>\r\n		Our review team will inspect your images and, if necessary, your model and property releases. If we can use your images, we&#39;ll add them to the Kwaai Images collection. You always keep the copyrights to your work.</p>\r\n</div>\r\n<!--/steps-->\r\n<div class="steps">\r\n	<h3>\r\n		Grow Your Income</h3>\r\n	<p>\r\n		Improve your earnings by submitting your creative work.</p>\r\n</div>\r\n<!--/steps-->', 'http://localhost/pixelci/sell-pictures.html', 1, -1, 1, 1, NULL),
-(14, 2, NULL, 'verkopen foto', '<p>\r\n	<span id="result_box" lang="nl"><span class="hps">Kwaai</span><span class="atn">-</span><span>Beelden is</span> <span class="hps">een in Amsterdam gevestigd</span> <span class="hps">Microstock</span> <span class="hps">fotografie bedrijf</span> <span class="hps atn">(</span><span>laag</span> <span class="hps">geprijsde</span> <span class="hps">en</span> <span class="hps">inclusieve</span> <span class="hps">stock photography</span><span>)</span> <span class="hps">voor afbeeldingen</span><span>,</span> <span class="hps">schetsen en</span> <span class="hps">schilderijen</span><span>.</span> <span class="hps">Dit platform</span> <span class="hps">is gebouwd</span> <span class="hps">voor professionals</span> <span class="hps">en</span> <span class="hps">amateurs</span><span>,</span> <span class="hps">te uploaden</span><span>,</span> <span class="hps">verkoop en wederverkoop</span> <span class="hps">foto&#39;s</span> <span class="hps">en schetsen</span><span>.</span> <span class="hps">Vooral</span> <span class="hps">voor fotografen en</span> <span class="hps">kunstenaar</span><span>.</span> <span class="hps">U</span> <span class="hps">kunt uploaden</span> <span class="hps">en geven de</span> <span class="hps">foto&#39;s</span> <span class="hps">een glimlach of</span> <span class="hps">meer</span> <span class="hps">(rating</span><span>)</span> <span class="hps">en geef</span> <span class="hps">een</span> <span class="hps">korte berichten</span> <span class="hps atn">(</span><span>wat</span> <span class="hps">zeggen de mensen</span> <span class="hps">van</span> <span class="hps">Beeld</span> <span class="hps">of</span> <span class="hps">Sketch</span><span>)</span> <span class="hps">om de foto of</span> <span class="hps">schets</span><span>.</span></span></p>\r\n<hr />\r\n<h3>\r\n	How to Sell Stock in Three Easy Steps</h3>\r\n<div class="steps">\r\n	<h3>\r\n		Sign Up</h3>\r\n	<p>\r\n		You need to be an iStock member before you can contribute your stock. But don&#39;t worry &ndash; joining only takes a minute and it doesn&rsquo;t cost a thing.</p>\r\n	<a href="#login">Join</a></div>\r\n<!--/steps-->\r\n<div class="steps">\r\n	<h3>\r\n		Upload Your Images</h3>\r\n	<p>\r\n		Our review team will inspect your images and, if necessary, your model and property releases. If we can use your images, we&#39;ll add them to the Kwaai Images collection. You always keep the copyrights to your work.</p>\r\n</div>\r\n<!--/steps-->\r\n<div class="steps">\r\n	<h3>\r\n		Grow Your Income</h3>\r\n	<p>\r\n		Improve your earnings by submitting your creative work.</p>\r\n</div>\r\n', 'http://localhost/pixelci/sell-pictures.html', 1, -1, 1, 1, NULL),
-(15, 3, NULL, '賣圖片', '<p>\r\n	Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches. Particular for photographers and artist. You can upload and give the pictures a smile or more (rating) and give a short messages (what say people of this Image or Sketch) to the picture or sketch.</p>\r\n<hr />\r\n<h3>\r\n	How to Sell Stock in Three Easy Steps</h3>\r\n<div class="steps">\r\n	<h3>\r\n		Sign Up</h3>\r\n	<p>\r\n		You need to be an iStock member before you can contribute your stock. But don&#39;t worry &ndash; joining only takes a minute and it doesn&rsquo;t cost a thing.</p>\r\n	<a href="#login">Join</a></div>\r\n<div class="steps">\r\n	<h3>\r\n		Upload Your Images</h3>\r\n	<p>\r\n		Our review team will inspect your images and, if necessary, your model and property releases. If we can use your images, we&#39;ll add them to the Kwaai Images collection. You always keep the copyrights to your work.</p>\r\n</div>\r\n<div class="steps">\r\n	<h3>\r\n		Grow Your Income</h3>\r\n	<p>\r\n		Improve your earnings by submitting your creative work.</p>\r\n</div>\r\n', 'http://localhost/pixelci/sell-pictures.html', 1, -1, 1, 1, NULL);
+(13, 1, NULL, 'Sell pictures', '<p>\r\n	Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches. Particular for photographers and artist. You can upload and give the pictures a smile or more (rating) and give a short messages (what say people of this Image or Sketch) to the picture or sketch.</p>\r\n<hr />\r\n<h3>\r\n	How to Sell Stock in Three Easy Steps</h3>\r\n<div class="steps">\r\n	<h3>\r\n		Sign Up</h3>\r\n	<p>\r\n		You need to be an iStock member before you can contribute your stock. But don&#39;t worry &ndash; joining only takes a minute and it doesn&rsquo;t cost a thing.</p>\r\n	<a href="#login">Join</a></div>\r\n<div class="steps">\r\n	<h3>\r\n		Upload Your Images</h3>\r\n	<p>\r\n		Our review team will inspect your images and, if necessary, your model and property releases. If we can use your images, we&#39;ll add them to the Kwaai Images collection. You always keep the copyrights to your work.</p>\r\n</div>\r\n<div class="steps">\r\n	<h3><i class="icon-money color"></i>\r\n		Grow Your Income</h3>\r\n	<p>\r\n		Improve your earnings by submitting your creative work.</p>\r\n</div>\r\n', 'http://localhost/pixelci/sell-pictures.html', 1, -1, 1, 1, NULL),
+(14, 2, NULL, 'verkopen foto', '<p>\r\n	<span id="result_box" lang="nl"><span class="hps">Kwaai</span><span class="atn">-</span><span>Beelden is</span> <span class="hps">een in Amsterdam gevestigd</span> <span class="hps">Microstock</span> <span class="hps">fotografie bedrijf</span> <span class="hps atn">(</span><span>laag</span> <span class="hps">geprijsde</span> <span class="hps">en</span> <span class="hps">inclusieve</span> <span class="hps">stock photography</span><span>)</span> <span class="hps">voor afbeeldingen</span><span>,</span> <span class="hps">schetsen en</span> <span class="hps">schilderijen</span><span>.</span> <span class="hps">Dit platform</span> <span class="hps">is gebouwd</span> <span class="hps">voor professionals</span> <span class="hps">en</span> <span class="hps">amateurs</span><span>,</span> <span class="hps">te uploaden</span><span>,</span> <span class="hps">verkoop en wederverkoop</span> <span class="hps">foto&#39;s</span> <span class="hps">en schetsen</span><span>.</span> <span class="hps">Vooral</span> <span class="hps">voor fotografen en</span> <span class="hps">kunstenaar</span><span>.</span> <span class="hps">U</span> <span class="hps">kunt uploaden</span> <span class="hps">en geven de</span> <span class="hps">foto&#39;s</span> <span class="hps">een glimlach of</span> <span class="hps">meer</span> <span class="hps">(rating</span><span>)</span> <span class="hps">en geef</span> <span class="hps">een</span> <span class="hps">korte berichten</span> <span class="hps atn">(</span><span>wat</span> <span class="hps">zeggen de mensen</span> <span class="hps">van</span> <span class="hps">Beeld</span> <span class="hps">of</span> <span class="hps">Sketch</span><span>)</span> <span class="hps">om de foto of</span> <span class="hps">schets</span><span>.</span></span></p>\r\n<hr />\r\n<h3>\r\n	Hoe te Stock verkopen in drie eenvoudige stappen</h3>\r\n<div class="steps">\r\n	<h3>\r\n		Aanmelden</h3>\r\n	<p>\r\n		You need to be an iStock member before you can contribute your stock. But don&#39;t worry &ndash; joining only takes a minute and it doesn&rsquo;t cost a thing.</p>\r\n	<a href="#login">Join</a></div>\r\n<!--/steps-->\r\n<div class="steps">\r\n	<h3>\r\n		Upload uw afbeeldingen</h3>\r\n	<p>\r\n		Our review team will inspect your images and, if necessary, your model and property releases. If we can use your images, we&#39;ll add them to the Kwaai Images collection. You always keep the copyrights to your work.</p>\r\n</div>\r\n<!--/steps-->\r\n<div class="steps">\r\n	<h3>\r\n		Kweek uw inkomen</h3>\r\n	<p>\r\n		Improve your earnings by submitting your creative work.</p>\r\n</div>\r\n', 'http://localhost/pixelci/sell-pictures.html', 1, -1, 1, 1, NULL),
+(15, 3, NULL, '賣圖片', '<p>\r\n	<span id="result_box" lang="zh-TW"><span>Kwaai</span><span>圖片</span><span>是</span><span>總部</span><span>設</span><span>在阿姆斯特丹</span><span>的</span><span>微利</span><span>攝影公司</span><span>（</span><span>低價</span><span>和包容性</span><span>的</span><span>攝影</span><span>）</span><span>的圖像</span><span>，素描</span><span>和繪畫</span><span>。</span><span>此平台</span><span>打造為</span><span>專業</span><span>人士</span><span>和業餘愛好者</span><span>，</span><span>上傳，</span><span>銷售和</span><span>轉售</span><span>圖片和</span><span>草圖</span><span>。</span><span>特別</span><span>為攝影師</span><span>和</span><span>藝術家</span><span>。</span><span>您可以上傳</span><span>給</span><span>圖片</span><span>一個微笑或</span><span>以上</span><span>（額定</span><span>）</span><span>，</span><span>並</span><span>給一個簡短的</span><span>消息</span><span>（</span><span>本圖片</span><span>或</span><span>素描</span><span>的</span><span>人</span><span>還有什麼好說的</span><span>）</span><span>的照片或</span><span>草圖</span><span>。</span></span></p>\r\n<hr />\r\n<h3>\r\n	三個簡單的步驟如何銷售圖片</h3>\r\n<div class="steps">\r\n	<h3>\r\n		報名</h3>\r\n	<p>\r\n		You need to be an iStock member before you can contribute your stock. But don&#39;t worry &ndash; joining only takes a minute and it doesn&rsquo;t cost a thing.</p>\r\n	<a href="#login">Join</a></div>\r\n<div class="steps">\r\n	<h3>\r\n		上傳你的圖片</h3>\r\n	<p>\r\n		Our review team will inspect your images and, if necessary, your model and property releases. If we can use your images, we&#39;ll add them to the Kwaai Images collection. You always keep the copyrights to your work.</p>\r\n</div>\r\n<div class="steps">\r\n	<h3>\r\n		拓展你的收入</h3>\r\n	<p>\r\n		Improve your earnings by submitting your creative work.</p>\r\n</div>\r\n', 'http://localhost/pixelci/sell-pictures.html', 1, -1, 1, 1, NULL),
+(16, 1, NULL, 'FAQs', 'FAQ&#39;s content here.. in engliseh', 'http://localhost/pixelci/faqs.html', 1, -1, 1000, 1, 1),
+(17, 2, NULL, 'Veelgestelde vragen', '<span class="short_text" id="result_box" lang="nl"><span class="hps">Veelgestelde vragen</span> <span class="hps">in het Nederlands</span> <span class="hps">inhoud</span> <span class="hps">....</span></span>', 'http://localhost/pixelci/faqs.html', 1, -1, 1000, 1, 1),
+(18, 3, NULL, '常見問題', '常見問題\r\n<ul>\r\n	<li>\r\n		常見問題</li>\r\n	<li>\r\n		常見問題</li>\r\n	<li>\r\n		常見問題</li>\r\n	<li>\r\n		常見問題</li>\r\n	<li>\r\n		常見問題</li>\r\n	<li>\r\n		常見問題</li>\r\n</ul>\r\n', 'http://localhost/pixelci/faqs.html', 1, -1, 1000, 1, 1);
 
 -- --------------------------------------------------------
 

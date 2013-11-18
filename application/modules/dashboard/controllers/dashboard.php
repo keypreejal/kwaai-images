@@ -1,26 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Register extends MY_Front_Controller {
+class Dashboard extends MY_Front_Controller {
 
 	/**
-	 * Register Page for this controller.
-	 *	This page loads a Register User Page of Kwaai
+	 * Dashboard Page for this controller.
+	 *	This page loads a Dashboard User Page of Kwaai
 	 */
   	#............begin constructor........................##
   	public $data;
 	public function __construct()
 	{
-		 parent::__construct();    
-		 $this->load->model('front/front_model');
+		parent::__construct();    
+		$this->load->model('front/front_model');
 
-		 $langCode= $this->session->userdata('lang_arr');
+		$langCode= $this->session->userdata('lang_arr');
 		
-		 $langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
-		 $whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$langId);
-	   	 $whereFoot = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$langId);
-	   	 $whereLang = array('LangStatus'=>1);
+		$langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
+		$whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$langId);
+	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$langId);
+	   	$whereLang = array('LangStatus'=>1);
 
-	   	 $this->data = array(
+	   	$this->data = array(
 	   				'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
 					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
 					'slides' => $this->front_model->get_datas('tblslider','SliderId'.''), //get slider 
@@ -38,24 +38,14 @@ class Register extends MY_Front_Controller {
 					'shopping_baskets' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','shopping_baskets',$langId),
 					'search_btn' =>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_btn',$langId),
 					'category_search'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','category_search',$langId),
-					'register_left_ftitle'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_left_ftitle',$langId),
-					'register_left_amsignin'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_left_amsignin',$langId),
+					
 					'name'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','name',$langId),
 					'register_left_companyname'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_left_companyname',$langId),
 					'phone'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','phone',$langId),
 					'email_address'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','email_address',$langId),
 					'password'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','password',$langId),
 					'cpassword'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','cpassword',$langId),
-					'required'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','required',$langId),
-					'agree'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','agree',$langId),
-					'register_left_terms_of_service'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_left_terms_of_service',$langId),
 					'register_left_create_account'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_left_create_account',$langId),
-					'register_right_thanku' =>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_right_thanku',$langId),
-					'register_user_tell_us'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_tell_us',$langId),
-					'register_user_purpose'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_purpose',$langId),
-					'register_user_client'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_client',$langId),
-					'register_user_contributor'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_contributor',$langId),
-					'register_user_join'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_join',$langId),
 					'register_user_subscription'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription',$langId),
 					'register_user_subscription_plan'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_plan',$langId),
 					'register_user_subscription_tlbpackage'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_tlbpackage',$langId),
@@ -76,10 +66,12 @@ class Register extends MY_Front_Controller {
 					'old'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','old',$langId),
 					'new'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','new',$langId),
 					'retype'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','retype',$langId),
+					
+
+					'most_popular_pictures'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','most_popular_pictures',$langId),
 
 
-
-
+					//footer constant values
 					'my_account_head' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_head',$langId),
 					'my_account_sign_up_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_sign_up_free',$langId),
 					'need_help' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help',$langId),
@@ -91,68 +83,51 @@ class Register extends MY_Front_Controller {
 					'site_title'=> $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','site_title',$langId),
 
 					);
-
+		
 	}
 	#..............end constructor.......................##
 
 
 	/**
-		*Begin Index function for this controller
-	 	* This function Loads a Register form with a view name register_view.php
+		*Begin client function for this controller
+	 	* This function Loads a Client Dashboard
 	*/
- 	#............begin Index.......................##
-	public function index()
+ 	#............begin client.......................##
+	public function client()
 	{
+		/*
+		get all client data
+		$this->data[''] = .......
+		*/
 		$this->template->set_template('defaultfront');
-		$this->template->write_view('content', 'register_view',$this->data);
+		$this->template->write_view('content', 'client_dashboard_view',$this->data);
 		$this->template->render();
 	}
-	#.............End Index Function......................##
+	#.............End client Function......................##
 
 
-	/**
-		*Begin user function for this controller
-	 	*This function Loads a user dashboard, checks which user & rediret to its respective dashboard
-	*/
- 	#............begin user Function.......................##
-	public function user()
-	{
-		if ($this->input->post('submit')) {
-			$ut = $this->input->post('user-type');
-			if($ut == 'client') {
-				//if user is normal redirect to his dashboard 
-				redirect("dashboard/client","refresh");
-			} else{
-				//if user want to be the contributor h/she has to choose available package 
-				$this->template->set_template('defaultfront');
-				$this->template->write_view('content', 'package_view',$this->data);
-				$this->template->render();
-
-			}
-		} else {
-			$this->template->set_template('defaultfront');
-			$this->template->write_view('content', 'user_view',$this->data);
-			$this->template->render();
-		} 
-	}
-	#............End user Function......................
-
-
-	/**
-		*Begin package function for this controller
-	 	*This function is used to save the package the contributor chooses.
-	*/
- 	#............begin package Function.......................##
-	public function package($package = NULL)
-	{
-		redirect("dashboard/contributor/$package","refresh");
-	}
-	#............End package Function......................
 	
 
+	/**
+		*Begin Contributor function for this controller
+	 	*This function Loads a Contributor Dashboard.
+	*/
+ 	#............begin contributor Function.......................##
+	public function contributor($selpackage = NULL)
+	{
+
+		/*
+		get all contributor data with the selected package {$selpackage} posted.
+		$this->data[''] = .......
+		*/
+		$this->template->set_template('defaultfront');
+		$this->template->write_view('content', 'contributor_dashboard_view',$this->data);
+		$this->template->render();
+	}
+	#.............End contributor Function......................##
 	
  }
 
 
 /* End of file Front.php */
-/* Location: ./application/modules/register/controllers/register.php */
+/* Location: ./application/modules/dashboard/controllers/dashboard.php */

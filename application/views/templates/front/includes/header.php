@@ -30,16 +30,22 @@
 </head>
 <body>
 <div id="top-bar" class="container">
+  <?php $lang = $this->session->userdata('lang_arr'); ?>
   <div class="row">
     <div class="span8 pull-right">
       <!--language n currency selection-->
       <div class="language pull-right">
         <ul class="user-lang">
           <li>
-          <label>  
+          <label>   
             <select class="country">
               <?php foreach ($languages as $language) {
-                echo "<option value=$language->LangCode>$language->LangName</option>";
+                ?>
+                  <option value ="<?php echo $language->LangCode; ?>"<?php if($language->LangCode==$lang){
+                    echo "selected=selected";} ?>><?php echo $language->LangName; ?>
+                  </option>
+                <?php
+                
               }?>
             </select>
             </label>
@@ -87,8 +93,11 @@
                         </div>
                         <div class="control-group">
                           <input tabindex="3" class="btn btn-inverse btn-signin" type="submit" value="Sign into your account">
-                                    </div>
-                                    <div class="control-group"><label> Don't have an account ? <a href="register.php">Sign up for free</a></label></div>
+                        </div>
+                        <div class="control-group">
+                          <label>Don't have an account?<a href="register.php">Sign up for free</a>
+                          </label>
+                        </div>
                       </fieldset>
                     </form>     		
                   </div>
@@ -96,12 +105,11 @@
           </li>
           <span>|</span>
           <li class="">
-   			<a href="<?php echo site_url();?>register"><span><?php echo $register;?></span></a>
- 		  </li>
+            <a href="<?php echo site_url().'register';?>"><span><?php echo $register;?></span></a>
+ 		      </li>
           <li>
-          <a href="cart.php"><?php echo $shopping_baskets;?> </a> <span class="s-basket">
-          <p>0</p>
-          </span>
+            <a href="<?php echo site_url().'cart';?>"><?php echo $shopping_baskets;?></a>
+            <span class="s-basket"><p>0</p></span>
           </li>
         </ul>
       </div>
@@ -113,24 +121,24 @@
     <div class="navbar-inner main-menu"> <a href="<?php echo site_url();?>" class="logo pull-left"><img src="<?php echo site_url();?>/themes/images/kwaai-logo.png" class="site_logo" alt="The Creative Company | Kwaai-Images.com"></a>
       <nav id="menu" class="pull-right">
         <ul>
-          <?php $lang = isset($_GET['lang'])?$_GET['lang']:'en';?>
-          <li><a href="<?php echo site_url().'?lang='.$lang;?>"><?php echo $lang=='en'?'Home':($lang=='nl'?'huis':'家');?></a></li>
+         
+          <li><a href="<?php echo site_url();?>"><?php echo $lang=='en'?'Home':($lang=='nl'?'huis':'家');?></a></li>
           <?php 
           if(is_array($pages)>0):
             foreach($pages as $page){
-             echo "<li><a href=$page->PageSlug?lang=$lang>$page->PageTitle</a></li>";
+             echo "<li><a href=$page->PageSlug>$page->PageTitle</a></li>";
             }
           endif;
 		  if(is_array($categories)>0):
 		  	$cat = '';
             foreach($categories as $category){
-              $cat .= "<li><a href='".site_url()."imagesList/$category->CategoryName?lang=".$lang."'>".$this->front_model->format_data($category->CategoryName)."</a></li>";
+              $cat .= "<li><a href='".site_url()."imagesList/$category->CategoryName'>".$this->front_model->format_data($category->CategoryName)."</a></li>";
 			} 
 		  endif;
 	 	?>
-          <li><a href="<?php echo site_url().'imagesList?lang='.$lang;?>"><?php echo $lang=='en'?'Category':($lang=='nl'?'categorie':'類別');?></a><ul><?php echo $cat;?></ul></li>
-          <li><a href="<?php echo site_url().'subscription?lang='.$lang;?>"><?php echo $lang=='en'?'Subscription':($lang=='nl'?'abonnement':'訂閱');?></a></li>
-          <li><a href="<?php echo site_url().'contact?lang='.$lang;?>"><?php echo $lang=='en'?'Contact Us':($lang=='nl'?'Contacteer ons':'聯繫我們');?></a></li>
+          <li><a href="<?php echo site_url().'imagesList';?>"><?php echo $lang=='en'?'Category':($lang=='nl'?'categorie':'類別');?></a><ul><?php echo $cat;?></ul></li>
+          <li><a href="<?php echo site_url().'subscription';?>"><?php echo $lang=='en'?'Subscription':($lang=='nl'?'abonnement':'訂閱');?></a></li>
+          <li><a href="<?php echo site_url().'contact';?>"><?php echo $lang=='en'?'Contact Us':($lang=='nl'?'Contacteer ons':'聯繫我們');?></a></li>
         </ul>
       </nav>
     </div>

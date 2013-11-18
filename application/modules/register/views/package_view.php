@@ -4,10 +4,10 @@
       <form class="form-inline navbar-search" method="post" action="products.html" >
         <label>
           <input id="srchFld" class="srchTxt" type="text" placeholder="Enter Keyword(s)" style="border:none; background-color:#f1f1f1" />
-          <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+          <button type="submit" id="submitButton" class="btn btn-primary"><?php echo $search_btn;?></button>
         </label>
     <ul id="search-box">
-          <li><a class="t-grey">Category Search<i class="icon-caret-down"></i></a>
+          <li><a class="t-grey"><?php echo $category_search;?><i class="icon-caret-down"></i></a>
               <ul class="search-down">
                <?php 
           foreach($categories as $category){
@@ -22,55 +22,51 @@
 </div>
 
 <div id="wrapper" class="container">
-  <section class="main-content">        
+  <section class="main-content">
     <div class="row">
-      <div class="span10">  
-        <h2 class="titles"><span class="text">Subscriptions</h2> 
-        <h3>Build your own Subscription plans</h3>
-        <div class="row feature_box">
-
-          <div class="span3">
-            <form action="<?php echo site_url().'register/cdashboard';?>">
-            <div class="subscription">
-              <div class="one"> 
-                <h2 class="titles"><span class="texzt">Silver</span></h2>
-                <span class="n-big">&euro; 200</span>
-                <p>Space for 1GB</p>
-                <input class="btn btn-primary" type="submit" name="submit" value="Buy">
-              </div>
-            </div>
-          </form>
-          </div>
-
-          <div class="span3">
-            <form action="<?php echo site_url().'register/cdashboard';?>">
-            <div class="subscription">
-              <div class="two"> 
-                <h2 class="titles"><span class="text">Gold</span></h2>
-                <span class="n-big">&euro; 200</span>
-                <p>Space for 2GB</p>
-                <input class="btn btn-primary" type="submit" name="submit" value="Buy">
-              </div>
-            </div>
-          </form>
-          </div>
-
-          <div class="span3">
-            <form action="<?php echo site_url().'register/cdashboard';?>">
-            <div class="subscription">
-              <div class="three"> 
-                <h2 class="titles"><span class="text">Platinum</span></h2>
-                <span class="n-big">&euro; 200</span>
-                <p>Space for 3GB</p>
-                <input class="btn btn-primary" type="submit" name="submit" value="Buy">
-              </div>
-            </div>
-          </form>
-          </div>
-
+      <div class="span10">
+        <h2 class="titles"><span class="text"><?php echo $register_user_subscription; ?></h2>
+        <h3><?php echo $register_user_subscription_plan; ?></h3>
+        <div class="subscription">
+          <table class="table table-striped shop_attributes tab-table">
+              <tbody>
+                <tr class="table-head">
+                  <th><?php echo $register_user_subscription_tlbpackage; ?></th>
+                  <th><?php echo $register_user_subscription_tlbsize; ?></th>
+                  <th><?php echo $client_dashboard_price; ?></th>
+                  <th><?php echo $register_user_subscription_tlbyear; ?></th>
+                  <th style="text-align:right">Subscribe</th>
+                </tr>
+                <tr class="">
+                  <td>Silver </td>
+                  <td>1Gb</td>
+                  <td>&pound; 100</td>
+                  <td>1 Year</td>
+                  <td style="text-align:right"><a href="<?php echo site_url().'register/package/s' ?>">Subscribe</a></td>
+                </tr>
+                <tr class="">
+                  <td>Gold </td>
+                  <td>3Gb</td>
+                  <td>&pound; 250</td>
+                  <td>1 Year</td>
+                  <td style="text-align:right"><a href="<?php echo site_url().'register/package/g' ?>">Subscribe</a></td>
+                </tr>
+                <tr class="">
+                  <td>Platinum </td>
+                  <td>5Gb</td>
+                  <td>&pound; 400</td>
+                  <td>1 Year</td>
+                  <td style="text-align:right"><a href="<?php echo site_url().'register/package/p' ?>">Subscribe</a></td>
+                </tr>
+              </tbody>
+            </table>
         </div>
-      <!--/feature box-->
-      </div>      
+        <!--end of subscription box--> 
+        <h2 class="titles"><span class="text">How do Kwaai Images subscription plans work?</span></h2>
+        <p>Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches. Particular for photographers and artist. You can upload and give the pictures a smile or more (rating) and give a short messages (what say people of this Image or Sketch) to the picture or sketch.</p>
+        <h3>Subscription options</h3>
+        <p>Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches. Particular for photographers and artist. You can upload and give the pictures a smile or more (rating) and give a short messages (what say people of this Image or Sketch) to the picture or sketch.</p>
+      </div>
     </div>
-  </section>      
-</div><!---/main container--->
+  </section>
+</div>

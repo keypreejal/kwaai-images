@@ -4,10 +4,10 @@
       <form class="form-inline navbar-search" method="post" action="products.html" >
         <label>
           <input id="srchFld" class="srchTxt" type="text" placeholder="Enter Keyword(s)" style="border:none; background-color:#f1f1f1" />
-          <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+          <button type="submit" id="submitButton" class="btn btn-primary"><?php echo $search_btn;?></button>
         </label>
 		<ul id="search-box">
-          <li><a class="t-grey">Category Search<i class="icon-caret-down"></i></a>
+          <li><a class="t-grey"><?php echo $category_search;?><i class="icon-caret-down"></i></a>
               <ul class="search-down">
                <?php 
 					foreach($categories as $category){
@@ -29,11 +29,11 @@
     <!-- Sidebar ================================================== -->
     <div id="sidebar" class="span3 side-span">
       <div class="well well-small">
-        <p> Filter search results</p>
+        <p><?php echo $sidebar_search_fliter_title;?></p>
       </div>
      <form method="#" action="#" class="side-search">
       <div class="side-block">
-          <h2>Image Types</h2>
+          <h2><?php echo $sidebar_search_fliter_image_type;?></h2>
           <?php 
             foreach($categories as $category){
               echo "<div><input type='checkbox' class='image' id='".intval($category->CatId)."' name='image'><label>".$this->front_model->format_data($category->CategoryName)."</label></div>";
@@ -42,7 +42,7 @@
       </div>
       <!--/ side block image type-->
       <div class="side-block">
-        <h2>Category</h2>
+        <h2><?php echo $sidebar_search_fliter_category;?></h2>
           <div>
               <select>
                <?php 
@@ -55,7 +55,7 @@
           </div>
       <!--/ side block category type-->
       <div class="side-block" style="border-bottom:none">
-        <h2>Orientation</h2>
+        <h2><?php echo $sidebar_search_fliter_orientation;?></h2>
           <div>
           	 <?php 
 				foreach($orientations as $orientation){
@@ -66,7 +66,7 @@
       </div>          
       <!--/ side block oreinetation type-->
       <div class="side-block">
-         <button class="btn btn-primary" id="submitButton" type="submit">Search</button>
+         <button class="btn btn-primary" id="submitButton" type="submit"><?php echo $search_btn;?></button>
       </div> 
     </form>
   </div>

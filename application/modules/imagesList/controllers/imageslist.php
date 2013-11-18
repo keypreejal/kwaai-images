@@ -22,10 +22,10 @@ class ImagesList extends CI_Controller {
   	#............begin Index........................##
 	public function index()
 	{
-		$langCode = $this->input->get('lang');
+		$langCode= $this->session->userdata('lang_arr');
 		$langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
 		$whereHead = array('status'=>1,'PageLocation'=>2,'PageLangId'=>$langId);
-	   	$whereFoot = array('status'=>1,'PageLocation'=>1,'PageLangId'=>$langId);
+	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'FooterPosition <'=>1000,'PageLangId'=>$langId);
 	    $whereLang = array('LangStatus'=>1);
 		$data = array(
 					'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
@@ -45,17 +45,10 @@ class ImagesList extends CI_Controller {
 					'search_for_images' =>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_for_images',$langId),
 					'search_btn' 	=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_btn',$langId),
 					'category_search'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','category_search',$langId),
-					'browse_by_category' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','browse_by_category',$langId),
-					'make_money' =>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','make_money',$langId),
-					'most_popular_pictures' =>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','most_popular_pictures',$langId),
-					'package' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_in',$langId),
-					'most_popular_pictures' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','most_popular_pictures',$langId),
-					'subscription_options' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','subscription_options',$langId),
-					'subscription_options_gstarted' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','subscription_options_gstarted',$langId),
-					'sign_up_for_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_up_for_free',$langId),
-					'sign_up_for_free_dregister' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_up_for_free_dregister',$langId),
-					'search_tips' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_tips',$langId),
-					'search_tips_dguide' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_tips_dguide',$langId),
+					'sidebar_search_fliter_title'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sidebar_search_fliter_title',$langId),
+					'sidebar_search_fliter_image_type'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sidebar_search_fliter_image_type',$langId),
+					'sidebar_search_fliter_category'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sidebar_search_fliter_category',$langId),
+					'sidebar_search_fliter_orientation'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sidebar_search_fliter_orientation',$langId),
 					'my_account_head' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_head',$langId),
 					'my_account_sign_up_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_sign_up_free',$langId),
 					'need_help' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help',$langId),

@@ -36,7 +36,7 @@
                              //slug is same for all language
                              $slug = "<label>SubPage Slug:</label><div class=field><input type=text name=spage_slug id=spage_slug size=70 value=$slg></div>";
 
-								             $contents .= "<div class=widget-content id=tab_".intval($language->LangId)." style=display: block;><label>SubPage Title:</label><div class=field><input type=text name=spage_title[] id=tab_".intval($language->LangId)."spage_title size=50 class=validate[required] value='$tle'></div>$slug<label>SubPage Content:</label><div class=field><textarea name=spage_content[] id=tab_".intval($language->LangId)."_spage_content>$cont</textarea><script type=text/javascript>var editor = CKEDITOR.replace( 'tab_".intval($language->LangId)."_spage_content', { enterMode : CKEDITOR.ENTER_BR, defaultLanguage : 'en', entities : true, width: '100%', tabSpaces:10, filebrowserBrowseUrl: '<?php site_url();?>ckeditor/sfilemanager/index.html'}); </script></div></div>";
+								             $contents .= "<div class=widget-content id=tab_".intval($language->LangId)." style=display: block;><label>SubPage Title:</label><div class=field><input type=text name=spage_title[] id=tab_".intval($language->LangId)."spage_title size=50 value='$tle'></div>$slug<label>SubPage Content:</label><div class=field><textarea name=spage_content[] id=tab_".intval($language->LangId)."_spage_content>$cont</textarea><script type=text/javascript>var editor = CKEDITOR.replace( 'tab_".intval($language->LangId)."_spage_content', { enterMode : CKEDITOR.ENTER_BR, defaultLanguage : 'en', entities : true, width: '100%', tabSpaces:10, filebrowserBrowseUrl: '<?php site_url();?>ckeditor/sfilemanager/index.html'}); </script></div></div>";
             								}
             							?>    
                             <ul class="tabs left"> 
@@ -68,8 +68,8 @@
 <script type="text/javascript">
 
 $('document').ready(function(){
-     $('ul.tabs li:first-child').addClass('active');
-	 
+    $('ul.tabs li:first-child').addClass('active');
+	  $('div#tab_1 input').addClass("validate[required]");
     $('#tab_1spage_title').keyup(function(e){
         e.preventDefault();
         this.value = this.value.replace(/[^a-zA-Z0-9\s/-]/g,'');

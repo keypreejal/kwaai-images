@@ -706,7 +706,7 @@ section#copyright{
 #t-header #search {top: 50px;right: 320px;width: 300px;}
 	
 @media (max-width: 767px) {
-#t-header #logo {margin-left: inherit;}
+	#t-header #logo {margin-left: inherit;}
 #t-header #search {top: 5px;right: inherit;width: 261px}
 }
 @media (min-width: 768px) and (max-width: 979px) {
@@ -1493,6 +1493,7 @@ input .srchTxt{border:none}
 /* Responsive
 ----------------------------------------------------------------------------- */
 @media (max-width: 767px){	
+	.flexslider .slides img{min-height: 0}
 	#top-bar input{
 		*padding-right:0 !important;
 	}
@@ -1522,8 +1523,8 @@ input .srchTxt{border:none}
 	}
 	#menu ul{display: none;}
 	.navbar-inner.main-menu a.logo{
-		left:50%;
-		margin-left:-60px;
+		left:2%;
+		margin-left:0px;
 	}
 	#copyright,#footer-bar{
 		padding:0 10px;

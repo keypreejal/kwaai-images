@@ -4,15 +4,19 @@
       <form class="form-inline navbar-search" method="post" action="products.html" >
         <label>
           <input id="srchFld" class="srchTxt" type="text" placeholder="Enter Keyword(s)" style="border:none; background-color:#f1f1f1" />
-          <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+          <button type="submit" id="submitButton" class="btn btn-primary"><?php echo $search_btn;?></button>
         </label>
-        <select class="srchTxt" style="width:auto; color:#000;  border:none; background:none">
-          <option>Category Search</option>
-          <?php 
-            foreach($categories as $category){
-              echo "<option value=".intval($category->CatId).">".$this->front_model->format_data($category->CategoryName)."</option>";         
-            } ?>
-        </select>
+    <ul id="search-box">
+          <li><a class="t-grey"><?php echo $category_search;?><i class="icon-caret-down"></i></a>
+              <ul class="search-down">
+               <?php 
+          foreach($categories as $category){
+            echo "<li><label><input type='checkbox' value=".intval($category->CatId)."><span>".$this->front_model->format_data($category->CategoryName)."</span></label>";         
+          } ?>
+                     
+              </ul>
+          </li>
+         </ul>
       </form>
     </div>
   </div>

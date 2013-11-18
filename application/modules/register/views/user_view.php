@@ -4,10 +4,10 @@
       <form class="form-inline navbar-search" method="post" action="products.html" >
         <label>
           <input id="srchFld" class="srchTxt" type="text" placeholder="Enter Keyword(s)" style="border:none; background-color:#f1f1f1" />
-          <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+          <button type="submit" id="submitButton" class="btn btn-primary"><?php echo $search_btn;?></button>
         </label>
     <ul id="search-box">
-          <li><a class="t-grey">Category Search<i class="icon-caret-down"></i></a>
+          <li><a class="t-grey"><?php echo $category_search;?><i class="icon-caret-down"></i></a>
               <ul class="search-down">
                <?php 
           foreach($categories as $category){
@@ -26,26 +26,26 @@
     <div class="row">
       <div class="span10">
         <div class="span4" style="margin-left:0; ">         
-          <h2 class="titles"><span class="text">Tell us about yourself</h2> 
+          <h2 class="titles"><span class="text"><?php echo $register_user_tell_us; ?></h2> 
           <form action="<?php echo site_url();?>register/user" method="post" class="form-stacked">
-            <p>You are primarily purchasing content for?</p>  
+            <p><?php echo $register_user_purpose?></p>  
             <fieldset>
               <div class="control-group">
                 <div class="controls">
                   <input type="radio" name="user-type" class="input-radio" value="client" checked="true">
-                  <label class="control-label">I'm signing up to become Your Client</label>
+                  <label class="control-label"><?php echo $register_user_client; ?></label>
                 </div>
               </div>
               <!--/control-group-->
                <div class="control-group">
                  <div class="controls">
                   <input type="radio" name="user-type" class="input-radio" value="contributor">
-                  <label class="control-label">I'm signing up to become Kwaai Images Contributor</label>
+                  <label class="control-label"><?php echo $register_user_contributor; ?></label>
                 </div>
                 </div>
               <!--/control-group-->
               <div class="actions">
-                <input type="submit" name="submit"class="btn btn-inverse btn-signin" value="Join">
+                <input type="submit" name="submit"class="btn btn-inverse btn-signin" value="<?php echo $register_user_join; ?>">
               </div>
             </fieldset>
           </form>         

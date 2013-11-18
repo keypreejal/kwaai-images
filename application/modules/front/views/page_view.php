@@ -4,10 +4,10 @@
       <form class="form-inline navbar-search" method="post" action="products.html" >
         <label>
           <input id="srchFld" class="srchTxt" type="text" placeholder="Enter Keyword(s)" style="border:none; background-color:#f1f1f1" />
-          <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
+          <button type="submit" id="submitButton" class="btn btn-primary"><?php echo $search_btn;?></button>
         </label>
 		<ul id="search-box">
-          <li><a class="t-grey">Category Search<i class="icon-caret-down"></i></a>
+          <li><a class="t-grey"><?php echo $category_search;?><i class="icon-caret-down"></i></a>
               <ul class="search-down">
                <?php 
 					foreach($categories as $category){
@@ -32,10 +32,9 @@
 			      		 <?php
 			      		  if(is_array($sidepages)>0):
 			      		  	echo "<ul class='nav'>";
-			      		  		$selan = isset($_GET['lang'])==1?"?&lang=$_GET[lang]":'?&lang=en';
-			      		  		
+			      		  				      		  		
 					            foreach($sidepages as $sidepage){
-					             echo "<li><a href=$sidepage->PageSlug$selan>$sidepage->PageTitle</a></li>";
+					             echo "<li><a href=$sidepage->PageSlug>$sidepage->PageTitle</a></li>";
 					            }
 				            echo "</ul>";
 				          endif;?>
@@ -70,17 +69,7 @@
 		                  	<div class='accordion' id='accordion2'>
                             	<?php echo $subpage;?>
 					        </div>
-
-
-					       
-          
-        					
 			    	<?php endif; ?>
-
-
-
-
-
 
                	</div>
                <!--/account info-->

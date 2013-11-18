@@ -111,7 +111,16 @@ $config['enable_hooks'] = FALSE;
 */
 $config['subclass_prefix'] = 'MY_';
 
-
+function __autoload($class)
+{
+    if (strpos($class, 'CI_') !== 0)
+    {
+        if (file_exists($file = APPPATH . 'core/' . $class . EXT))
+        {
+            include $file;
+        }
+    }
+} 
 /*
 |--------------------------------------------------------------------------
 | Allowed URL Characters

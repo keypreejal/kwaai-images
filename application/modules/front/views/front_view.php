@@ -49,7 +49,7 @@
         </div>
        <div class="span6 pull-right offer-home">
           <?php echo $make_money;?>
-              <a class="btn btn-primary" href="register.php">Join Now</a>
+              <a class="btn btn-primary" href="<?php echo site_url();?>register">Join Now</a>
         </div>
   	</div> 
   </section>
@@ -259,7 +259,7 @@
             <div class="service">
               <div class="customize"> <img src="themes/images/signin.jpg" alt="" />
                 <?php echo $sign_up_for_free;?>
-                <a href="#"><?php echo $sign_up_for_free_dregister;?></a>
+                <a href="<?php echo site_url().'register'; ?>"><?php echo $sign_up_for_free_dregister;?></a>
               </div>
             </div>
           </div>

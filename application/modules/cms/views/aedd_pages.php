@@ -41,7 +41,7 @@
                                      //slug is same for all language
                                      $slug ="<label>Page Slug:</label><div class=field><input type=text name=page_slug id=page_slug size=70 value=$slg></div>";
                                      
-                                               $contents .= "<div class=widget-content id=tab_".intval($language->LangId)." style=display: block;> <label>Page Title:</label><div class=field><input type=text name=page_title[] id=tab_".intval($language->LangId)."page_title size=50 class=validate[required] value='$tle'></div>$slug<label>Page Content:</label><div class=field><textarea name=page_content[] id=tab_".intval($language->LangId)."_page_content>$cont</textarea><script type=text/javascript> var editor = CKEDITOR.replace( 'tab_".intval($language->LangId)."_page_content', { enterMode : CKEDITOR.ENTER_BR,defaultLanguage : 'en',entities : true,width: '100%',tabSpaces:10,filebrowserBrowseUrl: '<?php site_url();?>ckeditor/sfilemanager/index.html'});</script></div></div>"; } 
+                                               $contents .= "<div class=widget-content id=tab_".intval($language->LangId)." style=display: block;> <label>Page Title:</label><div class=field><input type=text name=page_title[] id=tab_".intval($language->LangId)."page_title size=50 value='$tle'></div>$slug<label>Page Content:</label><div class=field><textarea name=page_content[] id=tab_".intval($language->LangId)."_page_content>$cont</textarea><script type=text/javascript> var editor = CKEDITOR.replace( 'tab_".intval($language->LangId)."_page_content', { enterMode : CKEDITOR.ENTER_BR,defaultLanguage : 'en',entities : true,width: '100%',tabSpaces:10,filebrowserBrowseUrl: '<?php site_url();?>ckeditor/sfilemanager/index.html'});</script></div></div>"; } 
 										?>
                                          <ul class="tabs left"> 
 											<?php echo $tabs; ?>         
@@ -96,6 +96,7 @@
 <script type="text/javascript">
 $('document').ready(function(){
    $('ul.tabs li:first-child').addClass('active');
+   $('div#tab_1 input').addClass("validate[required]");
    var hpos = "<?php echo $hposition;?>";
    var fpos = "<?php echo $fposition;?>"; 
    if(  hpos !=-1){

@@ -72,7 +72,7 @@ class Cms extends MY_Controller {
 					$this->session->set_flashdata('pages_msg', 'Error In Updating Page.');
 				  }
 			   } else { //insert here
-				   for($i=0;$i<count($ptitle);$i++){
+			   	    for($i=0;$i<count($ptitle);$i++){
 					   if($this->admin_model->count_no_fields('tblpages','PageTitle', $ptitle[$i] ) == '0') {
 						  $data = array(
 									'PageTitle' => $ptitle[$i],
