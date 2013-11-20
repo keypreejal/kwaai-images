@@ -32,7 +32,7 @@ class Categories extends MY_Controller {
 	   $data = $this->_get_datas($id);
 	   
 	   $where = array('LangStatus'=>1); 
-	   $data['languages'] = $this->admin_model->get_all_datas('languagetypes','LangName',$where);
+	   $data['languages'] = $this->admin_model->get_all_datas('tbllanguagetypes','LangName',$where);
 	   $this->template->write_view('content', 'categories/aedd_categories',$data);
 	   
 	   if ($this->input->post('submit')) {
@@ -93,7 +93,7 @@ class Categories extends MY_Controller {
 	   $where = array('Status'=>1);
 	   $data['categories'] = $this->admin_model->get_all_datas('tblcategory','CategoryName',$where,'CreatedAt');
 	   $whereLang = array('LangStatus'=>1); 
-	   $data['languages'] = $this->admin_model->get_all_datas('languagetypes','LangName',$whereLang);
+	   $data['languages'] = $this->admin_model->get_all_datas('tbllanguagetypes','LangName',$whereLang);
 	   $this->template->write_view('content', 'aedd_scategories',$data);
 	   
 	   if ($this->input->post('submit')) {

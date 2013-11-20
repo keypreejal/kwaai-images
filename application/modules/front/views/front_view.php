@@ -68,7 +68,7 @@
                      <!-- Carousel item -->
                     <li>
                       <div class="product-box"> 
-                        <p><a href="product_detail.php"><img src="themes/images/thumb/1.jpg" alt="" /></a></p>
+                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/1.jpg" alt="" /></a></p>
                         <div class="caption">
                         <h4 >
                         <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
@@ -87,7 +87,7 @@
                     </li>
                     <li>
                       <div class="product-box"> 
-                        <p><a href="product_detail.php"><img src="themes/images/thumb/2.jpg" alt="" /></a></p>
+                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/2.jpg" alt="" /></a></p>
                       <div class="caption">
                         <h4 >
                         <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
@@ -106,7 +106,7 @@
                     </li>
                     <li>
                       <div class="product-box">
-                        <p><a href="product_detail.php"><img src="themes/images/thumb/3.jpg" alt="" /></a></p>
+                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/3.jpg" alt="" /></a></p>
                       <div class="caption">
                         <h4 >
                         <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
@@ -125,7 +125,7 @@
                     </li>
                     <li>
                       <div class="product-box">
-                        <p><a href="product_detail.php"><img src="themes/images/thumb/4.jpg" alt="" /></a></p>
+                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/4.jpg" alt="" /></a></p>
                        <div class="caption">
                         <h4 >
                         <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
@@ -144,7 +144,7 @@
                     </li>
                     <li>
                       <div class="product-box">
-                        <p><a href="product_detail.php"><img src="themes/images/thumb/5.jpg" alt="" /></a></p>
+                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/5.jpg" alt="" /></a></p>
                         <div class="caption">
                         <h4 >
                         <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
@@ -163,7 +163,7 @@
                     </li>
                     <li>
                       <div class="product-box">
-                        <p><a href="product_detail.php"><img src="themes/images/thumb/4.jpg" alt="" /></a></p>
+                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/4.jpg" alt="" /></a></p>
                        <div class="caption">
                         <h4 >
                         <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
@@ -182,7 +182,7 @@
                     </li>
                     <li>
                       <div class="product-box"> 
-                        <p><a href="product_detail.php"><img src="themes/images/thumb/2.jpg" alt="" /></a></p>
+                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/2.jpg" alt="" /></a></p>
                       <div class="caption">
                         <h4 >
                         <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 

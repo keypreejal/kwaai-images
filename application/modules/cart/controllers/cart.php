@@ -14,13 +14,13 @@ class Cart extends MY_Front_Controller {
 		$this->load->model('front/front_model');
 
 		$langCode= $this->session->userdata('lang_arr');
-		$this->langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
+		$this->langId = $this->front_model->get_single_data('tbllanguagetypes','LangId','LangCode',$langCode);
 		$whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$this->langId);
 	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'FooterPosition <'=>1000,'PageLangId'=>$this->langId);
 	   	$whereSide = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$this->langId);
 	   	$whereLang = array('LangStatus'=>1);
 	   	$this->data = array(
-	   				'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
+	   				'languages' =>$this->front_model->get_datas('tbllanguagetypes','LangName',$whereLang),	
 					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
 					'slides' => $this->front_model->get_datas('tblslider','SliderId'.''), //get slider 
 					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1,'CatLangId'=>$this->langId),'CreatedAt'), //Category Name Listing category search

@@ -45,7 +45,12 @@
                 </div>
               <!--/control-group-->
               <div class="actions">
-                <input type="submit" name="submit"class="btn btn-inverse btn-signin" value="<?php echo $register_user_join; ?>">
+                <input type="hidden" name="full_name" value="<?php echo $full_name;?>"></input>
+                <input type="hidden" name="email_address" value="<?php echo $email_address;?>"></input>
+                <input type="hidden" name="company_name" value="<?php echo $company_name;?>"></input>
+                <input type="hidden" name="phone" value="<?php echo $phone;?>"></input>
+                <input type="hidden" name="password" value="<?php echo $password;?>" style="display:none;"></input>
+                <input type="submit" name="join"class="btn btn-inverse btn-signin" value="<?php echo $register_user_join; ?>">
               </div>
             </fieldset>
           </form>         

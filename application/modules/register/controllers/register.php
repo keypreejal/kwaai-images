@@ -15,13 +15,13 @@ class Register extends MY_Front_Controller {
 
 		 $langCode= $this->session->userdata('lang_arr');
 		
-		 $langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
+		 $langId = $this->front_model->get_single_data('tbllanguagetypes','LangId','LangCode',$langCode);
 		 $whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$langId);
 	   	 $whereFoot = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$langId);
 	   	 $whereLang = array('LangStatus'=>1);
 
 	   	 $this->data = array(
-	   				'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
+	   				'languages' =>$this->front_model->get_datas('tbllanguagetypes','LangName',$whereLang),	
 					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
 					'slides' => $this->front_model->get_datas('tblslider','SliderId'.''), //get slider 
 					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1,'CatLangId'=>$langId),'CreatedAt'), //Category Name Listing category search
@@ -77,9 +77,6 @@ class Register extends MY_Front_Controller {
 					'new'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','new',$langId),
 					'retype'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','retype',$langId),
 
-
-
-
 					'my_account_head' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_head',$langId),
 					'my_account_sign_up_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_sign_up_free',$langId),
 					'need_help' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help',$langId),
@@ -117,23 +114,68 @@ class Register extends MY_Front_Controller {
  	#............begin user Function.......................##
 	public function user()
 	{
-		if ($this->input->post('submit')) {
-			$ut = $this->input->post('user-type');
-			if($ut == 'client') {
-				//if user is normal redirect to his dashboard 
-				redirect("dashboard/client","refresh");
-			} else{
-				//if user want to be the contributor h/she has to choose available package 
-				$this->template->set_template('defaultfront');
-				$this->template->write_view('content', 'package_view',$this->data);
-				$this->template->render();
+		$this->form_validation->set_rules('full_name', 'Full Name', 'trim|required');
+		$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required');
+		$this->form_validation->set_rules('phone', 'Phone no', 'trim|required');
+		//check whether the form is validated or not
+        if($this->form_validation->run() == FALSE){
+            $this->template->write_view('content', 'register_view',$this->data);
+            $this->template->render(); 
+        } else {
+        	if ($this->input->post('join')) {
+				$ut = $this->input->post('user-type') == 'client'?1:2;
+				$name = $this->input->post('full_name');
+				$email = $this->input->post('email_address');
+				//$pass = 
+				if($ut == 1) {
+					//if user is a normal client(customer) redirect to his dashboard 
+					$data = array(
+								'UserId' => $ut,
+								'PackageId' => 0, // it is client so no package is selected
+								'UserName' => $name,
+								'CompanyName ' => $this->input->post('company_name'),
+								'Phone' => $this->input->post('phone'),
+								'EmailAddress' => $email,
+								'Password' => $this->input->post('password')
+								);
+			  		$result = $this->db->insert('tblprofile',$data);
+			  		if($result){
+			  			/**
+						* START A SESSION WITH THE USERNAME USERTYPE(PACKAGEID) AND EMAIL IN THE SESSION DATA
+						*/
+						$sess_array = array();
+						$login_array = array(
+									'package' =>0,
+									'email'=>$email,
+									);
+						
+						$this->session->set_userdata('signed_in', $login_array);//set the session name logged_in with the array data
+			  			redirect("dashboard","refresh");
+			  		}
+				} else{
+					
+					#if user want to be the contributor(photographer) h/she has to choose available package 
+					$this->template->set_template('defaultfront');
+					$this->template->write_view('content', 'package_view',$this->data);
+					$this->template->render();
 
+				}
+			} else {
+				/*these value are post via register_view.php and we append to the global data array 
+				 *it is used in userview for hidden field value
+				 */
+				$this->data['full_name']  = $this->input->post('full_name');
+				$this->data['company_name']  = $this->input->post('company_name');
+				$this->data['phone']  = $this->input->post('phone');
+				$this->data['email_address']  = $this->input->post('email_address');
+				$this->data['password']  = md5($this->input->post('password'));
+
+				$this->template->set_template('defaultfront');
+				$this->template->write_view('content', 'user_view',$this->data);
+				$this->template->render();
 			}
-		} else {
-			$this->template->set_template('defaultfront');
-			$this->template->write_view('content', 'user_view',$this->data);
-			$this->template->render();
-		} 
+		}
+		
 	}
 	#............End user Function......................
 
@@ -145,7 +187,8 @@ class Register extends MY_Front_Controller {
  	#............begin package Function.......................##
 	public function package($package = NULL)
 	{
-		redirect("dashboard/contributor/$package","refresh");
+		//redirect("dashboard/contributor/$package","refresh");
+		redirect("dashboard","refresh");
 	}
 	#............End package Function......................
 	

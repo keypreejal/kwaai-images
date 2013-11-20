@@ -14,13 +14,13 @@ class Front extends MY_Front_Controller {
 		$this->load->model('front_model');
 
 		$langCode= $this->session->userdata('lang_arr');
-		$this->langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
+		$this->langId = $this->front_model->get_single_data('tbllanguagetypes','LangId','LangCode',$langCode);
 		$whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$this->langId);
 	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'FooterPosition <'=>1000,'PageLangId'=>$this->langId);
 	   	$whereSide = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$this->langId);
 	   	$whereLang = array('LangStatus'=>1);
 	   	$this->data = array(
-	   				'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
+	   				'languages' =>$this->front_model->get_datas('tbllanguagetypes','LangName',$whereLang),	
 					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
 					'slides' => $this->front_model->get_datas('tblslider','SliderId'.''), //get slider 
 					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1,'CatLangId'=>$this->langId),'CreatedAt'), //Category Name Listing category search
@@ -117,6 +117,53 @@ class Front extends MY_Front_Controller {
 		
 	}
 	#............End pages Function......................
+
+	/**
+		*Begin login function for this controller
+	 	* This function Loads a check user,and if validate redirect to dashboard
+	*/
+ 	#............begin pages Function.......................##
+	public function login()
+	{
+		if($this->input->post('submit')) { 
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+		    $this->form_validation->set_rules('password', 'Password','trim|required|xss_clean');
+		    if($this->form_validation->run() == FALSE){
+	     	    #Field validation failed.  User redirected to login page
+	     		//$this->load->view('front');
+	       	}
+	       	else{
+	       		$email = mysql_real_escape_string($this->input->post('email'));
+				$pass = mysql_real_escape_string($this->input->post('password'));
+				
+				$result = $this->front_model->validatelogin($email, $pass);#calls a model name user with login function
+				if($result){
+					$user = $this->front_model->get_single_row('tblprofile', 'EmailAddress ', $email);  // get content of that user
+					$packageid = $user->PackageId ;
+					
+		  			/**
+					* START A SESSION WITH THE USERNAME USERTYPE(PACKAGEID) AND EMAIL IN THE SESSION DATA
+					*/
+					$sess_array = array();
+					$login_array = array(
+								 	'package'=> $packageid,
+									'email'=>$email,
+									);
+					
+					$this->session->set_userdata('signed_in', $login_array);//set the session name logged_in with the array data
+		  			redirect("dashboard","refresh");
+		  		}
+		  		else {
+		  			redirect("front","refresh");
+		  		}
+	       	}
+
+		}
+		
+	}
+	#............End login Function......................
+
+	
  }
 
 /* End of file Front.php 

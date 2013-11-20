@@ -8,8 +8,11 @@ class MY_Front_Controller extends CI_Controller
         
        if(!$this->session->userdata('lang_arr')){
        	$sess_array = 'en';
-		$this->session->set_userdata('lang_arr', $sess_array);
+		    $this->session->set_userdata('lang_arr', $sess_array);
        }
+  	   
+       
+
     }
 }
 ?>

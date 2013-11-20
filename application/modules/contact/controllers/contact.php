@@ -26,13 +26,13 @@ class Contact extends CI_Controller {
 	public function index()
 	{
 		$langCode = $this->input->get('lang');
-		$langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
+		$langId = $this->front_model->get_single_data('tbllanguagetypes','LangId','LangCode',$langCode);
 	   	$whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$langId);
 	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$langId);
 	    $whereLang = array('LangStatus'=>1);
 
 		$data = array(
-					'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
+					'languages' =>$this->front_model->get_datas('tbllanguagetypes','LangName',$whereLang),	
 					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
 					'slides' => '', //No slides Needed in Image
 					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1,'CatLangId'=>$langId),'CreatedAt'), //Category Name Listing in sidebar & category search

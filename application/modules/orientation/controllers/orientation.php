@@ -20,7 +20,7 @@ class Orientation extends MY_Controller {
 	   $id = (int)$id;
 	   $data = $this->_get_datas($id);
 	   $where = array('LangStatus'=>1); 
-	   $data['languages'] = $this->admin_model->get_all_datas('languagetypes','LangName',$where);
+	   $data['languages'] = $this->admin_model->get_all_datas('tbllanguagetypes','LangName',$where);
 	   $this->template->write_view('content', 'orientation/aedd_orientation',$data);
 	   
 	   if ($this->input->post('submit')) 

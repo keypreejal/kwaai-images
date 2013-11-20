@@ -136,11 +136,11 @@
           <!-- Personal Information !-->
           <div class="personal-info" style="display:none;">
             <ul class="nav nav-tabs" id="myTab">
-              <li class="active"><a href="#home">Private Profile</a></li>
+              <li class="active"><a href="#profile">Private Profile</a></li>
               <li class=""><a href="#public">Public Profile</a></li>
             </ul>
             <div class="tab-content">
-              <div class="tab-pane active" id="home">
+              <div class="tab-pane active" id="profile">
                 <h2 class="titles"><span class="text">Personal Information</span></h2>
                 <p> These details are for iStock use only and will never be shared with anyone else. For more information, review our privacy policy.</p>
                 <p>If you become an iStock contributor, it's important that you provide your real name (no nicknames) and correct address, as we use this information for payouts. You won't be able to change your name</p>
@@ -498,5 +498,7 @@ $(function() {
     e.preventDefault();
     $(this).tab('show');
   }); 
+
+ 
 });
 </script>

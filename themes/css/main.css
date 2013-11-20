@@ -385,13 +385,14 @@ span6{margin:0}
 	list-style: none;
 }
 #top-bar .user-menu li {
-	display: inline-block;
+	display: inline-flex;
 	*display: inline;
 	zoom: 1;
 	padding: 0 12px;
 }
- span.s-basket{background:url(../images/arrowc-left.jpg) no-repeat 0px -1px;  height:24px; width:8px; padding:0 0 0 8px; margin-left:5px }
- span.s-basket p{background-color:#000; font-size:14px; color:#fff; text-align:center; line-height:16px; padding:5px 10px 3px; float:right; border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px}
+#top-bar .user-menu li a{float: left;}
+ #top-bar .user-menu li span.s-basket{background:url(../images/arrowc-left.jpg) no-repeat 0px -1px;  height:24px; width:auto; float: right; padding:0 0 0 8px; margin-left:5px }
+ #top-bar .user-menu li span.s-basket p{background-color:#000; font-size:14px; color:#fff; text-align:center; line-height:16px; padding:5px 10px 3px; margin-bottom: 0; float:right; border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px}
 #top-bar .user-menu li:last-child{
 	border-right:0;
 	padding-right:0px
@@ -431,7 +432,7 @@ ul#lang-cur li, ul#lang-cur ul.lang-cur-down li {
     }
 }
 select.country, select.currency{width:80px; height:25px; background:none; color:#fff; border:none; margin:0}
-select.country option, select.currency option{border:none; padding:3px;
+select.country option, select.currency option{border:none; background-color:#000; padding:3px; border-radius: 0; -webkit-border-radius:0; -moz-border-radius:0;
  	-webkit-transition: all 0.4s;
 	-moz-transition: all 0.4s;
 	-o-transition: all 0.4s;
@@ -440,7 +441,7 @@ select.country option, select.currency option{border:none; padding:3px;
 .header_text .span4{margin-left:0; border-right:1px solid #c5c5c5}
 .header_text .span6{margin-left:0}
 .header_text .span6 p{margin-bottom:20px}
-.home-cat h2{font-size:15px; font-weight:normal; margin:0 0 5px 0; line-height:normal}
+.home-cat h2{font-size:15px; color: #049FEF; font-weight:normal; margin:0 0 5px 0; line-height:normal}
 .home-cat{width:400px; text-align: center;}
 .offer-home{width: 540px; text-align: center;}
 .offer-home h2{font-size:20px; color: #049FEF; font-weight:normal; margin:0 0 5px 0; line-height:normal}
@@ -450,7 +451,7 @@ select.country option, select.currency option{border:none; padding:3px;
 .home-cat ul li{width:33%; float:left; display:inline-block; text-align:left}
 .home-cat ul li a{font-size:13px; line-height:22px; color:#575757}
 .home-cat ul li a:hover{color:#000}
-.header_text .span6 p{ font-size:13px;}
+.header_text .offer-home p{ font-size:13px; margin: 0}
 .pay-go{font-weight:bold; color:#000}
 .big-txt{font-family: 'Open Sans Condensed', sans-serif; font-size:45px; color:#4a4a4a}
 h4.title{text-align:center; font-weight:normal}
@@ -1503,10 +1504,14 @@ input .srchTxt{border:none}
 	section.homepage-slider{
 	/*	display:none;*/
 	}
-	.account.pull-right{
+	.account{
+		padding-top: 110px;
 		width:100%;
 		text-align:center;
 	}
+	.language{float: none;}
+	#top-bar .user-lang{text-align: center;}
+	.home-cat ul{width: 100%; margin: 0 0 0 10px}
 	.myCarousel .thumbnails li{
 		border-bottom:1px solid #eee;
 		margin-bottom:0;
@@ -1521,10 +1526,12 @@ input .srchTxt{border:none}
 	.product-box:hover a{
 		color:#333 !important;
 	}
+	.caption{margin-left: 0}
 	#menu ul{display: none;}
 	.navbar-inner.main-menu a.logo{
-		left:2%;
-		margin-left:0px;
+		left:50%;
+		margin-left:-60px;
+		margin-top: 20px;
 	}
 	#copyright,#footer-bar{
 		padding:0 10px;

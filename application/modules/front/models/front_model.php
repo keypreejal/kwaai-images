@@ -5,6 +5,23 @@ Class Front_model extends CI_Model
     {
       parent::__construct();
     }
+    
+    function validatelogin($email, $password)
+    {
+       $this -> db -> select('*');
+       $this -> db -> from('tblprofile');
+       $this -> db -> where('EmailAddress  = ' . "'" . $email . "'");
+       $this -> db -> where('Password  = ' . "'" .md5($password) . "'");
+       $this -> db -> limit(1);
+
+       $query = $this -> db -> get();//gets the result from query
+       if($query -> num_rows() == 1){
+            return $query->result();
+       }
+       else{
+         return false;
+       }
+    }
 
     function format_data($data)
 	{		
@@ -77,6 +94,12 @@ Class Front_model extends CI_Model
 			$i++;
 		}
 		return $code;
+	}
+
+	function update_data($tablename,$data,$id,$value) {
+		$this->db->where($id, $value);	
+		$result = $this->db->update($tablename, $data);
+		return $result;
 	}
 }
 //end of class

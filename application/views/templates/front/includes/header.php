@@ -69,6 +69,11 @@
       <div class="account pull-right">
         <ul class="user-menu">
           <li class="">
+            <?php if($this->session->userdata('signed_in')):
+                      $session_data = $this->session->userdata('signed_in');
+                  endif;
+            ?>
+           
              <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span><?php echo $sign_in;?></span></a>
              <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="signin" aria-hidden="false" >
                   <div class="modal-header">
@@ -76,23 +81,23 @@
                     <h3>Sign in</h3>
                   </div>
                   <div class="modal-body">
-                    <form action="#" method="post" style:"margin:0">
+                    <form action="<?php echo site_url().'front/login' ?>" method="post" style:"margin:0">
                       <input type="hidden" name="next" value="/">
                       <fieldset>
                         <div class="control-group">
                           <label class="control-label">Email</label>
                           <div class="controls">
-                            <input type="text" placeholder="Enter your email" id="username" class="input-xlarge">
+                            <input type="text" placeholder="Enter your email" id="email" name="email" class="input-xlarge">
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label">Password</label>
                           <div class="controls">
-                            <input type="password" placeholder="Enter your password" id="password" class="input-xlarge">
+                            <input type="password" placeholder="Enter your password" id="password" name="password" class="input-xlarge">
                           </div>
                         </div>
                         <div class="control-group">
-                          <input tabindex="3" class="btn btn-inverse btn-signin" type="submit" value="Sign into your account">
+                          <input tabindex="3" class="btn btn-inverse btn-signin" type="submit" name="submit" value="Sign into your account">
                         </div>
                         <div class="control-group">
                           <label>Don't have an account?<a href="register.php">Sign up for free</a>
@@ -102,10 +107,15 @@
                     </form>     		
                   </div>
              </div>
+         
           </li>
           <span>|</span>
           <li class="">
-            <a href="<?php echo site_url().'register';?>"><span><?php echo $register;?></span></a>
+             <?php //if($session_data['email']){ ?>
+               <!--  <a href="<?php //echo site_url().'dashboard';?>"><span><?php //echo 'Dashboard';?></span></a> -->
+             <?php //} else{ ?>
+                <a href="<?php echo site_url().'register';?>"><span><?php echo $register;?></span></a>
+             <?php //}?>
  		      </li>
           <li>
             <a href="<?php echo site_url().'cart';?>"><?php echo $shopping_baskets;?></a>

@@ -31,7 +31,7 @@ class Cms extends MY_Controller {
 	   $data = $this->_get_datas($id);
 
 	   $where = array('LangStatus'=>1);
-	   $data['languages'] = $this->admin_model->get_all_datas('languagetypes','LangName',$where);
+	   $data['languages'] = $this->admin_model->get_all_datas('tbllanguagetypes','LangName',$where);
 	   $this->template->write_view('content', 'cms/aedd_pages',$data);
 	   
 	   if ($this->input->post('submit')) 
@@ -107,7 +107,7 @@ class Cms extends MY_Controller {
  	 $data = array(
  	 			'spid' =>'',
  	 			'pageId' => $pid,
- 	 			'languages' => $this->admin_model->get_all_datas('languagetypes','LangName',$where), 
+ 	 			'languages' => $this->admin_model->get_all_datas('tbllanguagetypes','LangName',$where), 
 				'pageTitle' => $this->admin_model->get_single_data('tblpages', 'PageTitle', 'PageId',$pid),
 				'status' => -1
 				);
@@ -177,7 +177,7 @@ class Cms extends MY_Controller {
  	 $data = array(
  	 			'spid' =>$spid,
  	 			'pageId' => $this->admin_model->get_formatted($spages->PageId),
- 	 			'languages' => $this->admin_model->get_all_datas('languagetypes','LangName',$where), 
+ 	 			'languages' => $this->admin_model->get_all_datas('tbllanguagetypes','LangName',$where), 
 				'pageTitle' => $this->admin_model->get_single_data('tblpages', 'PageTitle', 'PageId',$spages->PageId),
 				'status' => intval($spages->Status)
 			);

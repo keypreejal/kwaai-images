@@ -26,12 +26,17 @@
     <div class="row">
       <div class="span10">  
         <h2 class="titles"><i class="icon-user color"></i> <span class="text"><?php echo $my_account_head;?></span></h2>        
-
+        <?php if($this->session->flashdata('updated_msg')): ?>
+             <div class="notify notify-success">                        
+                <a class="close" href="javascript:;">×</a>                        
+                <h3><?php echo $this->session->flashdata('updated_msg');?></h3>                        
+            </div>
+        <?php endif; ?>
         <!--sidebar-->
         <div id="sidebar" class="span3 side-sec">
           <div class="sidey">
             <ul class="nav">
-               <li><a id="home" href="javascript:void(0)"><?php echo $my_account_head; ?></a></li>
+               <li class="active"><a id="home" href="javascript:void(0)"><?php echo $my_account_head; ?></a></li>
                <li><a id="order-history" href="javascript:void(0)"><?php echo $client_dashboard_ohistory; ?></a></li>                         
                <li><a id="edit-profile" href="javascript:void(0)"><?php echo $client_dashboard_eprofile; ?></a></li>
                <li><a id="change-password" href="javascript:void(0)"><?php echo $client_dashboard_cpassword; ?></a></li>
@@ -48,10 +53,10 @@
             <div class="address">
              <address>
               <!-- Your name -->
-              <strong>Kwaai Images</strong><br>
+              <strong><?php echo $uname; ?></strong><br>
               <!-- Phone number -->
-              <abbr title="Phone">P:</abbr> (123) 456-7890.<br />
-              <a href="mailto:#">info@kwaaiimages.com</a>
+              <abbr title="Phone">P:</abbr> <?php echo $phone_no;?><br />
+              <a href="mailto:#"><?php echo $email;?></a>
              </address>
             </div>
             <hr>
@@ -140,30 +145,32 @@
           <div class="edit-profile" style="display:none;">
             <h3><i class="icon-edit color"></i> &nbsp;<?php echo $client_dashboard_eprofile; ?></h3>
                   <hr>
-            <form action="#" method="post" class="form-stacked">
+            <form action="<?php echo site_url().'dashboard' ?>" method="post" id="form-profile" class="form-stacked">
               <fieldset>
                 <div class="control-group">
                   <label class="control-label"><?php echo $name; ?></label>
                   <div class="controls">
-                    <input type="text" class="input-xlarge">
+                    <input type="text" class="input-xlarge" name="euname" value="<?php echo $uname ?>">
                   </div>
                 </div>
                 <!--/control-group-->
                 <div class="control-group">
                   <label class="control-label"><?php echo $register_left_companyname; ?></label>
                   <div class="controls">
-                    <input type="text" class="input-xlarge">
+                    <input type="text" class="input-xlarge" name="ecname" value="<?php echo $cname; ?>">
                   </div>
                 </div>
                 <!--/control-group-->
                 <div class="control-group">
                   <label class="control-label"><?php echo $phone; ?></label>
                   <div class="controls">
-                    <input type="text" class="input-xlarge">
+                    <input type="text" class="input-xlarge" name="ephoneno" value="<?php echo $phone_no; ?>">
                   </div>
                 </div>
                 <!--/control-group-->                             
-                <div class="actions"><input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="<?php echo $save_btn; ?>"></div>
+                <div class="actions">
+                  <input tabindex="9" id="eprofile" name="eprofile" class="btn btn-inverse btn-signin" type="submit" value="<?php echo $save_btn; ?>">
+                </div>
               </fieldset>
             </form> 
           </div>
@@ -177,25 +184,27 @@
                 <div class="control-group">
                   <label class="control-label"><?php echo $old.' '.$password; ?></label>
                   <div class="controls">
-                    <input type="password" class="input-xlarge">
+                    <input type="password" name="opassword" class="input-xlarge">
                   </div>
                 </div> 
                 <!--/control-group-->  
               <div class="control-group">
                   <label class="control-label"><?php echo $new.' '.$password; ?></label>
                   <div class="controls">
-                    <input type="password" class="input-xlarge">
+                    <input type="password" name="npassword" class="input-xlarge">
                   </div>
                 </div> 
                 <!--/control-group-->  
                 <div class="control-group">
                   <label class="control-label"><?php echo $retype.' '.$password ?></label>
                   <div class="controls">
-                    <input type="password" class="input-xlarge">
+                    <input type="password" name="rpassword" class="input-xlarge">
                   </div>
                 </div> 
                 <!--/control-group-->             
-                <div class="actions"><input tabindex="9" class="btn btn-inverse btn-signin" type="submit" value="<?php echo $save_btn; ?>"></div>
+                <div class="actions">
+                  <input tabindex="9" class="btn btn-inverse btn-signin" type="submit" name="cpassword" value="<?php echo $save_btn; ?>">
+                </div>
               </fieldset>
             </form>  
           </div>
@@ -210,10 +219,15 @@
 <script type="text/javascript">
 $(function() {
   $('ul.nav a').click(function(){
+     $('ul.nav li').removeClass('active');
       var show = $(this).attr('id');
       
       $('div.sec-span > div').hide();
       $('div.sec-span > div.'+show).show();
+      $(this).parent('li').addClass('active');
   });
+
+
+  
 });
 </script>

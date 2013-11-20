@@ -15,13 +15,13 @@ class Dashboard extends MY_Front_Controller {
 
 		$langCode= $this->session->userdata('lang_arr');
 		
-		$langId = $this->front_model->get_single_data('languagetypes','LangId','LangCode',$langCode);
+		$langId = $this->front_model->get_single_data('tbllanguagetypes','LangId','LangCode',$langCode);
 		$whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$langId);
 	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$langId);
 	   	$whereLang = array('LangStatus'=>1);
 
 	   	$this->data = array(
-	   				'languages' =>$this->front_model->get_datas('languagetypes','LangName',$whereLang),	
+	   				'languages' =>$this->front_model->get_datas('tbllanguagetypes','LangName',$whereLang),	
 					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
 					'slides' => $this->front_model->get_datas('tblslider','SliderId'.''), //get slider 
 					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1,'CatLangId'=>$langId),'CreatedAt'), //Category Name Listing category search
@@ -87,43 +87,96 @@ class Dashboard extends MY_Front_Controller {
 	}
 	#..............end constructor.......................##
 
-
 	/**
-		*Begin client function for this controller
-	 	* This function Loads a Client Dashboard
+		*Begin Index function for this controller
+	 	* This function Loads a Dashboar
 	*/
- 	#............begin client.......................##
-	public function client()
-	{
-		/*
-		get all client data
-		$this->data[''] = .......
-		*/
-		$this->template->set_template('defaultfront');
-		$this->template->write_view('content', 'client_dashboard_view',$this->data);
-		$this->template->render();
+ 	#............begin Index.......................##
+	public function index()
+	{	#if $session_data['user_type']<=0 then it is a client(customer)
+		$loged = $this->session->userdata('signed_in');
+		
+		if($loged['package']<=0) { 
+			$email = $loged['email'];
+			$user = $this->front_model->get_single_row('tblprofile', 'EmailAddress ', $email);  // get content of that user
+			
+			$profileid = $user->ProfileId;
+			$this->data['phone_no'] = $user->Phone;
+			$this->data['email'] = $email;
+			$this->data['uname'] = $user->UserName;
+			$this->data['cname'] = $user->CompanyName;
+			
+			if($this->input->post('eprofile')) { 
+				$update_profile = array(
+								'UserName' =>$this->input->post('euname'),
+								'CompanyName ' =>	$this->input->post('ecname'),
+								'Phone' => 	$this->input->post('ephoneno'),
+								);
+				$result = $this->front_model->update_data('tblprofile',$update_profile,'ProfileId',$profileid);
+				if($result){
+					$this->session->set_flashdata('updated_msg', 'Your Profile Updated successfully.');
+					redirect("dashboard","refresh");
+				} else{
+					$this->session->set_flashdata('category_msg', 'Error In Updating Your Profile.');					
+				}
+			}
+			if($this->input->post('cpassword')) {
+				$opass = $this->input->post('opassword');
+				$npass = $this->input->post('npassword');
+				$rpass = $this->input->post('rpassword');
+
+				if($npass == $rpass) {
+					$update_password = array(
+										'Password'  => md5($npass)
+										);
+					$this->front_model->update_data('tblprofile',$update_password,'ProfileId',$profileid);
+					redirect("dashboard","refresh");
+				}
+			}
+			$this->template->set_template('defaultfront');
+			$this->template->write_view('content', 'client_dashboard_view',$this->data);
+			$this->template->render();
+		} else {
+			/*
+			get all contributor data with the selected package {$selpackage} posted.
+			$this->data[''] = .......
+			*/
+			$this->template->set_template('defaultfront');
+			$this->template->write_view('content', 'contributor_dashboard_view',$this->data);
+			$this->template->render();
+		}
+		
 	}
-	#.............End client Function......................##
+	#.............End Index Function......................##
 
 
-	
+	#..............BEGIN FUNCTION LOGOUT...........##
+  	#destroy session and redirect to index page#
+  	public function logout(){
+    	session_destroy();
+    	redirect('front');
+  	}
+	#...................END LOGOUT.................##
+
+  	
+
 
 	/**
 		*Begin Contributor function for this controller
 	 	*This function Loads a Contributor Dashboard.
 	*/
  	#............begin contributor Function.......................##
-	public function contributor($selpackage = NULL)
-	{
+	// public function contributor($selpackage = NULL)
+	// {
 
-		/*
-		get all contributor data with the selected package {$selpackage} posted.
-		$this->data[''] = .......
-		*/
-		$this->template->set_template('defaultfront');
-		$this->template->write_view('content', 'contributor_dashboard_view',$this->data);
-		$this->template->render();
-	}
+	// 	/*
+	// 	get all contributor data with the selected package {$selpackage} posted.
+	// 	$this->data[''] = .......
+	// 	*/
+	// 	$this->template->set_template('defaultfront');
+	// 	$this->template->write_view('content', 'contributor_dashboard_view',$this->data);
+	// 	$this->template->render();
+	// }
 	#.............End contributor Function......................##
 	
  }
