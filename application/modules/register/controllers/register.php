@@ -12,7 +12,7 @@ class Register extends MY_Front_Controller {
 	{
 		 parent::__construct();    
 		 $this->load->model('front/front_model');
-
+		 $_SESSION['security_code'] = $this->front_model->generateCode(5);
 		 $langCode= $this->session->userdata('lang_arr');
 		
 		 $langId = $this->front_model->get_single_data('tbllanguagetypes','LangId','LangCode',$langCode);
@@ -114,11 +114,14 @@ class Register extends MY_Front_Controller {
  	#............begin user Function.......................##
 	public function user()
 	{
-		$this->form_validation->set_rules('full_name', 'Full Name', 'trim|required');
-		$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required');
+		$this->form_validation->set_rules('full_name', 'Full Name', 'required|xss_clean|callback_alpha_space');
+		$this->form_validation->set_rules('email_address', 'Email Address', 'required|valid_email|');
 		$this->form_validation->set_rules('phone', 'Phone no', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]|xss_clean');
+		$this->form_validation->set_rules('cpassword', 'Conform Password', 'required|min_length[5]|xss_clean');
 		//check whether the form is validated or not
         if($this->form_validation->run() == FALSE){
+        	$this->template->set_template('defaultfront');
             $this->template->write_view('content', 'register_view',$this->data);
             $this->template->render(); 
         } else {
@@ -192,8 +195,19 @@ class Register extends MY_Front_Controller {
 	}
 	#............End package Function......................
 	
-
-	
+	/**
+		*Begin isEmailExist function for this controller
+	 	*This function is called via ajax to check the unique email.
+	*/
+ 	#............begin package Function.......................##
+	function isEmailExist()
+	{  
+		$res = '';
+		$email  = $this->input->post('email');
+		$res = $this->front_model->get_single_data('tblprofile','EmailAddress','EmailAddress',$email); //get featureImge name
+		echo $res;
+	}
+	#............End package Function......................
  }
 
 

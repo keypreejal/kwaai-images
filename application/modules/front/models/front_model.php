@@ -101,6 +101,29 @@ Class Front_model extends CI_Model
 		$result = $this->db->update($tablename, $data);
 		return $result;
 	}
+
+	function count_no_fields($table_name,$field_name,$value)
+	{
+		$this->db->where($field_name, trim($value));
+		$this->db->from($table_name);					
+		return $this->db->count_all_results();
+	}
+	function extract_unique_pcode($table,$fieldname) {
+		$codes = $this->get_datas($table,$fieldname,'');
+		$exists = array();
+		foreach($codes as $code) {
+			$exists[]= $code->$fieldname;
+		}
+		$allowed_chars ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$allowed_num = '0123456789';
+		$selected = substr(str_shuffle($allowed_chars),0,3);
+		$selected .= substr(str_shuffle($allowed_num),0,3);
+		if(in_array($selected,$exists)){
+			$this->extract_unique_pcode();	
+		}else{
+			return $selected;
+		}
+	}
 }
 //end of class
 //end of file login_model.php

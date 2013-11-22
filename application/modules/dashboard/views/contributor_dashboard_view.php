@@ -36,6 +36,9 @@
                 <h3>Paypal Configuration <span class="pull-right"><a id="paypal-conf" href="javascript:void(0)">Edit</a></span></h3>
               </div>
               <div class="block-title">
+                <h3><a id="upload-image" href="javascript:void(0)">Upload Image</a></h3>
+              </div>
+              <div class="block-title">
                 <h3>Personal Information<span class="pull-right"><a id="personal-info" href="javascript:void(0)">Edit</a></span></h3>
               </div>
               <ul class="dashbar">
@@ -53,16 +56,96 @@
           </div>
         </div>
         <!-- Sidebar end=============================================== -->
+        <div class="span10" id="upload-image" style="display:none; margin-left:0;">
+           <h2 class="titles"><i class="icon-upload-alt"></i>Upload your images</h2>
+            <form enctype="multipart/form-data" action="<?php echo site_url().'dashboard/upload'; ?>" id="product-form" class="product-form" method="post">
+              <?php echo validation_errors(); ?>
+              <select name="category" id="category" class="required">
+                <option value="">Image Type</option>
+                 <?php        
+                    foreach($categories as $category){
+                        echo "<option name='cid' value='".intval($category->CatId)."'>".$this->front_model->format_data($category->CategoryName)."</option>";         
+                    } ?>
+              </select>
+              <select name="scategory" id="scategory" class="required">
+                <option value="">Image Category</option>
+              </select>
+              <select name="orientation" id="orientation" class="required">
+                <option value="" name='oid'>Image Orientation</option>
+                <?php        
+                    foreach($orientations as $orientation){
+                        echo "<option value='".intval($orientation->OrLangId)."'>".$this->front_model->format_data($orientation->OrName)."</option>";         
+                    } ?>
+              </select>
+
+              <table class="table table-striped shop_attributes tab-table">
+                <thead>
+                  <th>Upload</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td width="5px;">
+                      <img id="preview" src="#" alt="your image" width="100px" height="100px"/>
+                      <input type="file" name="upload_image" id="upload_image" class="upload_image" value="" >
+                    </td>
+                    <td>
+                      <ul class="nav nav-tabs" id="myTitle">
+                        <li class="active"><a href="#english">English</a></li>
+                        <li class=""><a href="#dutch">Dutch</a></li>
+                        <li class=""><a href="#chinese">Chinese</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="english">
+                          <input type="text" name="product_title[]">
+                        </div>
+                        <!-- /tab 1 -->
+                        <div class="tab-pane" id="dutch">
+                           <input type="text" name="product_title[]">
+                        </div>
+                        <!-- /tab 2 --> 
+                        <div class="tab-pane" id="chinese">
+                           <input type="text" name="product_title[]">
+                        </div>
+                        <!-- /tab 3 --> 
+                      </div>
+                    </td>
+                    <td>
+                      <ul class="nav nav-tabs" id="myDescription">
+                        <li class="active"><a href="#desenglish">English</a></li>
+                        <li class=""><a href="#desdutch">Dutch</a></li>
+                        <li class=""><a href="#deschinese">Chinese</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="desenglish">
+                          <textarea name="product_description[]"></textarea>
+                        </div>
+                        <!-- /tab 1 -->
+                        <div class="tab-pane" id="desdutch">
+                          <textarea name="product_description[]"></textarea>
+                        </div>
+                        <!-- /tab 2 --> 
+                        <div class="tab-pane" id="deschinese">
+                          <textarea name="product_description[]"></textarea>
+                        </div>
+                        <!-- /tab 3 --> 
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="actions">
+                <input type="submit" value="save" name="upload" class="btn btn-inverse btn-signin" tabindex="9">
+              </div>
+            </form>
+        </div>
 
         <div class="span7 sec-span">
 
           <!-- Home dashboard -->
           <div class="home">
-            <h2 class="titles"><i class="icon-upload-alt"></i>Upload your images</h2>
-            <form>
-              <input type="file">
-              <p>Upload your images</p>
-            </form>
+           
             <hr>
             <!--upload form-->
             <div class="overview">
@@ -342,8 +425,6 @@
             </form>  
           </div>
           <!-- change password ends --> 
-
-
         </div>
         <!--/account info--> 
         
@@ -488,9 +569,17 @@
 <script type="text/javascript">
 $(function() {
   $('div.dashboard a,a#home').click(function(){
+
       var show = $(this).attr('id');
+      $('div.dashboard').show();
+       $('div#upload-image').hide();
       $('div.sec-span > div').hide();
       $('div.sec-span > div.'+show).show();
+  });
+  $('a#upload-image').click(function(){
+      $('div.dashboard').hide();
+      var show = $(this).attr('id');
+      $('div#'+show).show();
   });
 
   $('#myTab a:first').tab('show');
@@ -499,6 +588,70 @@ $(function() {
     $(this).tab('show');
   }); 
 
- 
+  $('#myTitle a:first').tab('show');
+  $('#myTitle a').live('click',function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  }); 
+
+  $('#myDescription a:first').tab('show');
+  $('#myDescription a').live('click',function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  }); 
+
+  
+  
+  $('#category').change(function(){
+    var categoryid = $(this).val();
+    if(categoryid != ''){
+      $('<img>',{
+        src : './images/admin/load.gif',
+        class : 'ajax_loading',
+      }).insertAfter($(this));
+      $.ajax({
+        type: "post",
+        url : "<?php echo site_url('dashboard/search_scategory');?>",
+        data: {"cid":categoryid},
+        dataType : 'json',
+        success: function(data){
+         $('img.ajax_loading').remove();               
+          if(data){     
+            var option;
+            $.each(data, function(index,value){ 
+              option += "<option value=" + value.scid + ">" + value.name + "</option>";
+            });   
+            $('#scategory').html('<option value="">Image Category</option>'+option);  
+          }
+        }
+      });
+    }else{
+      $('#scategory').html('<option value="">Image Category</option>');
+    }
+
+  });
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $('#preview').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+          var uploadMore = "<input type='file' name='upload_image[]' id='upload_image' class='upload_image' accept='image/jpeg'>";
+          $(uploadMore).insertAfter('upload_image');
+      }
+  }
+  $("#upload_image").click(function(){
+    var cat = $('#category').val();
+    var scat = $('#scategory').val();
+    var ori = $('#orientation').val();
+    if(cat == ''){ alert('Choose Image Type');return false;}
+    if(scat == ''){ alert('Choose Image Category');return false;}
+    if(ori == ''){ alert('Choose Image Orientation');return false;}
+    
+  });
+  $("#upload_image").change(function(){
+      readURL(this);
+  });
 });
 </script>

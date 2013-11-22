@@ -1,3 +1,34 @@
+<style type="text/css">
+  
+  .img-preview{
+    position:relative;
+    display:block;
+    width:100px;
+    height:100px;
+    background:#efefef;
+    border:1px solid #FFF;
+  }
+  .img-preview img{
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  .image-container{
+    float:left;
+    margin:0 10px 10px 0;
+    border:2px solid #ccc;
+    padding:10px;
+    background:#FFF;
+  }
+  .image-container:last-child{margin-right:0;}
+  .image-container.over{
+    border: 2px dashed #000;
+  }
+  .get-image,.del-image{
+    margin-top:10px !important;
+    display:block !important;
+  }
+  </style>
 <div id="content">
         <div id="contentHeader">
             <h1>SubCategory</h1>

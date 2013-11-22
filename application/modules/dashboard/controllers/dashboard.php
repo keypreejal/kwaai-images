@@ -7,25 +7,26 @@ class Dashboard extends MY_Front_Controller {
 	 *	This page loads a Dashboard User Page of Kwaai
 	 */
   	#............begin constructor........................##
-  	public $data;
+  	public $data,$langId;
 	public function __construct()
 	{
 		parent::__construct();    
 		$this->load->model('front/front_model');
-
+		$this->load->model('dashboard/contributor_model');
 		$langCode= $this->session->userdata('lang_arr');
 		
-		$langId = $this->front_model->get_single_data('tbllanguagetypes','LangId','LangCode',$langCode);
-		$whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$langId);
-	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$langId);
+		$this->langId = $this->front_model->get_single_data('tbllanguagetypes','LangId','LangCode',$langCode);
+		$whereHead = array('status'=>1,'HeaderPosition >='=>0,'PageLangId'=>$this->langId);
+	   	$whereFoot = array('status'=>1,'FooterPosition >='=>0,'PageLangId'=>$this->langId);
 	   	$whereLang = array('LangStatus'=>1);
 
 	   	$this->data = array(
 	   				'languages' =>$this->front_model->get_datas('tbllanguagetypes','LangName',$whereLang),	
 					'pages' => $this->front_model->get_datas('tblpages','HeaderPosition',$whereHead,'PageSlug'), //get Header Menu Name
 					'slides' => $this->front_model->get_datas('tblslider','SliderId'.''), //get slider 
-					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('status'=>1,'CatLangId'=>$langId),'CreatedAt'), //Category Name Listing category search
-					'scategories' => $this->front_model->get_datas('tblcategorychild','SCategoryName',array('status'=>1,'IsFeatured'=>1,'SCatLangId'=>$langId),'CreatedAt'), //SCategory Name Listing in Browse by category 
+					'categories' => $this->front_model->get_datas('tblcategory','CategoryName',array('Status'=>1,'CatLangId'=>$this->langId),'CreatedAt'), //Category Name Listing category search
+					'scategories' => $this->front_model->get_datas('tblcategorychild','SCategoryName',array('Status'=>1,'IsFeatured'=>1,'SCatLangId'=>$this->langId),'CreatedAt'), //SCategory Name Listing in Browse by category 
+					'orientations' => $this->front_model->get_datas('tblorientation','OrName',array('Status'=>1,'OrLangId'=>$this->langId),'CreatedAt'), //Orientation Name Listing 
 					
 					'fpages' => $this->front_model->get_datas('tblpages','FooterPosition',$whereFoot,'PageSlug'),	 //get Footer Menu Name
 					'facebook' => $this->front_model->get_single_data('tblsitesettings','Value','Name','facebook-link'),
@@ -33,54 +34,54 @@ class Dashboard extends MY_Front_Controller {
 					'gplus' => $this->front_model->get_single_data('tblsitesettings','Value','Name','google-plus'),
 
 					//language constants values
-					'sign_in' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_in',$langId),
-					'register' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register',$langId),
-					'shopping_baskets' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','shopping_baskets',$langId),
-					'search_btn' =>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_btn',$langId),
-					'category_search'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','category_search',$langId),
+					'sign_in' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','sign_in',$this->langId),
+					'register' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register',$this->langId),
+					'shopping_baskets' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','shopping_baskets',$this->langId),
+					'search_btn' =>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','search_btn',$this->langId),
+					'category_search'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','category_search',$this->langId),
 					
-					'name'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','name',$langId),
-					'register_left_companyname'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_left_companyname',$langId),
-					'phone'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','phone',$langId),
-					'email_address'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','email_address',$langId),
-					'password'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','password',$langId),
-					'cpassword'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','cpassword',$langId),
-					'register_left_create_account'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_left_create_account',$langId),
-					'register_user_subscription'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription',$langId),
-					'register_user_subscription_plan'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_plan',$langId),
-					'register_user_subscription_tlbpackage'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_tlbpackage',$langId),
-					'register_user_subscription_tlbsize'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_tlbsize',$langId),
-					'register_user_subscription_tlbyear'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_tlbyear',$langId),
+					'name'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','name',$this->langId),
+					'register_left_companyname'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_left_companyname',$this->langId),
+					'phone'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','phone',$this->langId),
+					'email_address'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','email_address',$this->langId),
+					'password'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','password',$this->langId),
+					'cpassword'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','cpassword',$this->langId),
+					'register_left_create_account'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_left_create_account',$this->langId),
+					'register_user_subscription'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription',$this->langId),
+					'register_user_subscription_plan'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_plan',$this->langId),
+					'register_user_subscription_tlbpackage'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_tlbpackage',$this->langId),
+					'register_user_subscription_tlbsize'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_tlbsize',$this->langId),
+					'register_user_subscription_tlbyear'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','register_user_subscription_tlbyear',$this->langId),
 
-					'client_dashboard_ohistory'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_ohistory',$langId),
-					'client_dashboard_eprofile'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_eprofile',$langId),
-					'client_dashboard_cpassword'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_cpassword',$langId),
-					'client_dashboard_mrpurchase'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_mrpurchase',$langId),
-					'client_dashboard_date'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_date',$langId),
-					'client_dashboard_ithumbnail'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_ithumbnail',$langId),
-					'client_dashboard_imgid'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_imgid',$langId),
-					'client_dashboard_price'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_price',$langId),
-					'client_dashboard_status'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_status',$langId),
-					'save_btn'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','save_btn',$langId),
-					'client_dashboard_pinformation'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_pinformation',$langId),
-					'old'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','old',$langId),
-					'new'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','new',$langId),
-					'retype'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','retype',$langId),
+					'client_dashboard_ohistory'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_ohistory',$this->langId),
+					'client_dashboard_eprofile'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_eprofile',$this->langId),
+					'client_dashboard_cpassword'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_cpassword',$this->langId),
+					'client_dashboard_mrpurchase'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_mrpurchase',$this->langId),
+					'client_dashboard_date'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_date',$this->langId),
+					'client_dashboard_ithumbnail'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_ithumbnail',$this->langId),
+					'client_dashboard_imgid'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_imgid',$this->langId),
+					'client_dashboard_price'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_price',$this->langId),
+					'client_dashboard_status'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_status',$this->langId),
+					'save_btn'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','save_btn',$this->langId),
+					'client_dashboard_pinformation'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','client_dashboard_pinformation',$this->langId),
+					'old'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','old',$this->langId),
+					'new'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','new',$this->langId),
+					'retype'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','retype',$this->langId),
 					
 
-					'most_popular_pictures'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','most_popular_pictures',$langId),
+					'most_popular_pictures'=>$this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','most_popular_pictures',$this->langId),
 
 
 					//footer constant values
-					'my_account_head' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_head',$langId),
-					'my_account_sign_up_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_sign_up_free',$langId),
-					'need_help' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help',$langId),
-					'need_help_faqs' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_faqs',$langId),
-					'need_help_contact_us' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_contact_us',$langId),
-					'need_help_site_map' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_site_map',$langId),
-					'follow_us' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','follow_us',$langId),
-					'all_right_reserve' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','all_right_reserve',$langId),
-					'site_title'=> $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','site_title',$langId),
+					'my_account_head' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_head',$this->langId),
+					'my_account_sign_up_free' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','my_account_sign_up_free',$this->langId),
+					'need_help' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help',$this->langId),
+					'need_help_faqs' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_faqs',$this->langId),
+					'need_help_contact_us' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_contact_us',$this->langId),
+					'need_help_site_map' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_site_map',$this->langId),
+					'follow_us' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','follow_us',$this->langId),
+					'all_right_reserve' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','all_right_reserve',$this->langId),
+					'site_title'=> $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','site_title',$this->langId),
 
 					);
 		
@@ -94,60 +95,123 @@ class Dashboard extends MY_Front_Controller {
  	#............begin Index.......................##
 	public function index()
 	{	#if $session_data['user_type']<=0 then it is a client(customer)
-		$loged = $this->session->userdata('signed_in');
+		// $loged = $this->session->userdata('signed_in');
 		
-		if($loged['package']<=0) { 
-			$email = $loged['email'];
-			$user = $this->front_model->get_single_row('tblprofile', 'EmailAddress ', $email);  // get content of that user
+		// if($loged['package']<=0) { 
+		// 	$email = $loged['email'];
+		// 	$user = $this->front_model->get_single_row('tblprofile', 'EmailAddress ', $email);  // get content of that user
 			
-			$profileid = $user->ProfileId;
-			$this->data['phone_no'] = $user->Phone;
-			$this->data['email'] = $email;
-			$this->data['uname'] = $user->UserName;
-			$this->data['cname'] = $user->CompanyName;
+		// 	$profileid = $user->ProfileId;
+		// 	$this->data['phone_no'] = $user->Phone;
+		// 	$this->data['email'] = $email;
+		// 	$this->data['uname'] = $user->UserName;
+		// 	$this->data['cname'] = $user->CompanyName;
 			
-			if($this->input->post('eprofile')) { 
-				$update_profile = array(
-								'UserName' =>$this->input->post('euname'),
-								'CompanyName ' =>	$this->input->post('ecname'),
-								'Phone' => 	$this->input->post('ephoneno'),
-								);
-				$result = $this->front_model->update_data('tblprofile',$update_profile,'ProfileId',$profileid);
-				if($result){
-					$this->session->set_flashdata('updated_msg', 'Your Profile Updated successfully.');
-					redirect("dashboard","refresh");
-				} else{
-					$this->session->set_flashdata('category_msg', 'Error In Updating Your Profile.');					
-				}
-			}
-			if($this->input->post('cpassword')) {
-				$opass = $this->input->post('opassword');
-				$npass = $this->input->post('npassword');
-				$rpass = $this->input->post('rpassword');
+		// 	if($this->input->post('eprofile')) { 
+		// 		$update_profile = array(
+		// 						'UserName' =>$this->input->post('euname'),
+		// 						'CompanyName ' =>	$this->input->post('ecname'),
+		// 						'Phone' => 	$this->input->post('ephoneno'),
+		// 						);
+		// 		$result = $this->front_model->update_data('tblprofile',$update_profile,'ProfileId',$profileid);
+		// 		if($result){
+		// 			$this->session->set_flashdata('updated_msg', 'Your Profile Updated successfully.');
+		// 			redirect("dashboard","refresh");
+		// 		} else{
+		// 			$this->session->set_flashdata('category_msg', 'Error In Updating Your Profile.');					
+		// 		}
+		// 	}
+		// 	if($this->input->post('cpassword')) {
+		// 		$opass = $this->input->post('opassword');
+		// 		$npass = $this->input->post('npassword');
+		// 		$rpass = $this->input->post('rpassword');
 
-				if($npass == $rpass) {
-					$update_password = array(
-										'Password'  => md5($npass)
-										);
-					$this->front_model->update_data('tblprofile',$update_password,'ProfileId',$profileid);
-					redirect("dashboard","refresh");
-				}
-			}
-			$this->template->set_template('defaultfront');
-			$this->template->write_view('content', 'client_dashboard_view',$this->data);
-			$this->template->render();
-		} else {
+		// 		if($npass == $rpass) {
+		// 			$update_password = array(
+		// 								'Password'  => md5($npass)
+		// 								);
+		// 			$this->front_model->update_data('tblprofile',$update_password,'ProfileId',$profileid);
+		// 			redirect("dashboard","refresh");
+		// 		}
+		// 	}
+		// 	$this->template->set_template('defaultfront');
+		// 	$this->template->write_view('content', 'client_dashboard_view',$this->data);
+		// 	$this->template->render();
+		// } else {
 			/*
 			get all contributor data with the selected package {$selpackage} posted.
 			$this->data[''] = .......
 			*/
+			
 			$this->template->set_template('defaultfront');
 			$this->template->write_view('content', 'contributor_dashboard_view',$this->data);
 			$this->template->render();
-		}
+		//}
 		
 	}
 	#.............End Index Function......................##
+
+
+	#..............BEGIN FUNCTION upload...........##
+  	# upload images,add /edit #
+  	public function upload($id = NULL) {
+  		$id = intval($id);
+  		
+  		if($this->input->post('upload')) {
+			if($id !='') { // update here
+			} else {
+				$this->form_validation->set_rules('product_title[0]', 'Image Title', 'trim|required');
+		   		$this->form_validation->set_rules('product_description[0]', 'Image Description', 'trim|required');
+			   //check whether the form is validated or not
+	           if($this->form_validation->run() == FALSE){
+	           	  $this->template->set_template('defaultfront');
+	              $this->template->write_view('content', 'contributor_dashboard_view',$this->data);
+	              $this->template->render(); 
+	            } else {
+	            	$pid = 1; //profile id(login id ) of photographer
+					$pcode = $this->front_model->extract_unique_pcode('tblproducts','ProductCode'); // generate unique product code
+					$path = realpath(APPPATH. "../uploads/$pid/$pcode/");
+					if (!file_exists($path)) {
+						mkdir(APPPATH. "../uploads/$pid/$pcode/", 777, true);
+					}
+					
+					$this->contributor_model->initialise($pid,$pcode);
+					$this->contributor_model->do_upload('upload_image');
+					
+
+	            	$cid = $this->input->post('category');
+	            	$scid = $this->input->post('scategory');
+	            	$oid = $this->input->post('orientation');
+	            	
+					$title = $this->input->post('product_title');
+					$description = $this->input->post('product_description');
+
+					if($this->front_model->count_no_fields('tblproducts','ProductName', $title[$i] ) == '0') {
+						for($i=0;$i<count($title);$i++){
+						  $data = array(
+						  			'LangId' => $i+1,
+						  			'CategoryId' => $cid,
+						  			'SCategoryId' => $scid,
+						  			'OrId' => $oid,
+						  			'ProfileId' => $pid,
+						  			'ProductCode' => $pcode,
+									'ProductName' => $title[$i],
+									'ProductDescription' => $description[$i],
+						  );
+						  $result = $this->db->insert('tblproducts',$data);
+					   }
+				    }
+				    if($result) {
+						$this->session->set_flashdata('upload_msg', 'Image Uploaded successfully.');
+						redirect('dashboard');
+					} else{
+						$this->session->set_flashdata('upload_msg', 'Error In Adding Image.');					
+					}
+			    }
+			}
+		}
+  	}
+	#...................END upload.................##
 
 
 	#..............BEGIN FUNCTION LOGOUT...........##
@@ -159,6 +223,27 @@ class Dashboard extends MY_Front_Controller {
 	#...................END LOGOUT.................##
 
   	
+  	
+	/**
+		*Begin search_scategory function for this controller
+	 	*This function is called via ajax to load subcategory when category is selected.
+	*/
+ 	#............begin contributor Function.......................##
+	public function search_scategory()
+	{
+		$id = $this->input->post('cid');
+		$langCode= $this->session->userdata('lang_arr');  
+		$id = $langCode=='en'?$id:($langCode =='nl'?$id-1:$id-2);
+	    $scategories = $this->front_model->get_datas('tblcategorychild','SCategoryName',array('CatId'=>$id,'Status'=>1,'SCatLangId'=>$this->langId),'CreatedAt');
+		$scategory = array();
+		foreach($scategories as $scat) {
+			$scategory[]= array('scid' =>$scat->SCatId,
+								'name' =>$scat->SCategoryName
+								 );
+		}
+		echo json_encode($scategory);
+	}
+	#.............End search_scategory Function......................##
 
 
 	/**
