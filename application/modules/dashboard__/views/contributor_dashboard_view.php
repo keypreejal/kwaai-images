@@ -31,14 +31,6 @@
                 <h3><?php echo $this->session->flashdata('upload_msg');?></h3>                        
             </div>
         <?php endif; ?>
-
-        <?php if($this->session->flashdata('upload_msg_error')): ?>
-             <div class="notify notify-failure">                        
-                <a class="close" href="javascript:;">×</a>                        
-                <h3><?php echo $this->session->flashdata('upload_msg_error');?></h3>                        
-            </div>
-        <?php endif; ?>
-        
         <!--sidebar-->
         <div id="sidebar" class="span3 side-sec">
           <div class="sidey">
@@ -74,108 +66,106 @@
            <h2 class="titles"><i class="icon-upload-alt"></i>Upload your images</h2>
             <form id="uploads-img" enctype="multipart/form-data" action="<?php echo site_url().'dashboard/upload'; ?>" id="product-form" class="product-form" method="post" >
               <?php echo validation_errors(); ?>
-              
-              <select name="category" id="category" class="empty required">
+              <?php //echo display_errors(); ?>
+              <select name="category" id="category" class="required">
                 <option value="">Image Type</option>
                  <?php        
                     foreach($categories as $category){
                         echo "<option name='cid' value='".intval($category->CatId)."'>".$this->front_model->format_data($category->CategoryName)."</option>";         
                     } ?>
               </select>
-              <select name="scategory" id="scategory" class="empty required">
+              <select name="scategory" id="scategory" class="required">
                 <option value="">Image Category</option>
               </select>
-              <select name="orientation" id="orientation" class="empty required">
+              <select name="orientation" id="orientation" class="required">
                 <option value="" name='oid'>Image Orientation</option>
                 <?php        
                     foreach($orientations as $orientation){
                         echo "<option value='".intval($orientation->OrLangId)."'>".$this->front_model->format_data($orientation->OrName)."</option>";         
                     } ?>
               </select>
-              <div class="control-group freepaid">
-                <div class="controls">
-                  <input type="checkbox" name="free-paid" checked="true" value="0"><label class="free">Upload image for FREE</label>
-                </div>
-                <div class="controls">
-                  <input type="checkbox" name="free-paid" value="1"><label class="free">Upload image for Paid</label>
-                </div>
-              </div>
 
               <table class="table table-striped shop_attributes tab-table">
                 <thead>
                   <th>Upload</th>
-                  <th>Size(MB)</th>
                   <th>Title</th>
                   <th>Description</th>
-                  <th class="tprice">Price</th>
                 </thead>
                 <tbody>
                   <tr>
                     <td width="5px;">
-                      <img id="preview" src="#" alt="your image" width="180px" height="102px"/>
-                      <input type="file" name="upload_image" id="upload_image" class="upload_image required" accept='image/*'>
+                      <img id="preview" src="#" alt="your image" width="100px" height="100px"/>
+                      <input type="file" name="upload_image" id="upload_image" class="upload_image" value="" accept="image/jpeg">
                     </td>
                     <td>
-                      <input type="text" id="product_size" name="product_size" class="product_size required empty" readOnly="true">
+                      <input type="text" name="product_title">
                     </td>
                     <td>
-                      <input type="text" name="product_title" class="product_title required empty">
-                    </td>
-                    <td>
-                      <textarea name="product_description" class="product_description required empty"></textarea>
-                    </td>
-                    <td class="tprice">
-                      <input type="text" name="product_price" class="product_price empty"></textarea>
+                      <textarea name="product_description"></textarea>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <div class="thumb-control-group" style="display:none;">
-                <div class="controls">
-                  <input type="radio" name="upload-thumb" class="upload-thumb input-radio single" value="No" checked="true">
-                  <label class="control-label">Upload Single Image</label>
-                </div>
-              </div>
-              <!--/control-group-->
-              <div class="thumb-control-group" style="display:none;">
-                <div class="controls">
-                  <input type="radio" name="upload-thumb" class="upload-thumb input-radio" value="Yes">
-                  <label class="control-label">Also Like to Create other thumbnail into this image</label>
-                </div>
-              </div>
-
-              <div class="upload-thumb-dimension" style="display:none">
-               
-              </div>
-              <!-- <table class="table table-striped info-image tab-table" style="display:none">
+              <table class="table table-striped info-image tab-table" style="display:none">
                 <thead>
                   <th>Dimension</th>
+                  <th>Price</th>
+                  <th>Status</th>
                 </thead>
                 <tbody>
-                
+                <!--BEGIN TR-->
                   <tr>
                     <td>Actual<input type="text" name="dimension[]" id="actual-size" readOnly="true"></td>
+                    <td><input type="text" name="price[]"></td>
+                    <td><select name="size_status[]">
+                        <option value=1>Enable</option>
+                        <option value=0>Disable</option>
+                      </select>
+                    </td>
                   </tr>
                   <tr>
                     <td>Standard L <input type="text" name="dimension[]" id="sl-size" readOnly="true">
+                       <img id="lpreview" src="#" alt="your image" width="100px" height="100px"/>
+                    </td>
+                    <td><input type="text" name="price[]"></td>
+                    <td><select name="size_status[]">
+                        <option value=1>Enable</option>
+                        <option value=0>Disable</option>
+                      </select>
                     </td>
                   </tr>
                
                   <tr>
                     <td>Standard M <input type="text" name="dimension[]" readOnly="true"></td>
+                    <td><input type="text" name="price[]"></td>
+                    <td><select name="size_status[]">
+                        <option value=1>Enable</option>
+                        <option value=0>Disable</option>
+                      </select>
+                    </td>
                   </tr>
                   <tr>
                     <td>Standard S<input type="text" name="dimension[]" readOnly="true"></td>
+                    <td><input type="text" name="price[]"></td>
+                    <td><select name="size_status[]">
+                        <option value=1>Enable</option>
+                        <option value=0>Disable</option>
+                      </select>
+                    </td>
                   </tr>
                   <tr>
                     <td>Standard XS<input type="text" name="dimension[]" readOnly="true"></td>
+                    <td><input type="text" name="price[]"></td>
+                    <td><select name="size_status[]">
+                        <option value=1>Enable</option>
+                        <option value=0>Disable</option>
+                      </select>
+                    </td>
                   </tr> 
                   
                 </tbody>
-              </table> -->
+              </table>
               <div class="actions">
-                <input type="hidden" name="iwidth" id="iwidth">
-                <input type="hidden" name="iheight" id="iheight">
                 <input type="submit" value="save" name="upload" class="btn btn-inverse btn-signin" tabindex="9">
               </div>
             </form>
@@ -185,32 +175,9 @@
 
           <!-- Home dashboard -->
           <div class="home">
-            <div class="uploaded-images">
-              <table class="table table-striped uploads-history tab-table">
-                  <tbody>
-                    <tr class="">
-                      <th>Preview</th>
-                      <td>Title</td>
-                      <td>Action</td>
-                    </tr>
-                    <?php 
-                   if(is_array($uploaded_images)>0):
-                    foreach($uploaded_images as $uploaded_image):?>
-                      <tr class="">
-                           <td><img width="180" height="102" src="<?php echo site_url().'uploads/'.$uploaded_image->ProfileId.'/'.$uploaded_image->ProductCode.'/thumb/listing/'.$uploaded_image->ImageName;?>" ></td>
-                           <td><?php echo $uploaded_image->ProductName; ?></td>
-                           <td>
-                              <a title="Edit" pcode="<?php echo $uploaded_image->ProductCode;?>" id="eimage" href="javascript:void(0)"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
-                              <a id="delimage" title="Delete" onclick="return confirm('Are You Sure To Delete This SubCategory?');" href="<?php echo base_url()."dashboard/delete/$uploaded_image->ProductCode";?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
-                           </td>
-                      </tr>
-                    <?php endforeach; endif;?>
-                    
-                  </tbody>
-              </table>
-            </div>
+           
             <hr>
-            
+            <!--upload form-->
             <div class="overview">
               <h3><i class="icon-bar-chart"></i>User's Account Statistics:</h3>
               <!-- Your details -->
@@ -631,39 +598,13 @@
 
 <script type="text/javascript">
 $(function() {
-  $('.tprice').hide();
-  $('input[name="free-paid"]').click(function(){
-      $("input:checkbox").attr("checked", false);
-      $(this).attr("checked", true);
-      if( $(this).val() == 0)  {
-        $('.product_price').removeClass('required');
-        $('.tprice').hide();
-        $('.product_price').val('');
-        $('.single').attr('checked',true);
-        $('.upload-thumb-dimension').hide();
-        $('form#uploads-img .thumb-control-group').hide();
-      } else {
-          $('.tprice').show();
-          $('.product_price').addClass('required');
-          if( $('#preview').attr('src') !=''){
-            $('form#uploads-img .thumb-control-group').show();
-          }
-      }
-  });
-
-  $('input[name="product_price"]').keyup(function(e) {
-      var value = jQuery(this).val();
-      value = value.replace(/[^0-9]+/g, '');
-      $(this).val(value);
-  });
+  var my_rem_size = "<?php echo $available_size; ?>";
   $('div.dashboard a,a#home').click(function(){
       var show = $(this).attr('id');
       $('div.dashboard').show();
-      $('div#upload-image').hide();
+       $('div#upload-image').hide();
       $('div.sec-span > div').hide();
       $('div.sec-span > div.'+show).show();
-      $('.empty').val('');
-      $('img#preview').attr('src','');
   });
   $('a#upload-image').click(function(){
       $('div.dashboard').hide();
@@ -671,37 +612,6 @@ $(function() {
       $('div#'+show).show();
   });
 
-  $('a#eimage').click(function(){
-    $('div.dashboard').hide();
-    $('div.sec-span > div').hide();
-    $('div#upload-image').show();
-    var pcode = $(this).attr('pcode');
-    $.ajax({
-      type: "post",
-      url : "<?php echo site_url('dashboard/search_image_datas');?>",
-      data: {"pcode":pcode},
-      dataType : 'json',
-      success: function(data){
-        $.each(data, function(index,value){ 
-            var isrc = 'uploads/'+value.pid+'/'+value.product_code+'/thumb/listing/'+value.imgname;
-            var price = value.product_price;
-            if(price !='') {
-               //check that free/paid
-               $("input[name=free-paid][value=1]").prop('checked', true);
-               $("input[name=free-paid][value=0]").prop('checked', false);
-
-               //$("input[name=upload-thumb][value=0]").prop('checked', false);
-            }
-            $('#preview').attr('src',"<?php echo site_url();?>"+isrc);
-            $('.product_title').val(value.product_name);
-            $('.product_description').val(value.product_description);
-            $('.product_price').val(price);
-            //$('select#category').
-        }); 
-      }
-    });
-  });
-  
   $('#myTab a:first').tab('show');
   $('#myTab a').live('click',function (e) {
     e.preventDefault();
@@ -752,13 +662,10 @@ $(function() {
 
   function readURL(input) {
     if (input.files && input.files[0]) {
-       // console.log((input.files[0].size/1024)/1024); // mb
-        $('div.upload-thumb-dimension').html('');
-        var my_rem_size = "<?php echo $available_size; ?>";
-        var sel_img_size = ((input.files[0].size/1024)/1024).toFixed(2); //MB
-        
+        console.log((input.files[0].size/1024)/1024); // mb
+        var sel_img_size = (input.files[0].size/1024)/1024; //MB
         var check = my_rem_size - sel_img_size;
-        //console.log(my_rem_size); // mb
+        console.log(my_rem_size); // mb
         if(check<=0) {
           alert('You cannot upload this file('+sel_img_size+'MB),Size exceeded with Your purchased package size');
         } else { 
@@ -771,59 +678,24 @@ $(function() {
               var height = this.height;  // Current image height
 
               $('#preview').attr('src', this.src);
-              $(":input[name='product_title']").focus();
-              $('#product_size').val(sel_img_size);
               $('.info-image').show();
               $('.info-image #actual-size').val(width + 'x' + height);
-              $('#iwidth').val(width);
-              $('#iheight').val(height);
               var j  = 1;
-
               for(var i=4;i>=1;i--) {
                 calWidth = Math.ceil((width/5)*i);
                 calHeight = Math.ceil((height/5)*i);
                 
                 display_dimension = calWidth + 'x' + calHeight;
-                $('div.upload-thumb-dimension').append('<p class="empty">'+display_dimension+'</p>');
-                //$('.info-image tbody tr').eq(j).find('td').eq(0).find('input[type=text]').val(display_dimension);
+                $('.info-image tbody tr').eq(j).find('td').eq(0).find('input[type=text]').val(display_dimension);
                 j = j+1;
               }
-              if($('input[name="free-paid"]:checked').val() == 1){
-                 $('form#uploads-img .thumb-control-group').show();
-              }
             };
-
-            // var image = new Image();
-            // image.src = e.target.result;
-            // image.onload = function() {
-            //   var width = this.width;    // Current image width
-            //   var height = this.height;  // Current image height
-            //   $('#preview').attr('src', this.src);
-            //   if($('#preview').attr('src') !=''){
-              
-            //     $('#preview').attr('src', this.src);
-            //     $('.info-image').show();
-            //     $('.info-image #actual-size').val(width + 'x' + height);
-            //     var j  = 1;
-            //     for(var i=4;i>=1;i--) {
-            //       calWidth = Math.ceil((width/5)*i);
-            //       calHeight = Math.ceil((height/5)*i);
-                  
-            //       display_dimension = calWidth + 'x' + calHeight;
-            //       $('.info-image tbody tr').eq(j).find('td').eq(0).find('input[type=text]').val(display_dimension);
-            //       j = j+1;
-            //     }
-            //   } 
-                    
-                
-            //   }
-            // };
           }
           reader.readAsDataURL(input.files[0]);
         }
+        
       }
   }
-
   $("#upload_image").click(function(){
     var cat = $('#category').val();
     var scat = $('#scategory').val();
@@ -831,69 +703,28 @@ $(function() {
     if(cat == ''){ alert('Choose Image Type');return false;}
     if(scat == ''){ alert('Choose Image Category');return false;}
     if(ori == ''){ alert('Choose Image Orientation');return false;}
+    
   });
   $("#upload_image").change(function(){
-    $('.empty').val('');
-    $('#preview').attr('src','');
-    
-    readURL(this);
+      readURL(this);
   });
 
-  $('.upload-thumb ').click(function(){
-    if($(this).is(':checked')){
-      if($(this).val() == 'Yes') {
-        $('div.upload-thumb-dimension').show();
-      }else {
-        $('div.upload-thumb-dimension').hide();
-      }
-    }
-  });
-
-  //form validation 
-
-  // $('form#uploads-img').submit(function(e){
-  //   e.preventDefault();
-  //   var error = 0;
-  //   $('.required').each(function(){
-  //      if ($(this).val()==''){
-  //        error+=1;
-  //        $(this).attr("placeholder", "Required");
-  //        $(this).addClass('err');
-  //      }
-  //   });
+  $('form#uploads-img').submit(function(e){
+    e.preventDefault();
+    var data = $(this).serializeArray();
     
-  //   if(error >0){
-  //     return false;
-  //   }
-
-  // });
-
-  // $('form#uploads-img').submit(function(e){
-  //   e.preventDefault();
-  //   var img = $('#preview').attr('src');
-  //   var width = $('#iwidth').val();
-  //   var height = $('#iheight').val();
-  //   dataString = $(this).serializeArray();
-  //   dataString.push({ name: "image", value: img });
-  //   $.ajax({
-  //       data: dataString,
-  //       url:"<?php echo site_url();?>"+'dashboard/upload',
-  //       type:'POST',
-  //       success:function(data){
-  //         alert(data);
-  //       }
-  //   });
-  // })
+    $.ajax({
+        url:"<?php echo site_url();?>"+'dashboard/upload',
+        data:data,
+        type:'POST',
+        success:function(data){
+            if(data!=''){
+              alert(data);
+              
+            } 
+        }
+    });
+  })
   
-  // function checkAvailableSize(){
-  //  $.ajax({
-  //       data: dataString,
-  //       url:"<?php echo site_url();?>"+'dashboard/available_package_size',
-  //       type:'POST',
-  //       success:function(data){
-  //         alert(data);
-  //       }
-  //   });
-  //}
 });
 </script>

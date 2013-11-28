@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2013 at 01:07 PM
+-- Generation Time: Nov 27, 2013 at 12:57 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -777,15 +777,14 @@ INSERT INTO `pxl_tblpages` (`PageId`, `PageLangId`, `FeatureImage`, `PageTitle`,
 
 CREATE TABLE IF NOT EXISTS `pxl_tblproducts` (
   `ProductId` int(11) NOT NULL AUTO_INCREMENT,
-  `LangId` int(11) NOT NULL,
   `CategoryId` int(255) NOT NULL,
   `SCategoryId` int(11) NOT NULL,
   `OrId` int(11) NOT NULL,
   `ProfileId` int(11) NOT NULL,
   `ProductCode` varchar(255) NOT NULL,
-  `FeatureThumb` varchar(255) NOT NULL,
   `ProductName` varchar(255) CHARACTER SET utf8 NOT NULL,
   `ProductDescription` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `ProductPrice` varchar(255) NOT NULL,
   `TotalLike` varchar(255) NOT NULL,
   `TotalDownload` varchar(255) NOT NULL,
   `TotalViews` varchar(255) NOT NULL,
@@ -794,16 +793,15 @@ CREATE TABLE IF NOT EXISTS `pxl_tblproducts` (
   `CreatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdateAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`ProductId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `pxl_tblproducts`
 --
 
-INSERT INTO `pxl_tblproducts` (`ProductId`, `LangId`, `CategoryId`, `SCategoryId`, `OrId`, `ProfileId`, `ProductCode`, `FeatureThumb`, `ProductName`, `ProductDescription`, `TotalLike`, `TotalDownload`, `TotalViews`, `Rating`, `Status`, `CreatedAt`, `UpdateAt`) VALUES
-(1, 1, 1, 7, 1, 0, 'VWF403', '', 'Title in eng', 'fds', '', '', '', 0, 0, '2013-11-22 17:51:41', '0000-00-00 00:00:00'),
-(2, 2, 1, 7, 1, 0, 'VWF403', '', '', '', '', '', '', 0, 0, '2013-11-22 17:51:41', '0000-00-00 00:00:00'),
-(3, 3, 1, 7, 1, 0, 'VWF403', '', '', '', '', '', '', 0, 0, '2013-11-22 17:51:41', '0000-00-00 00:00:00');
+INSERT INTO `pxl_tblproducts` (`ProductId`, `CategoryId`, `SCategoryId`, `OrId`, `ProfileId`, `ProductCode`, `ProductName`, `ProductDescription`, `ProductPrice`, `TotalLike`, `TotalDownload`, `TotalViews`, `Rating`, `Status`, `CreatedAt`, `UpdateAt`) VALUES
+(1, 1, 7, 1, 1, 'ZSR761', 'fdsaf', 'fdsafds', '', '', '', '', 0, 0, '2013-11-27 16:53:23', '0000-00-00 00:00:00'),
+(2, 7, 19, 1, 1, 'VEC349', 'fdsfdse3r4edfdsf', 'fdsfdsfdsfds', '', '', '', '', 0, 0, '2013-11-27 16:54:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -812,16 +810,22 @@ INSERT INTO `pxl_tblproducts` (`ProductId`, `LangId`, `CategoryId`, `SCategoryId
 --
 
 CREATE TABLE IF NOT EXISTS `pxl_tblproductvariations` (
-  `VariationId` int(11) NOT NULL,
+  `VariationId` int(11) NOT NULL AUTO_INCREMENT,
   `ProductCode` varchar(255) NOT NULL,
   `ProductSize` varchar(255) NOT NULL,
-  `ProductDimensions` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ImageName` varchar(255) NOT NULL,
+  `ProductDimensionName` varchar(255) NOT NULL,
+  `ProductDimensions` varchar(255) NOT NULL,
+  PRIMARY KEY (`VariationId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `pxl_tblproductvariations`
 --
 
+INSERT INTO `pxl_tblproductvariations` (`VariationId`, `ProductCode`, `ProductSize`, `ImageName`, `ProductDimensionName`, `ProductDimensions`) VALUES
+(1, 'ZSR761', '50.41', '1385550503.jpg', 'actual', '1024x705'),
+(2, 'VEC349', '3494.57', '1385550570.jpg', 'actual', '3840x2160');
 
 -- --------------------------------------------------------
 

@@ -33,6 +33,39 @@ Class Front_model extends CI_Model
 		$data = (empty($data)?"":stripslashes($data));
 		return $data;
 	}
+	public function get_grid($table_name,$primary_field,$where=Null) 
+	{
+		if (!empty($where)){
+			$this->db->where($where);
+		}
+		$this->db->order_by($primary_field,'DESC');
+		$this->db->select('*');
+		$this->db->from($table_name);
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+		  return $query->result();
+		}
+		else{
+		  return false;
+		}
+	}
+
+	function get_multi_grid($table_name1, $table_name2, $primary_field, $join_cond, $where) {
+		$this->db->where($where);
+		$this->db->order_by($primary_field,'DESC');
+		$this->db->select('*');
+		$this->db->from($table_name1);
+		$this->db->join( $table_name2, $join_cond);
+		$this->db->group_by($primary_field);
+		
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+		  return $query->result();
+		}
+		else{
+		  return false;
+		}
+	}
 	
 	function get_datas($table_name,$order_field,$where=NULL,$group=NULL){
 		$this->db->order_by($order_field,'ASC');
