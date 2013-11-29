@@ -72,24 +72,24 @@
         <!-- Sidebar end=============================================== -->
         <div class="span10" id="upload-image" style="display:none; margin-left:0;">
            <h2 class="titles"><i class="icon-upload-alt"></i>Upload your images</h2>
-            <form id="uploads-img" enctype="multipart/form-data" action="<?php echo site_url().'dashboard/upload'; ?>" id="product-form" class="product-form" method="post" >
+            <form method="post" id="uploads-img" enctype="multipart/form-data" action="<?php echo site_url().'dashboard/upload'; ?>" id="product-form" class="product-form"  >
               <?php echo validation_errors(); ?>
               
-              <select name="category" id="category" class="empty required">
-                <option value="">Image Type</option>
+              <select name="category" id="category" class="required">
+                <option value="" >Image Type</option>
                  <?php        
                     foreach($categories as $category){
-                        echo "<option name='cid' value='".intval($category->CatId)."'>".$this->front_model->format_data($category->CategoryName)."</option>";         
+                        echo "<option value='".intval($category->CatId)."'>".$this->front_model->format_data($category->CategoryName)."</option>";         
                     } ?>
               </select>
-              <select name="scategory" id="scategory" class="empty required">
-                <option value="">Image Category</option>
+              <select name="scategory" id="scategory" class="required">
+                <option>Image Category</option>
               </select>
-              <select name="orientation" id="orientation" class="empty required">
-                <option value="" name='oid'>Image Orientation</option>
+              <select name="orientation" id="orientation" class="required">
+                <option value="">Image Orientation</option>
                 <?php        
                     foreach($orientations as $orientation){
-                        echo "<option value='".intval($orientation->OrLangId)."'>".$this->front_model->format_data($orientation->OrName)."</option>";         
+                        echo "<option value='".intval($orientation->OrId)."'>".$this->front_model->format_data($orientation->OrName)."</option>";         
                     } ?>
               </select>
               <div class="control-group freepaid">
@@ -133,47 +133,23 @@
               <div class="thumb-control-group" style="display:none;">
                 <div class="controls">
                   <input type="radio" name="upload-thumb" class="upload-thumb input-radio single" value="No" checked="true">
-                  <label class="control-label">Upload Single Image</label>
+                  <label class="control-label usingle">Upload Single Image</label>
                 </div>
               </div>
               <!--/control-group-->
               <div class="thumb-control-group" style="display:none;">
                 <div class="controls">
                   <input type="radio" name="upload-thumb" class="upload-thumb input-radio" value="Yes">
-                  <label class="control-label">Also Like to Create other thumbnail into this image</label>
+                  <label class="control-label umultiple">Also Like to Create other thumbnail into this image</label>
                 </div>
               </div>
 
               <div class="upload-thumb-dimension" style="display:none">
                
               </div>
-              <!-- <table class="table table-striped info-image tab-table" style="display:none">
-                <thead>
-                  <th>Dimension</th>
-                </thead>
-                <tbody>
-                
-                  <tr>
-                    <td>Actual<input type="text" name="dimension[]" id="actual-size" readOnly="true"></td>
-                  </tr>
-                  <tr>
-                    <td>Standard L <input type="text" name="dimension[]" id="sl-size" readOnly="true">
-                    </td>
-                  </tr>
-               
-                  <tr>
-                    <td>Standard M <input type="text" name="dimension[]" readOnly="true"></td>
-                  </tr>
-                  <tr>
-                    <td>Standard S<input type="text" name="dimension[]" readOnly="true"></td>
-                  </tr>
-                  <tr>
-                    <td>Standard XS<input type="text" name="dimension[]" readOnly="true"></td>
-                  </tr> 
-                  
-                </tbody>
-              </table> -->
-              <div class="actions">
+              
+              <div class="actions divsubmit">
+                <input type="hidden" id="pcode" name="pcode">
                 <input type="hidden" name="iwidth" id="iwidth">
                 <input type="hidden" name="iheight" id="iheight">
                 <input type="submit" value="save" name="upload" class="btn btn-inverse btn-signin" tabindex="9">
@@ -664,11 +640,19 @@ $(function() {
       $('div.sec-span > div.'+show).show();
       $('.empty').val('');
       $('img#preview').attr('src','');
+      $('div.divsubmit #pcode').val('');
+      $('div.upload-thumb-dimension p.empty').remove();
   });
   $('a#upload-image').click(function(){
       $('div.dashboard').hide();
       var show = $(this).attr('id');
       $('div#'+show).show();
+
+      var h2 = $('div#upload-image h2.titles');
+      var oldh2 = '<h2 class="titles"><i class="icon-upload-alt"></i>Upload your images</h2>';
+      h2.replaceWith(oldh2);
+      $('div.divsubmit #pcode').val('');
+      $('div.upload-thumb-dimension p.empty').remove();
   });
 
   $('a#eimage').click(function(){
@@ -683,20 +667,59 @@ $(function() {
       dataType : 'json',
       success: function(data){
         $.each(data, function(index,value){ 
+            $('input.upload_image').removeClass('required');
             var isrc = 'uploads/'+value.pid+'/'+value.product_code+'/thumb/listing/'+value.imgname;
+            $('div.divsubmit #pcode').val(value.product_code);
+            var h2 = $('div#upload-image h2.titles');
+            var newh2 = '<h2 class="titles"><i class="icon-upload-alt"></i> Edit your images "'+value.product_name+'" ('+value.product_code+')</h2>';
+            h2.replaceWith(newh2);
+
+            //check that free/paid
             var price = value.product_price;
+            var othumb = value.other_thumb;
+           // alert(price);
             if(price !='') {
-               //check that free/paid
+               var yesNo = value.other_thumb == 1 ? 'Yes':'No';
                $("input[name=free-paid][value=1]").prop('checked', true);
                $("input[name=free-paid][value=0]").prop('checked', false);
-
+               $('.tprice').show();
+               $('div.thumb-control-group').show();
+               $("input[name=upload-thumb][value=No]").prop('checked', false);
+               $("input[name=upload-thumb][value="+yesNo+"]").prop('checked', true);
                //$("input[name=upload-thumb][value=0]").prop('checked', false);
+
+               if(othumb == 1) {
+                $('div.upload-thumb-dimension').append('<p class="empty">Actual size('+value.actual+')</p>');
+                $('div.upload-thumb-dimension').append('<p class="empty">Large size('+value.large+')</p>');
+                $('div.upload-thumb-dimension').append('<p class="empty">Medium size('+value.medium+')</p>');
+                $('div.upload-thumb-dimension').append('<p class="empty">Small size('+value.small+')</p>');
+                $('div.upload-thumb-dimension').append('<p class="empty">Xsmall size('+value.xsmall+')</p>');
+              }
+            } else{
+               $("input[name=free-paid][value=0]").prop('checked', true);
+               $("input[name=free-paid][value=1]").prop('checked', false);
+               $('.tprice').hide();
+               $('div.thumb-control-group').hide();
+               $('div.upload-thumb-dimension').hide();
             }
+
+            
+            $('#category option[value='+value.category_id+']').attr("selected", true); // give the attribute of selected to the specified option
+            $('#scategory').append('<option selected=true value='+value.scategory_id+'>'+value.sname+'</option>');  
+            $('#orientation option[value='+value.orientation_id+']').attr("selected", true); // give the attribute of selected to the specified option
+            $('#product_size').val(value.tsize); 
             $('#preview').attr('src',"<?php echo site_url();?>"+isrc);
             $('.product_title').val(value.product_name);
             $('.product_description').val(value.product_description);
             $('.product_price').val(price);
-            //$('select#category').
+
+            
+            var labelcrThumb = $('div.thumb-control-group label.umultiple');
+            var oldlabelThumb = '<label class="control-label umultiple">Also Like to Create other thumbnail into this image</label>';
+            var newhlabelcrThumb = '<label class="control-label umultiple">Uploaded with These sized thumbs into this image</label>';
+            othumb == 1?labelcrThumb.replaceWith(newhlabelcrThumb):labelcrThumb.replaceWith(oldlabelThumb);
+            othumb == 1?$('div.upload-thumb-dimension').show():'';
+            
         }); 
       }
     });
@@ -728,6 +751,8 @@ $(function() {
         src : './images/admin/load.gif',
         class : 'ajax_loading',
       }).insertAfter($(this));
+      $('#category option').removeAttr("selected");
+      $('#category option[value='+categoryid+']').attr("selected", true); // give the attribute of selected to the specified option
       $.ajax({
         type: "post",
         url : "<?php echo site_url('dashboard/search_scategory');?>",
@@ -747,7 +772,20 @@ $(function() {
     }else{
       $('#scategory').html('<option value="">Image Category</option>');
     }
-
+  });
+  $('#scategory').change(function(){
+    var scategoryid = $(this).val();
+    if(scategoryid != ''){
+      $('#scategory option').removeAttr("selected");
+      $('#scategory option[value='+scategoryid+']').attr("selected", true); // give the attribute of selected to the specified option
+    }
+  });
+  $('#orientation').change(function(){
+    var oid = $(this).val();
+    if(oid != ''){
+      $('#orientation option').removeAttr("selected");
+      $('#orientation option[value='+oid+']').attr("selected", true); // give the attribute of selected to the specified option
+    }
   });
 
   function readURL(input) {

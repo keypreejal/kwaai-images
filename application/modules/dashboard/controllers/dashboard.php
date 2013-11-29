@@ -156,13 +156,12 @@ class Dashboard extends MY_Front_Controller {
 
 
 	#..............BEGIN FUNCTION upload...........##
-  	# upload images,add
-  	public function upload($product_code = NULL) {
-  		$code = intval($product_code);
+  	# upload images, add and edit
+  	public function upload() {
   		if($this->input->post('upload')) {
-			if($code !='') { // update here
-				echo 'aaaaaaaaaaaa';die;
-			} else {
+  			$code = $this->input->post('pcode');
+			if($code !='') { 
+				// update here
 				$free_paid = $this->input->post('free-paid');
 				$this->form_validation->set_rules('product_title', 'Image Title', 'trim|required');
 		   		$this->form_validation->set_rules('product_description', 'Image Description', 'trim|required');
@@ -175,7 +174,154 @@ class Dashboard extends MY_Front_Controller {
 	              $this->template->write_view('content', 'contributor_dashboard_view',$this->data);
 	              $this->template->render(); 
 	            } else {
-	            	$pid = 1; //profile id(login id ) of photographer
+	            	$uploaded_new =  $_FILES["upload_image"]["name"];
+
+	            	//$package_id = $this->front_model->get_single_data('tblprofile','PackageId','ProfileId',$pid); 
+					//$purchase_psize = $this->front_model->get_single_data('tblpackage','Size','PackageId',$package_id);  
+					$purchase_psize = $this->front_model->get_single_data('tblpackage','Size','PackageId',1); 
+					$purchase_psize = intval($purchase_psize)*1024; // to mb
+					
+	            	$cid = intval($this->input->post('category'));
+	            	$scid = intval($this->input->post('scategory'));
+	            	$oid = intval($this->input->post('orientation'));
+
+	            	$title = $this->input->post('product_title');
+					$description = $this->input->post('product_description');
+					$size = $this->input->post('product_size');
+					$price = $this->input->post('product_price');
+
+					$width = $this->input->post('iwidth');
+					$height = $this->input->post('iwidth');
+					
+					$uthumb = $this->input->post('upload-thumb');
+
+	            	if($uploaded_new != '' ) {
+	            		/*this means he had selected new image and may change other fields
+	            		 *so we now r doing a fresh upload
+	            		 */
+	            		$pid = 1; //profile id(login id ) of photographer: this will be from session after login
+	            		$this->contributor_model->do_detach_all(APPPATH. "../uploads/$pid/$code/");
+	            		mkdir(APPPATH. "../uploads/$pid/$code/", 777, true); //  again create that folder with same name to store images
+						// delete all datas form the database,which have the product code $code
+						$this->db->delete('tblproducts', array('ProductCode' => $code));
+						$this->db->delete('tblproductvariations', array('ProductCode' => $code));
+
+						/* now fresh insert with that code
+						 * calculate size 
+						 */
+						if($this->front_model->count_no_fields('tblproducts','ProductName', $title ) == '0') {
+							$this->load->library('directory_calculator');
+					    	$directory = APPPATH. "../uploads/$pid/";
+					      	$remaining_size = $this->contributor_model->calculate_size($directory, $purchase_psize);
+					      	if($remaining_size >0) {
+					      		//upload for single image
+					      		if($uthumb == 'No'){
+					      			mkdir(APPPATH. "../uploads/$pid/$code/thumb", 777, true); //to store the listing image thumb
+									mkdir(APPPATH. "../uploads/$pid/$code/thumb/detail", 777, true); // to store detail size thumb
+									mkdir(APPPATH. "../uploads/$pid/$code/thumb/listing", 777, true); // to store detail size thumb
+									$this->contributor_model->initialise($pid,$code);
+						    		$isresize = $this->contributor_model->do_upload($purchase_psize,$remaining_size,$width,$height);
+
+						    		/*$isresize = 0 images is uploaded*/
+						    		if($isresize == 0) {
+						    			$data = array(
+								  			'CategoryId' => $cid,
+								  			'SCategoryId' => $scid,
+								  			'OrId' => $oid,
+								  			'ProfileId' => $pid,
+								  			'ProductCode' => $code,
+											'ProductName' => $title,
+											'ProductDescription' => $description,
+											'ProductPrice' => $price,
+											'OtherThumb' => 0,
+											'TotalSize' => $this->contributor_model->calculate_size($directory, $purchase_psize)
+							    		);
+							    		$result = $this->db->insert('tblproducts',$data);
+							    		if($result) {
+									    	$this->session->set_flashdata('upload_msg', 'Edited successfully.');
+											redirect('dashboard');
+										} 
+						    		}
+					      		} 
+					      		else{
+					      			mkdir(APPPATH. "../uploads/$pid/$code/thumb", 777, true); //to store the listing image thumb
+									mkdir(APPPATH. "../uploads/$pid/$code/thumb/detail", 777, true); // to store detail size thumb
+									mkdir(APPPATH. "../uploads/$pid/$code/thumb/listing", 777, true); // to store detail size thumb
+									mkdir(APPPATH. "../uploads/$pid/$code/thumb/large", 777, true); //to store large size thumb
+									mkdir(APPPATH. "../uploads/$pid/$code/thumb/medium", 777, true); //to store large size thumb 
+									mkdir(APPPATH. "../uploads/$pid/$code/thumb/small", 777, true); // to store small size thumb
+									mkdir(APPPATH. "../uploads/$pid/$code/thumb/xsmall", 777, true); // to store xsmall size thumb
+					      			//upload and create different dimension images
+					      			for($i=4; $i>=1; $i--) {
+						                // move/resize images
+										$calWidth[] = ceil(($width/5)*$i);
+					                  	$calHeight[] = ceil(($height/5)*$i);
+					                }
+						    		$this->contributor_model->initialise($pid,$code);
+						    		$isresize = $this->contributor_model->do_upload_create_thumbs($purchase_psize,$remaining_size,$calWidth,$calHeight);
+						    		
+						    		/*$isresize = 0 means all images are uploaded*/
+						    		if($isresize == 0) {
+						    			$data = array(
+								  			'CategoryId' => $cid,
+								  			'SCategoryId' => $scid,
+								  			'OrId' => $oid,
+								  			'ProfileId' => $pid,
+								  			'ProductCode' => $code,
+											'ProductName' => $title,
+											'ProductDescription' => $description,
+											'ProductPrice' => $price,
+											'OtherThumb' => 1,
+											'TotalSize' => $this->contributor_model->calculate_size($directory, $purchase_psize)
+							    		);
+							    		$result = $this->db->insert('tblproducts',$data);
+							    		if($result) {
+									    	$this->session->set_flashdata('upload_msg', 'Edited successfully.');
+											redirect('dashboard');
+										} 
+						    		}
+					      		}
+					    	}
+					    	else{
+					    		rmdir(APPPATH. "../uploads/$pid/$code/");
+								$this->session->set_flashdata('upload_msg_error', 'Unable to Edit,Your Package size exceeded !');
+								redirect('dashboard');
+					    	}
+				    	}
+	            	} 
+	            	else {
+	            		//this means he had not change new image and done changed other things  only
+			      		$update_data = array(
+					  			'CategoryId' => $cid,
+					  			'SCategoryId' => $scid,
+					  			'OrId' => $oid,
+					  			'ProductName' => $title,
+								'ProductDescription' => $description,
+								'ProductPrice' => $price,
+							);
+			      		$this->db->where('ProductCode', $code);
+			    		$result = $this->db->update('tblproducts',$update_data);
+			    		if($result) {
+					    	$this->session->set_flashdata('upload_msg', 'Image Uploaded successfully.');
+							redirect('dashboard');
+						} 
+	            	}
+	            }
+			} else {
+				//insert here
+				$free_paid = $this->input->post('free-paid');
+				$this->form_validation->set_rules('product_title', 'Image Title', 'trim|required');
+		   		$this->form_validation->set_rules('product_description', 'Image Description', 'trim|required');
+		   		if($free_paid ==1){
+		   			$this->form_validation->set_rules('product_price', 'Image Price', 'trim|required');
+		   		}
+			    //check whether the form is validated or not
+	            if($this->form_validation->run() == FALSE){
+	           	  $this->template->set_template('defaultfront');
+	              $this->template->write_view('content', 'contributor_dashboard_view',$this->data);
+	              $this->template->render(); 
+	            } else {
+	            	$pid = 1; //profile id(login id ) of photographer: this will be from session after login
 					$pcode = $this->front_model->extract_unique_pcode('tblproducts','ProductCode'); // generate unique product code
 					$path = realpath(APPPATH. "../uploads/$pid/$pcode/");
 					if (!file_exists($path)) {
@@ -186,22 +332,21 @@ class Dashboard extends MY_Front_Controller {
 					$purchase_psize = $this->front_model->get_single_data('tblpackage','Size','PackageId',1); 
 					$purchase_psize = intval($purchase_psize)*1024; // to mb
 					
-	            	$cid = $this->input->post('category');
-	            	$scid = $this->input->post('scategory');
-	            	$oid = $this->input->post('orientation');
+	            	$cid = intval($this->input->post('category'));
+	            	$scid = intval($this->input->post('scategory'));
+	            	$oid = intval($this->input->post('orientation'));
+
+	            	
 	            	
 					$title = $this->input->post('product_title');
 					$description = $this->input->post('product_description');
 					$size = $this->input->post('product_size');
 					$price = $this->input->post('product_price');
 
-					//$dimension = $this->input->post('dimension');
 					$width = $this->input->post('iwidth');
 					$height = $this->input->post('iwidth');
 					
 					$uthumb = $this->input->post('upload-thumb');
-
-					//$sstatus = $this->input->post('size_status');
 
 					if($this->front_model->count_no_fields('tblproducts','ProductName', $title ) == '0') {
 						$this->load->library('directory_calculator');
@@ -216,6 +361,7 @@ class Dashboard extends MY_Front_Controller {
 								mkdir(APPPATH. "../uploads/$pid/$pcode/thumb/listing", 777, true); // to store detail size thumb
 								$this->contributor_model->initialise($pid,$pcode);
 					    		$isresize = $this->contributor_model->do_upload($purchase_psize,$remaining_size,$width,$height);
+
 					    		/*$isresize = 0 images is uploaded*/
 					    		if($isresize == 0) {
 					    			$data = array(
@@ -227,6 +373,8 @@ class Dashboard extends MY_Front_Controller {
 										'ProductName' => $title,
 										'ProductDescription' => $description,
 										'ProductPrice' => $price,
+										'OtherThumb' => 0,
+										'TotalSize' => $this->contributor_model->calculate_size($directory, $purchase_psize)
 						    		);
 						    		$result = $this->db->insert('tblproducts',$data);
 						    		if($result) {
@@ -263,18 +411,12 @@ class Dashboard extends MY_Front_Controller {
 										'ProductName' => $title,
 										'ProductDescription' => $description,
 										'ProductPrice' => $price,
+										'OtherThumb' => 1,
+										'TotalSize' => $this->contributor_model->calculate_size($directory, $purchase_psize)
 						    		);
 						    		$result = $this->db->insert('tblproducts',$data);
 						    		if($result) {
-								    	// for($i=0; $i<count($calWidth); $i++) {
-								    	// 	/*insert to db*/
-								    	// 	$data_variation = array(
-										  	// 		'ProductCode' => $pcode,
-										  	// 		'ProductSize' => $size,
-										  	// 		'ProductDimensions' => $calwidth[$i].'x'.$calHeight[$i],
-										  	// );
-										  	// $this->db->insert('tblproductvariations',$data_variation);
-								    	// }
+								    	
 								    	$this->session->set_flashdata('upload_msg', 'Image Uploaded successfully.');
 										redirect('dashboard');
 									} 
@@ -302,17 +444,35 @@ class Dashboard extends MY_Front_Controller {
 		$rdata = $this->front_model->get_single_row('tblproducts', 'ProductCode', $imgcode);
 		$rdimdata = $this->front_model->get_single_row('tblproductvariations', 'ProductCode', $imgcode);
 
+		$actual = $large = $medium = $small =  $xsmall = '';
+		if($rdata->OtherThumb == 1) {
+			$actual = $this->front_model->get_single_data('tblproductvariations','ProductDimensions','ProductDimensionName','actual'); 
+			$large = $this->front_model->get_single_data('tblproductvariations','ProductDimensions','ProductDimensionName','large'); 
+			$medium = $this->front_model->get_single_data('tblproductvariations','ProductDimensions','ProductDimensionName','medium'); 
+			$small = $this->front_model->get_single_data('tblproductvariations','ProductDimensions','ProductDimensionName','small'); 
+			$xsmall = $this->front_model->get_single_data('tblproductvariations','ProductDimensions','ProductDimensionName','xsmall'); 
+		}
+
+		$sname = $this->front_model->get_single_data('tblcategorychild','SCategoryName','SCatId',$rdata->SCategoryId); 
 		$data = array();
-	 	$datas[]= array(
+	 	$datas[] = array(
 	 				'pid' => $rdata->ProfileId,
 	 				'product_code' =>$rdata->ProductCode, 
 	 				'product_name' =>$rdata->ProductName,
 					'product_description' =>$rdata->ProductDescription,
 					'product_price' => $rdata->ProductPrice,
+					'other_thumb' => $rdata->OtherThumb,
 					'category_id' => $rdata->CategoryId,
 					'scategory_id' => $rdata->SCategoryId,
-					'category_id' => $rdata->OrId,
-					'imgname' => $rdimdata->ImageName
+					'sname' => $sname, 
+					'orientation_id' => $rdata->OrId,
+					'imgname' => $rdimdata->ImageName,
+					'tsize' => $rdata->TotalSize,
+					'actual' => $actual,
+					'large' => $large,
+					'medium' => $medium,
+					'small' => $small,
+					'xsmall' => $xsmall,
 					);
 	 	echo json_encode($datas);
 	}

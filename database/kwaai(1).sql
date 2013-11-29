@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 27, 2013 at 12:57 PM
+-- Generation Time: Nov 29, 2013 at 12:52 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -777,7 +777,7 @@ INSERT INTO `pxl_tblpages` (`PageId`, `PageLangId`, `FeatureImage`, `PageTitle`,
 
 CREATE TABLE IF NOT EXISTS `pxl_tblproducts` (
   `ProductId` int(11) NOT NULL AUTO_INCREMENT,
-  `CategoryId` int(255) NOT NULL,
+  `CategoryId` int(11) NOT NULL,
   `SCategoryId` int(11) NOT NULL,
   `OrId` int(11) NOT NULL,
   `ProfileId` int(11) NOT NULL,
@@ -785,23 +785,25 @@ CREATE TABLE IF NOT EXISTS `pxl_tblproducts` (
   `ProductName` varchar(255) CHARACTER SET utf8 NOT NULL,
   `ProductDescription` varchar(255) CHARACTER SET utf8 NOT NULL,
   `ProductPrice` varchar(255) NOT NULL,
+  `OtherThumb` tinyint(4) NOT NULL COMMENT '1=yes,0=no',
   `TotalLike` varchar(255) NOT NULL,
   `TotalDownload` varchar(255) NOT NULL,
   `TotalViews` varchar(255) NOT NULL,
   `Rating` int(11) NOT NULL,
-  `Status` int(11) NOT NULL,
+  `TotalSize` varchar(255) NOT NULL COMMENT 'MB',
   `CreatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdateAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`ProductId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `pxl_tblproducts`
 --
 
-INSERT INTO `pxl_tblproducts` (`ProductId`, `CategoryId`, `SCategoryId`, `OrId`, `ProfileId`, `ProductCode`, `ProductName`, `ProductDescription`, `ProductPrice`, `TotalLike`, `TotalDownload`, `TotalViews`, `Rating`, `Status`, `CreatedAt`, `UpdateAt`) VALUES
-(1, 1, 7, 1, 1, 'ZSR761', 'fdsaf', 'fdsafds', '', '', '', '', 0, 0, '2013-11-27 16:53:23', '0000-00-00 00:00:00'),
-(2, 7, 19, 1, 1, 'VEC349', 'fdsfdse3r4edfdsf', 'fdsfdsfdsfds', '', '', '', '', 0, 0, '2013-11-27 16:54:30', '0000-00-00 00:00:00');
+INSERT INTO `pxl_tblproducts` (`ProductId`, `CategoryId`, `SCategoryId`, `OrId`, `ProfileId`, `ProductCode`, `ProductName`, `ProductDescription`, `ProductPrice`, `OtherThumb`, `TotalLike`, `TotalDownload`, `TotalViews`, `Rating`, `TotalSize`, `CreatedAt`, `UpdateAt`) VALUES
+(1, 1, 7, 4, 1, 'AZF831', 'fff', 'fdsa', '', 0, '', '', '', 0, '1023.69', '2013-11-29 16:29:49', '0000-00-00 00:00:00'),
+(5, 7, 19, 1, 1, 'YAL951', 'fflower', 'dfdsa', '', 0, '', '', '', 0, '1022.89', '2013-11-29 16:31:40', '0000-00-00 00:00:00'),
+(7, 7, 1, 1, 1, 'JDV961', 'Red flower', 'flowere des', '15', 1, '', '', '', 0, '1021.93', '2013-11-29 17:35:23', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -817,15 +819,26 @@ CREATE TABLE IF NOT EXISTS `pxl_tblproductvariations` (
   `ProductDimensionName` varchar(255) NOT NULL,
   `ProductDimensions` varchar(255) NOT NULL,
   PRIMARY KEY (`VariationId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `pxl_tblproductvariations`
 --
 
 INSERT INTO `pxl_tblproductvariations` (`VariationId`, `ProductCode`, `ProductSize`, `ImageName`, `ProductDimensionName`, `ProductDimensions`) VALUES
-(1, 'ZSR761', '50.41', '1385550503.jpg', 'actual', '1024x705'),
-(2, 'VEC349', '3494.57', '1385550570.jpg', 'actual', '3840x2160');
+(1, 'AZF831', '0.01', '1385721887.jpg', 'listing', '180x108'),
+(2, 'AZF831', '0.03', '1385721887.jpg', 'detail', '440x269'),
+(3, 'AZF831', '278.8', '1385721887.jpg', 'actual', '2581x1936'),
+(17, 'YAL951', '0.01', '1385721999.jpg', 'listing', '180x108'),
+(18, 'YAL951', '0.03', '1385721999.jpg', 'detail', '440x269'),
+(19, 'YAL951', '581.33', '1385721999.jpg', 'actual', '1024x768'),
+(27, 'JDV961', '0.01', '1385725821.jpg', 'listing', '180x108'),
+(28, 'JDV961', '0.04', '1385725821.jpg', 'detail', '440x269'),
+(29, 'JDV961', '858.78', '1385725821.jpg', 'actual', '1024x768'),
+(30, 'JDV961', '0.13', '1385725821.jpg', 'large', '820x820'),
+(31, 'JDV961', '0.08', '1385725821.jpg', 'medium', '615x615'),
+(32, 'JDV961', '0.05', '1385725821.jpg', 'small', '410x410'),
+(33, 'JDV961', '0.02', '1385725821.jpg', 'xsmall', '205x205');
 
 -- --------------------------------------------------------
 

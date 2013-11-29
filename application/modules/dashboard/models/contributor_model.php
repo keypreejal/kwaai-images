@@ -315,9 +315,10 @@ Class Contributor_model extends CI_Model
 		// rmdir($mydir); 
 		$files = array_diff(scandir($del_dirpath), array('.','..'));
 		foreach ($files as $file) {
-		    (is_dir("$dir/$file")) ? do_detach_all("$del_dirpath/$file") : unlink("$del_dirpath/$file");
+		    (is_dir("$del_dirpath/$file")) ? $this->do_detach_all("$del_dirpath/$file") : unlink("$del_dirpath/$file");
+		   
 		}
-		return rmdir($dir);
+		return rmdir($del_dirpath);
 	}
 
 
