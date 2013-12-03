@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cart extends MY_Front_Controller {
+class Cart extends CI_Controller {
 
 	/**
 	 * Cart Page for this controller.
@@ -10,7 +10,8 @@ class Cart extends MY_Front_Controller {
   	public $data ,$langId;
 	public function __construct()
 	{
-		parent::__construct();    
+		parent::__construct();  
+
 		$this->load->model('front/front_model');
 
 		$langCode= $this->session->userdata('lang_arr');
@@ -50,8 +51,6 @@ class Cart extends MY_Front_Controller {
 					'need_help_site_map' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','need_help_site_map',$this->langId),
 					'follow_us' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','follow_us',$this->langId),
 					'all_right_reserve' => $this->front_model->get_single_constant_data('tblconstantsvalue','KeywordValue','ConstantCode','all_right_reserve',$this->langId),
-					
-
 					);
 	}
 	#..............end constructor.......................##
@@ -74,6 +73,41 @@ class Cart extends MY_Front_Controller {
 	}
 	#.............End Index Function......................##
 
+
+
+	/**
+		*Begin add function for this controller
+	 	* This function add the product to the cart
+	*/
+ 	#............begin add.......................##
+	public function add() {
+		$pid = $this->input->post('id');
+		$product = $this->front_model->get_single_row('tblproducts', 'ProductId', $pid);
+
+		$image = $this->front_model->get_single_data('tblproductvariations','ImageName','ProductCode', $product->ProductCode);
+		$price = $product->ProductPrice ==''?10:$product->ProductPrice;
+		$data = array(
+               'id'      => $pid,
+               'qty'     => 1,
+               'price'   => $price,
+               'name'    => $product->ProductName,
+               'image'  => $image,
+               'code' => $product->ProductCode,
+               'size' => $product->TotalSize
+            );
+
+		$this->cart->insert($data); 
+		
+		$this->session->set_flashdata('cart_smsg', 'Product Added to cart');
+
+		$this->template->set_template('defaultfront');
+		$this->template->write_view('content', 'cart_view',$this->data);
+		$this->template->render();
+		
+
+		
+	}
+	#.............End add Function......................##
 
 	
  }

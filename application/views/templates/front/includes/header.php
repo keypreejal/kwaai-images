@@ -142,11 +142,11 @@
 		  if(is_array($categories)>0):
 		  	$cat = '';
             foreach($categories as $category){
-              $cat .= "<li><a href='".site_url()."imagesList/$category->CategoryName'>".$this->front_model->format_data($category->CategoryName)."</a></li>";
+              $cat .= "<li><a href='".site_url()."category/$category->CategoryName'>".$this->front_model->format_data($category->CategoryName)."</a></li>";
 			} 
 		  endif;
 	 	?>
-          <li><a href="<?php echo site_url().'imagesList';?>"><?php echo $lang=='en'?'Category':($lang=='nl'?'categorie':'類別');?></a><ul><?php echo $cat;?></ul></li>
+          <li><a href="<?php echo site_url().'category';?>"><?php echo $lang=='en'?'Category':($lang=='nl'?'categorie':'類別');?></a><ul><?php echo $cat;?></ul></li>
           <li><a href="<?php echo site_url().'subscription';?>"><?php echo $lang=='en'?'Subscription':($lang=='nl'?'abonnement':'訂閱');?></a></li>
           <li><a href="<?php echo site_url().'contact';?>"><?php echo $lang=='en'?'Contact Us':($lang=='nl'?'Contacteer ons':'聯繫我們');?></a></li>
         </ul>

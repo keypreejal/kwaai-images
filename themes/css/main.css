@@ -1038,6 +1038,10 @@ background-image: linear-gradient(to bottom, #EDEDED 0%, #FFFFFF 50%, #EDEDED 10
 #myCarousel-2 .thumbnails .product-box{padding:0}
 #myCarousel-2 .thumbnails .product-box p{margin:0}
 #myCarousel-2 .thumbnails > li{margin:0}
+.product-box a.screenshot{
+	display: block;
+
+}
 .product-box a.a-position{position:absolute; top:60px;  left:30px; width:128px; color:#fff!important; font-size:16px!important; font-weight:normal!important;  background-color:rgba(0, 0, 0, 0.7); border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; padding:5px 0}
 /* product box
 ----------------------------------------------------------------------------- */

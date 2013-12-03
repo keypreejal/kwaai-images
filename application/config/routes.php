@@ -90,8 +90,6 @@ $route['front(:any)'] = 'front/$1';*/
 $route['([^/]+)\.html?'] = 'front/pages/$1';
 $route['404_override'] = '';
 
-
-
-
+$route['sitemap\.xml'] = "sitemap";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

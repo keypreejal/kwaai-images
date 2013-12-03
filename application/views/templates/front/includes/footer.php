@@ -27,7 +27,7 @@
         <ul class="nav  nowidth">
           <li><a href="<?php echo site_url().'contact';?>"><?php echo $need_help_contact_us;?></a></li>
           <li><a href="<?php echo site_url().'faqs.html';?>"><?php echo $need_help_faqs?></a></li>
-          <li><a href="#"><?php echo $need_help_site_map;?></a></li>
+          <li><a href="<?php echo site_url().'sitemap';?>"><?php echo $need_help_site_map;?></a></li>
         </ul>
       </div>
       <div class="span2 foot-last">

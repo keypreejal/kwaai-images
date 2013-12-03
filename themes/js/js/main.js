@@ -19,14 +19,51 @@ this.screenshotPreview = function(){
 		
 	/* END CONFIG */
 	$("a.screenshot").hover(function(e){
+
+
+		//addded for dynamic position
+
+		
 		this.t = this.title;
 		this.title = "";	
 		var c = (this.t != "") ? "<br/>" + this.t : "";
-		$("body").append("<p id='screenshot'><img src='"+ this.rel +"' alt='url preview' />"+ c +"</p>");								 
-		$("#screenshot")
-			.css("top",(e.pageY - xOffset) + "px")
-			.css("left",(e.pageX + yOffset) + "px")
-			.fadeIn("fast");						
+		$("body").append("<p id='screenshot'><img src='"+ this.rel +"' alt='url preview' />"+ c +"</p>");
+winwidth = $(window).innerWidth();
+posleft = $(this).offset().left;
+// posright = $(this).offset().right;
+// console.log(posright);
+postop = $(this).offset().top;
+// console.log(postop);
+totalwidth = $(window).width();
+right = totalwidth-posleft;
+
+// leftfinal = totalwidth-posright;
+ leftposfinal = posleft+180;
+ //console.log(winwidth-e.pageX);
+
+if((winwidth-e.pageX)>550){
+	// $("#screenshot")
+	// 		.css("top",(e.pageY - xOffset) + "px")
+	// 		.css("left",(e.pageX + yOffset) + "px")
+	// 		.fadeIn("fast");
+	$("#screenshot")
+			.css("top",postop + "px")
+			.css("left",leftposfinal+ "px")
+			.fadeIn("fast");
+}
+else{
+	$("#screenshot")
+			.css("top",postop + "px")
+			.css("right",right + "px")
+			.fadeIn("fast");
+}
+
+		
+
+			// console.log(e.pageX);
+			// console.log(xOffset);
+			// console.log(yOffset);
+								
 		$("#screenshot").addClass('test');
 		$(this).addClass('imgtest');
     },
@@ -34,11 +71,20 @@ this.screenshotPreview = function(){
 		this.title = this.t;	
 		$("#screenshot").remove();
     });	
-	$("a.screenshot").mousemove(function(e){
-		$("#screenshot")
-			.css("top",(e.pageY - xOffset) + "px")
-			.css("left",(e.pageX + yOffset) + "px");
-	});			
+	// $("a.screenshot").mousemove(function(e){
+	// 	winwidth = $(window).innerWidth();
+	// 	if((winwidth-e.pageX)>440){
+	// 		$("#screenshot")
+	// 			.css("top",(e.pageY - xOffset) + "px")
+	// 			.css("left",(e.pageX + yOffset) + "px");
+	// 	}
+	// 	else{
+	// 		$("#screenshot")
+	// 		.css("top",(e.pageY - xOffset) + "px")
+	// 		.css("right",400 + "px")
+	// 		.fadeIn("fast");
+	// 	}		
+	// });			
 };
 
 

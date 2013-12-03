@@ -83,7 +83,8 @@ class Front extends MY_Front_Controller {
 				$randomfive = $subcats;
 			}	
 		}
-		
+
+		$this->data['latest_ten'] =$this->front_model->get_multi_grid('tblproducts','tblproductvariations','ProductName','tblproducts.ProductCode = tblproductvariations.ProductCode','',10);
 		$this->data['randoms'] = $randomfive;
 		$this->template->set_template('defaultfront');
 		$this->template->write_view('content', 'front_view',$this->data);

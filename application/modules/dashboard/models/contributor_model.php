@@ -259,20 +259,38 @@ Class Contributor_model extends CI_Model
 	}
 
 	
-	function calculate_size($dir_path, $purchase_psize) {
+	function calculate_size($dir_path, $purchase_psize=NULL) {
 		$directory = $dir_path;
 		//echo $directory;die;
-    	$remaining_size;
-    	if(file_exists($directory)) {
-    		$size_in = 'MB';
-			$decimals = 2;
-	    	$this->directory_calculator->size_in = $size_in;
-	    	$this->directory_calculator->decimals = $decimals;
-	    	$array = $this->directory_calculator->size($directory);
-	    	$remaining_size = $purchase_psize - $array['size'];
-	    }
-	    return $remaining_size;
+		if($purchase_psize !=NULL) {
+			$remaining_size;
+	    	if(file_exists($directory)) {
+	    		$size_in = 'MB';
+				$decimals = 2;
+		    	$this->directory_calculator->size_in = $size_in;
+		    	$this->directory_calculator->decimals = $decimals;
+		    	$array = $this->directory_calculator->size($directory);
+		    	$remaining_size = $purchase_psize - $array['size'];
+		    }
+		    return $remaining_size;
+		}
+		else{
+			$uploaded_size;
+	    	if(file_exists($directory)) {
+	    		$size_in = 'MB';
+				$decimals = 2;
+		    	$this->directory_calculator->size_in = $size_in;
+		    	$this->directory_calculator->decimals = $decimals;
+		    	$array = $this->directory_calculator->size($directory);
+		    	$uploaded_size = $array['size'];
+		    }
+		    return $uploaded_size ;
+		}
+    	
 	}
+
+	
+
 	function do_resize($config) {
 		$this->load->library('image_lib');
 		if($this->image_data['is_image'] == 1){

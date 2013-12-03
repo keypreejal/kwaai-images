@@ -8,8 +8,7 @@ class Dashboard extends MY_Front_Controller {
 	 */
   	#............begin constructor........................##
   	public $data,$langId;
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();    
 		$this->load->model('front/front_model');
 		$this->load->model('dashboard/contributor_model');
@@ -206,7 +205,7 @@ class Dashboard extends MY_Front_Controller {
 						$this->db->delete('tblproducts', array('ProductCode' => $code));
 						$this->db->delete('tblproductvariations', array('ProductCode' => $code));
 
-						/* now fresh insert with that code
+						/* now fresh insert with that existing code
 						 * calculate size 
 						 */
 						if($this->front_model->count_no_fields('tblproducts','ProductName', $title ) == '0') {
@@ -298,6 +297,7 @@ class Dashboard extends MY_Front_Controller {
 					  			'ProductName' => $title,
 								'ProductDescription' => $description,
 								'ProductPrice' => $price,
+								'UpdateAt' => date('Y-m-d H:i:s'),
 							);
 			      		$this->db->where('ProductCode', $code);
 			    		$result = $this->db->update('tblproducts',$update_data);
@@ -374,7 +374,7 @@ class Dashboard extends MY_Front_Controller {
 										'ProductDescription' => $description,
 										'ProductPrice' => $price,
 										'OtherThumb' => 0,
-										'TotalSize' => $this->contributor_model->calculate_size($directory, $purchase_psize)
+										'TotalSize' => $this->contributor_model->calculate_size($directory."$pcode/")
 						    		);
 						    		$result = $this->db->insert('tblproducts',$data);
 						    		if($result) {
@@ -412,7 +412,7 @@ class Dashboard extends MY_Front_Controller {
 										'ProductDescription' => $description,
 										'ProductPrice' => $price,
 										'OtherThumb' => 1,
-										'TotalSize' => $this->contributor_model->calculate_size($directory, $purchase_psize)
+										'TotalSize' => $this->contributor_model->calculate_size($directory."$pcode/")
 						    		);
 						    		$result = $this->db->insert('tblproducts',$data);
 						    		if($result) {
@@ -476,6 +476,57 @@ class Dashboard extends MY_Front_Controller {
 					);
 	 	echo json_encode($datas);
 	}
+	#...................END upload.................##
+
+
+	#..............BEGIN FUNCTION delete...........##
+  	# this function is deletes the respective image the user wants to delete 
+  	public function delete($pcode) {
+  		$pid = 1;  //profile id(login id ) of photographer: this will be from session after login
+  		$this->db->where('ProductCode',$pcode);	
+		$result = $this->db->delete('tblproducts');
+		if($result) {
+			$this->db->where('ProductCode',$pcode);	
+			$vresult = $this->db->delete('tblproductvariations');
+			if($vresult) {
+				$this->contributor_model->do_detach_all(APPPATH. "../uploads/$pid/$pcode/");
+				$this->session->set_flashdata('upload_msg', 'Deleted Successfully.');
+				redirect('dashboard');
+			}
+		}
+
+  	}
+  	#...................END upload.................##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// public function upload() {
 	// 		$pid = 1; //profile id(login id ) of photographer
@@ -593,7 +644,8 @@ class Dashboard extends MY_Front_Controller {
 
   	/**
 		*Begin available_package_size function for this controller
-	 	*This function is caled via ajax to check the available package size.
+	 	*This function is caled on begining amd calculate his/her package size
+	 	*and send to view so that the contributor cannot upload more than his/her package size .
 	*/
  	#............begin contributor Function.......................##
   	public function available_package_size() {
@@ -617,14 +669,15 @@ class Dashboard extends MY_Front_Controller {
 		}
 		return $remaining_size;
   	}
-  	
+  	#...................END available_package_size.................##
+
+
 	/**
 		*Begin search_scategory function for this controller
 	 	*This function is called via ajax to load subcategory when category is selected.
 	*/
  	#............begin contributor Function.......................##
-	public function search_scategory()
-	{
+	public function search_scategory()	{
 		$id = $this->input->post('cid');
 		$langCode= $this->session->userdata('lang_arr');  
 		$id = $langCode=='en'?$id:($langCode =='nl'?$id-1:$id-2);

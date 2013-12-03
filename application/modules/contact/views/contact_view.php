@@ -40,25 +40,26 @@
             <?php endif; ?>
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
             <form method="post" action="<?php echo site_url();?>contact" id="contact-form">
+               <?php echo validation_errors(); ?>
               <fieldset>
                 <div class="clearfix">
                   <label for="name"><span>Name:*</span></label>
                   <div class="input">
-                    <input tabindex="1" size="18" id="name" name="name" type="text" value="" class="input-xlarge required"  placeholder="Name">
+                    <input tabindex="1" size="18" id="name" name="name" type="text" value="<?php echo set_value('name');?>" class="input-xlarge required"  placeholder="Name">
                   </div>
                 </div>
                 
                 <div class="clearfix">
                   <label for="email"><span>Email:*</span></label>
                   <div class="input">
-                    <input tabindex="2" size="25" id="email" name="email" type="text" value="" class="input-xlarge required" placeholder="Email Address">
+                    <input tabindex="2" size="25" id="email" name="email" type="text" value="<?php echo set_value('email');?>" class="input-xlarge required" placeholder="Email Address">
                   </div>
                 </div>
                 
                 <div class="clearfix">
                   <label for="message"><span>Message:*</span></label>
                   <div class="input">
-                    <textarea tabindex="3" class="input-xlarge required" id="message" name="message" rows="7" placeholder="Message"></textarea>
+                    <textarea tabindex="3" class="input-xlarge required" id="message" name="message" rows="7" placeholder="Message"><?php echo set_value('first_name');?></textarea>
                   </div>
                 </div>
                  <span>
@@ -81,41 +82,42 @@
       </section>  -->
 </div>
 <script>
-  
-$('form#contact-form').submit(function(e){
-    e.preventDefault();
+$('form#contact-form').submit(function(){
     var error =0;
     $('.required').each(function(){
        if ($(this).val()==''){
-         error+=1;
+         error++;
          $(this).attr("placeholder", "Required");
          $(this).addClass('err');
-       }
+                   }
     });
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if( !emailReg.test( $('#email').val() ) ) {
        $("#email").val('');
        $("#email").focus();
        $("#email").attr("placeholder", "Invalid Email");
-       return(false);
+       error++;
+       return false;
     }
-    
-    if(error == 0){
-      captcha_code = $('#captcha').val();
-      ajax_respo = $.ajax({
-          url:'<?php echo site_url('captcha/captcha_text.php');?>',
-          data: {"source":"contact"},
-          type:'POST',
-          async: false,
-          dataType:'html',
-          success: function(msg){
-            return true;
-          }
-        });
-      if(captcha_code != ajax_respo['responseText']){
-        $('#captcha').css('border','1px solid #f00');
+    if(error > 0){
         return false;
-      }
-    }
+     }else{
+        captcha_code = $('#captcha').val();
+        ajax_respo = $.ajax({
+                        url:'<?php echo site_url('captcha/captcha_text.php');?>',
+                        data: {"source":"contact"},
+                        type:'POST',
+                        async: false,
+                        dataType:'html',
+                        success: function(msg){
+                           return true;
+                        }
+                      });
+          if(captcha_code != ajax_respo['responseText']){
+            $('#captcha').css('border','1px solid #f00');
+            return false;
+          }
+     }
 });
 </script>
+

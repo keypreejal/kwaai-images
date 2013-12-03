@@ -1,3 +1,4 @@
+
 <div id="search">
   <div  id="wrapper" class="container">
     <div class="navbar-inner">
@@ -72,7 +73,7 @@
         <!-- Sidebar end=============================================== -->
         <div class="span10" id="upload-image" style="display:none; margin-left:0;">
            <h2 class="titles"><i class="icon-upload-alt"></i>Upload your images</h2>
-            <form method="post" id="uploads-img" enctype="multipart/form-data" action="<?php echo site_url().'dashboard/upload'; ?>" id="product-form" class="product-form"  >
+            <form method="post" id="uploads-img" enctype="multipart/form-data" action="<?php echo site_url().'dashboard/upload'; ?>" class="product-form"  >
               <?php echo validation_errors(); ?>
               
               <select name="category" id="category" class="required">
@@ -113,7 +114,7 @@
                   <tr>
                     <td width="5px;">
                       <img id="preview" src="#" alt="your image" width="180px" height="102px"/>
-                      <input type="file" name="upload_image" id="upload_image" class="upload_image required" accept='image/*'>
+                      <input type="file" name="upload_image" id="upload_image" class="upload_image required" >
                     </td>
                     <td>
                       <input type="text" id="product_size" name="product_size" class="product_size required empty" readOnly="true">
@@ -152,7 +153,7 @@
                 <input type="hidden" id="pcode" name="pcode">
                 <input type="hidden" name="iwidth" id="iwidth">
                 <input type="hidden" name="iheight" id="iheight">
-                <input type="submit" value="save" name="upload" class="btn btn-inverse btn-signin" tabindex="9">
+                <input type="submit" value="save" name="upload" class="btn btn-inverse btn-upload" tabindex="9">
               </div>
             </form>
         </div>
@@ -177,7 +178,7 @@
                            <td><?php echo $uploaded_image->ProductName; ?></td>
                            <td>
                               <a title="Edit" pcode="<?php echo $uploaded_image->ProductCode;?>" id="eimage" href="javascript:void(0)"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
-                              <a id="delimage" title="Delete" onclick="return confirm('Are You Sure To Delete This SubCategory?');" href="<?php echo base_url()."dashboard/delete/$uploaded_image->ProductCode";?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
+                              <a id="delimage" title="Delete" onclick="return confirm('Are You Sure To Delete This Image?');" href="<?php echo base_url()."dashboard/delete/$uploaded_image->ProductCode";?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
                            </td>
                       </tr>
                     <?php endforeach; endif;?>
@@ -604,9 +605,8 @@
 
 <script src="<?php echo site_url();?>themes/js/jquery.carouFredSel-6.2.1-packed.js"></script> 
 <script src="<?php echo site_url();?>themes/js/custom.js"></script>
-
 <script type="text/javascript">
-$(function() {
+$('document').ready(function() {
   $('.tprice').hide();
   $('input[name="free-paid"]').click(function(){
       $("input:checkbox").attr("checked", false);
@@ -873,38 +873,39 @@ $(function() {
   $("#upload_image").change(function(){
     $('.empty').val('');
     $('#preview').attr('src','');
-    
     readURL(this);
   });
 
   $('.upload-thumb ').click(function(){
+    var pcd  = $('#pcode').val();
     if($(this).is(':checked')){
       if($(this).val() == 'Yes') {
-        $('div.upload-thumb-dimension').show();
+        pcd != ''?alert('Choose new image if you want to include other sized thumbnail into this image'):$('div.upload-thumb-dimension').show();
       }else {
+        pcd != ''?alert('Choose new image'):$('div.upload-thumb-dimension').hide();
         $('div.upload-thumb-dimension').hide();
       }
     }
   });
 
   //form validation 
+   $('form#uploads-img').submit(function(){
+        var error =0;
+        $('.required').each(function(){
+           if ($(this).val()==''){
+             error++;
+             $(this).attr("placeholder", "Required");
+             $(this).addClass('err');
+                       }
+        });
+        if(error > 0){
+            return false;
+         }else{
+            return true;
+         }
+    });
 
-  // $('form#uploads-img').submit(function(e){
-  //   e.preventDefault();
-  //   var error = 0;
-  //   $('.required').each(function(){
-  //      if ($(this).val()==''){
-  //        error+=1;
-  //        $(this).attr("placeholder", "Required");
-  //        $(this).addClass('err');
-  //      }
-  //   });
-    
-  //   if(error >0){
-  //     return false;
-  //   }
 
-  // });
 
   // $('form#uploads-img').submit(function(e){
   //   e.preventDefault();
@@ -935,3 +936,4 @@ $(function() {
   //}
 });
 </script>
+

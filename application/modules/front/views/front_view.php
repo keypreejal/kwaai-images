@@ -42,7 +42,7 @@
             <ul>
               <?php 
                 foreach($scategories as $scategory){
-                  echo "<li><a href=imageslist/subcategory/".strtolower($this->front_model->format_data($scategory->SCategoryName))." title=".$this->front_model->format_data($scategory->SCategoryName).">".$this->front_model->format_data($scategory->SCategoryName)."</a></li>";
+                  echo "<li><a href=category/subcategory/".strtolower($this->front_model->format_data($scategory->SCategoryName))." title=".$this->front_model->format_data($scategory->SCategoryName).">".$this->front_model->format_data($scategory->SCategoryName)."</a></li>";
                } ?>
                 
             </ul>
@@ -66,139 +66,96 @@
                </div>
                <ul id="carousel_container">
                      <!-- Carousel item -->
+                <?php if(is_array($latest_ten)>0):
+                  foreach($latest_ten as $latest):
+                    $pcode = strtolower($latest->ProductCode);
+                  ?>
                     <li>
+                      <?php echo form_open('cart/add'); ?>
+                        <div class="product-box"> 
+                          <p><a href="<?php echo site_url()."category/product/$pcode"?>"><img src="<?php echo site_url().'uploads/'.$latest->ProfileId.'/'.$latest->ProductCode.'/thumb/listing/'.$latest->ImageName;?>" alt="" /></a></p>
+                          <div class="caption">
+                          <h4 >
+                          <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
+                          <!-- <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a>  -->
+                          <?php echo form_hidden('id', $latest->ProductId); ?>
+                          <?php
+                             $attributes = 'class = "icon-shopping-cart"';
+                             echo form_submit('action', '', $attributes); ?> 
+                          </h4>
+                          </div>
+                        </div>
+                      <?php echo form_close(); ?>
+                    </li>
+                    <?php endforeach; endif;?>
+                    <!-- 
+                    <li>  
                       <div class="product-box"> 
-                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/1.jpg" alt="" /></a></p>
+                        <p><a href="<?php //echo site_url().'category/product' ?>"><img src="themes/images/thumb/2.jpg" alt="" /></a></p>
                         <div class="caption">
-                        <h4 >
-                        <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
-                        <ul class='star-rating'>
-  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-</ul>
-                        <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-                        
-                        </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="product-box"> 
-                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/2.jpg" alt="" /></a></p>
-                      <div class="caption">
-                        <h4 >
-                        <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
-                        <ul class='star-rating'>
-  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-</ul>
-                        <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-                        
-                        </h4>
+                          <h4 >
+                          <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
+                          <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
+                          </h4>
                         </div>
                       </div>
                     </li>
                     <li>
                       <div class="product-box">
-                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/3.jpg" alt="" /></a></p>
-                      <div class="caption">
-                        <h4 >
-                        <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
-                        <ul class='star-rating'>
-  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-</ul>
-                        <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-                        
-                        </h4>
+                        <p><a href="<?php //echo site_url().'category/product' ?>"><img src="themes/images/thumb/3.jpg" alt="" /></a></p>
+                        <div class="caption">
+                          <h4 >
+                          <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
+                          <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
+                          </h4>
                         </div>
                       </div>
                     </li>
                     <li>
                       <div class="product-box">
-                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/4.jpg" alt="" /></a></p>
+                        <p><a href="<?php //echo site_url().'category/product' ?>"><img src="themes/images/thumb/4.jpg" alt="" /></a></p>
+                        <div class="caption">
+                          <h4 >
+                          <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
+                          <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
+                          </h4>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="product-box">
+                        <p><a href="<?php //echo site_url().'category/product' ?>"><img src="themes/images/thumb/5.jpg" alt="" /></a></p>
+                        <div class="caption">
+                          <h4 >
+                          <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
+                          <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
+                          
+                          </h4>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="product-box">
+                        <p><a href="<?php //echo site_url().'category/product' ?>"><img src="themes/images/thumb/4.jpg" alt="" /></a></p>
                        <div class="caption">
                         <h4 >
                         <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
-                        <ul class='star-rating'>
-  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-</ul>
                         <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-                        
-                        </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="product-box">
-                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/5.jpg" alt="" /></a></p>
-                        <div class="caption">
-                        <h4 >
-                        <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
-                        <ul class='star-rating'>
-  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-</ul>
-                        <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-                        
-                        </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="product-box">
-                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/4.jpg" alt="" /></a></p>
-                       <div class="caption">
-                        <h4 >
-                        <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
-                        <ul class='star-rating'>
-  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-</ul>
-                        <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-                        
                         </h4>
                         </div>
                       </div>
                     </li>
                     <li>
                       <div class="product-box"> 
-                        <p><a href="<?php echo site_url().'imageslist/product' ?>"><img src="themes/images/thumb/2.jpg" alt="" /></a></p>
-                      <div class="caption">
-                        <h4 >
-                        <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
-                        <ul class='star-rating'>
-  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-</ul>
-                        <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-                        
-                        </h4>
+                        <p><a href="<?php //echo site_url().'category/product' ?>"><img src="themes/images/thumb/2.jpg" alt="" /></a></p>
+                        <div class="caption">
+                          <h4 >
+                          <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a> 
+                          <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
+                          </h4>
                         </div>
                       </div>
-                    </li>
+                    </li> -->
                </ul>
                <div class="clearfix"></div>
          </div>
