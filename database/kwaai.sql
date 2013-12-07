@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 03, 2013 at 06:10 AM
+-- Generation Time: Dec 06, 2013 at 11:56 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -796,7 +796,7 @@ CREATE TABLE IF NOT EXISTS `pxl_tblproducts` (
   `CreatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdateAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`ProductId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `pxl_tblproducts`
@@ -804,12 +804,16 @@ CREATE TABLE IF NOT EXISTS `pxl_tblproducts` (
 
 INSERT INTO `pxl_tblproducts` (`ProductId`, `CategoryId`, `SCategoryId`, `OrId`, `ProfileId`, `ProductCode`, `ProductName`, `ProductDescription`, `ProductPrice`, `OtherThumb`, `TotalLike`, `TotalDownload`, `TotalViews`, `Rating`, `TotalSize`, `CreatedAt`, `UpdateAt`) VALUES
 (1, 1, 7, 1, 1, 'DZE406', 'Pyramid of Foods', 'Pyramid of Foods content here...', '', 0, '', '', '', 0, '0.31', '2013-12-02 11:52:56', '2013-12-02 11:06:03'),
-(2, 1, 13, 1, 1, 'OHM824', 'Jungle', 'Jungly road adventure', '', 0, '', '', '', 0, '3.47', '2013-12-02 11:54:31', '2013-12-02 11:06:26'),
 (3, 1, 13, 1, 1, 'KED429', 'Pashupatinath', 'Pashupatinath le sabbai ko rakchaya garun', '500', 1, '', '', '', 0, '0.32', '2013-12-02 15:52:08', '0000-00-00 00:00:00'),
 (4, 1, 13, 4, 1, 'CHI739', 'Brain wash', 'brain wash enlightment', '', 0, '', '', '', 0, '0.1', '2013-12-02 15:52:50', '0000-00-00 00:00:00'),
 (5, 1, 7, 1, 1, 'NJZ463', 'Desert', 'desert', '', 0, '', '', '', 0, '0.84', '2013-12-02 16:02:09', '0000-00-00 00:00:00'),
 (6, 1, 7, 1, 1, 'ZAJ961', 'Red flower', 'Red Flower', '', 0, '', '', '', 0, '0.88', '2013-12-02 16:02:29', '0000-00-00 00:00:00'),
-(7, 7, 19, 1, 1, 'SVJ961', 'home architechture', 'home description', '', 0, '', '', '', 0, '0.08', '2013-12-02 16:03:23', '0000-00-00 00:00:00');
+(12, 1, 13, 4, 1, 'ZPW379', 'jungly', 'jungle desecc', '', 0, '', '', '', 0, '1018', '2013-12-06 12:28:27', '0000-00-00 00:00:00'),
+(13, 1, 13, 4, 1, 'CGA495', 'Green Flower', 'fdsa', '', 0, '', '', '', 0, '0.61', '2013-12-06 13:06:21', '0000-00-00 00:00:00'),
+(14, 7, 10, 1, 1, 'ILY972', 'penguine', 'fodfsdsa', '', 0, '', '', '', 0, '0.78', '2013-12-06 13:06:58', '0000-00-00 00:00:00'),
+(15, 1, 16, 1, 1, 'SGF803', 'jelly fish', 'jelly', '', 0, '', '', '', 0, '0.77', '2013-12-06 13:07:19', '0000-00-00 00:00:00'),
+(16, 7, 19, 1, 1, 'SVJ961', 'home architechture', 'hom1', '', 0, '', '', '', 0, '1015.84', '2013-12-06 13:08:59', '0000-00-00 00:00:00'),
+(17, 7, 1, 4, 1, 'ZQB419', 'yello', 'hfdsa', '', 0, '', '', '', 0, '0.64', '2013-12-06 13:09:35', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -825,7 +829,7 @@ CREATE TABLE IF NOT EXISTS `pxl_tblproductvariations` (
   `ProductDimensionName` varchar(255) NOT NULL,
   `ProductDimensions` varchar(255) NOT NULL,
   PRIMARY KEY (`VariationId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
 
 --
 -- Dumping data for table `pxl_tblproductvariations`
@@ -835,9 +839,6 @@ INSERT INTO `pxl_tblproductvariations` (`VariationId`, `ProductCode`, `ProductSi
 (1, 'DZE406', '0.01', '1385964474.jpg', 'listing', '180x108'),
 (2, 'DZE406', '0.03', '1385964474.jpg', 'detail', '440x269'),
 (3, 'DZE406', '278.8', '1385964474.jpg', 'actual', '2581x1936'),
-(4, 'OHM824', '0.01', '1385964568.jpg', 'listing', '180x108'),
-(5, 'OHM824', '0.04', '1385964568.jpg', 'detail', '440x269'),
-(6, 'OHM824', '3494.57', '1385964568.jpg', 'actual', '3840x2160'),
 (7, 'KED429', '0.01', '1385978826.jpg', 'listing', '180x108'),
 (8, 'KED429', '0.03', '1385978826.jpg', 'detail', '440x269'),
 (9, 'KED429', '79.13', '1385978826.jpg', 'actual', '1024x748'),
@@ -854,9 +855,24 @@ INSERT INTO `pxl_tblproductvariations` (`VariationId`, `ProductCode`, `ProductSi
 (20, 'ZAJ961', '0.01', '1385979448.jpg', 'listing', '180x108'),
 (21, 'ZAJ961', '0.04', '1385979448.jpg', 'detail', '440x269'),
 (22, 'ZAJ961', '858.78', '1385979448.jpg', 'actual', '1024x768'),
-(23, 'SVJ961', '0.01', '1385979502.jpg', 'listing', '180x108'),
-(24, 'SVJ961', '0.02', '1385979502.jpg', 'detail', '440x269'),
-(25, 'SVJ961', '50.41', '1385979502.jpg', 'actual', '1024x705');
+(42, 'ZPW379', '0.01', '1386312204.jpg', 'listing', '180x108'),
+(43, 'ZPW379', '0.05', '1386312204.jpg', 'detail', '440x269'),
+(44, 'ZPW379', '3494.57', '1386312204.jpg', 'actual', '3840x2160'),
+(45, 'CGA495', '0.01', '1386314480.jpg', 'listing', '180x108'),
+(46, 'CGA495', '0.03', '1386314480.jpg', 'detail', '440x269'),
+(47, 'CGA495', '581.33', '1386314480.jpg', 'actual', '1024x768'),
+(48, 'ILY972', '0.01', '1386314518.jpg', 'listing', '180x108'),
+(49, 'ILY972', '0.03', '1386314518.jpg', 'detail', '440x269'),
+(50, 'ILY972', '759.6', '1386314518.jpg', 'actual', '1024x768'),
+(51, 'SGF803', '0.01', '1386314538.jpg', 'listing', '180x108'),
+(52, 'SGF803', '0.02', '1386314538.jpg', 'detail', '440x269'),
+(53, 'SGF803', '757.52', '1386314538.jpg', 'actual', '1024x768'),
+(54, 'SVJ961', '0.01', '1386314638.jpg', 'listing', '180x108'),
+(55, 'SVJ961', '0.02', '1386314638.jpg', 'detail', '440x269'),
+(56, 'SVJ961', '50.41', '1386314638.jpg', 'actual', '1024x705'),
+(57, 'ZQB419', '0.01', '1386314675.jpg', 'listing', '180x108'),
+(58, 'ZQB419', '0.03', '1386314675.jpg', 'detail', '440x269'),
+(59, 'ZQB419', '606.34', '1386314675.jpg', 'actual', '1024x768');
 
 -- --------------------------------------------------------
 

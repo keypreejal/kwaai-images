@@ -24,90 +24,66 @@
 	<section class="main-content">				
 		<div class="row">
 			<div class="span10">	
-				<h2 class="titles"><i class="icon-shopping-cart color"></i> <span class="text">View Cart</span></h2>				
+				<h2 class="ttls"><i class="icon-shopping-cart color"></i> <span class="text">View Cart</span></h2>				
+				<?php if ($cart = $this->cart->contents()): ?>
 				<table class="table table-striped k-table">
 					<thead>
 						<tr>
 							<th>Remove</th>
 							<th>Image Thumbnail</th>
 							<th>Image ID</th>
-							<th>Image Size</th>
+							<th>Image Title</th>
 							<th>Price</th>
 							
 						</tr>
 					</thead>
 					<tbody>
+					<?php 
+					foreach ($cart as $item): ?>
 						<tr>
 							<td><input type="checkbox" value="option1"></td>
-							<td><a href="product_detail.php"><img alt="" src="themes/images/cart/2.jpg"></a></td>
-							<td>000111</td>
-							<td>
-								<select class="i_size">
-									<option>Standard XS</option>
-									<option>Standard S</option>
-									<option>Standard M</option>
-									<option>Standard L</option>
-									<option>Standard XL</option>
-								</select>
-							</td>
-							<td>$2,350.00</td>
+							<td><a href="product_detail.php"><img alt="" src="<?php echo site_url().'uploads/'.$item['profileid'].'/'.$item['code'].'/thumb/listing/'.$item['image'];?>"></a></td>
+							<td><?php echo $item['code'];?></td>
+							<td><?php echo $item['name']; ?></td>
+							<td><?php echo $item['price']=='.999999'?'Free':'$'.$item['price'];?></td>
 							
-						</tr>			  
-						<tr>
-							<td><input type="checkbox" value="option1"></td>
-							<td><a href="product_detail.php"><img alt="" src="themes/images/cart/1.jpg"></a></td>
-							<td>003333</td>
-							<td>
-								<select class="i_size">
-									<option>Standard XS</option>
-									<option>Standard S</option>
-									<option>Standard M</option>
-									<option>Standard L</option>
-									<option>Standard XL</option>
-								</select>
-							</td>
-							<td>$1,150.00</td>
-							
-						</tr>
-						<tr>
-							<td><input type="checkbox" value="option1"></td>
-							<td><a href="product_detail.php"><img alt="" src="themes/images/cart/3.jpg"></a></td>
-							<td>002222</td>
-							<td>
-								<select class="i_size">
-									<option>Standard XS</option>
-									<option>Standard S</option>
-									<option>Standard M</option>
-									<option>Standard L</option>
-									<option>Standard XL</option>
-								</select>
-							</td>
-							<td>$1,210.00</td>
-							
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td style="text-align:right; font-weight:bold; padding-right:20px">Total</td>
-							
-							<td><strong>$3,600.00</strong></td>
-						</tr>		  
+						</tr>		
+						<?php endforeach; ?>	  
+						  
 					</tbody>
 				</table>
-
+				
 				<p class="cart-total right">
-					<strong>Sub-Total</strong>:	$100.00<br>
+					<strong>Sub-Total</strong>:	$ <?php echo $this->cart->total();?><br>
 					<strong>Eco Tax (-2.00)</strong>: $2.00<br>
 					<strong>VAT (17.5%)</strong>: $17.50<br>
-					<strong>Total</strong>: $119.50<br>
+					<strong>Total</strong>: $ <br>
 				</p>
 				<hr/>
 				<p class="buttons center">				
-					<button class="btn" type="button" id="update">Update</button>
+					<!-- <button class="btn" type="button" id="update">Update</button> -->
 					<button class="btn" type="button" id="continue">Continue</button>
 					<button class="btn btn-inverse" type="submit" id="checkout">Checkout</button>
-				</p>					
+				</p>	
+				<?php  else: ?>
+				<div class="no-product-to-cart">
+					<p>No product </p>
+					<table class="table table-striped k-table">
+						<thead>
+							<tr>
+								<th>Remove</th>
+								<th>Image Thumbnail</th>
+								<th>Image ID</th>
+								<th>Image Title</th>
+								<th>Price</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<?php  endif;?>
 			</div>
 		</div>
 	</section>

@@ -20,6 +20,7 @@
                 <form class="form uniformForm validateForm" enctype="multipart/form-data" method="post" >  
                   <div class="widget-contents">
                     <div class="field-group">
+                    <div class="field">
                        <div class="widget widget-tabs">
                         <?php
                            $selected = ($status ==1)?'selected="selected"':'';
@@ -39,9 +40,11 @@
 								             $contents .= "<div class=widget-content id=tab_".intval($language->LangId)." style=display: block;><label>SubPage Title:</label><div class=field><input type=text name=spage_title[] id=tab_".intval($language->LangId)."spage_title size=50 value='$tle'></div>$slug<label>SubPage Content:</label><div class=field><textarea name=spage_content[] id=tab_".intval($language->LangId)."_spage_content>$cont</textarea><script type=text/javascript>var editor = CKEDITOR.replace( 'tab_".intval($language->LangId)."_spage_content', { enterMode : CKEDITOR.ENTER_BR, defaultLanguage : 'en', entities : true, width: '100%', tabSpaces:10, filebrowserBrowseUrl: '<?php site_url();?>ckeditor/sfilemanager/index.html'}); </script></div></div>";
             								}
             							?>    
+                                        <div class="widget-header">
                             <ul class="tabs left"> 
                                <?php echo $stabs; ?>
                             </ul>   
+                            </div>
                             <?php echo $contents; ?>
                             <label>Status:</label>
                             <div class=field>
@@ -53,6 +56,7 @@
                             </div>
                          
                        </div>   
+                       </div>
                     </div>   
                     	<div class="field">
                      	<input type="hidden" name="page_id" value="<?php echo $pageId;?>">

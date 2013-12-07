@@ -50,10 +50,11 @@ Class Front_model extends CI_Model
 		}
 	}
 
-	function get_multi_grid($table_name1, $table_name2, $primary_field, $join_cond, $where=NULL,$limit =NULL) {
+	function get_multi_grid($table_name1, $table_name2, $primary_field, $join_cond, $where=NULL ,$limit =NULL) {
 		if (is_array($where) && !empty($where)){
 			$this->db->where($where);
 		}
+
 		if (!empty($limit)){
 			$this->db->limit($limit);
 		}
@@ -64,6 +65,7 @@ Class Front_model extends CI_Model
 		$this->db->group_by($primary_field);
 		
 		$query = $this->db->get();
+		//echo $this->db->last_query();
 		if($query->num_rows()>0){
 		  return $query->result();
 		}

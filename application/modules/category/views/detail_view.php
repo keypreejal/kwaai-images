@@ -29,87 +29,38 @@
         <h2><?php echo $product->ProductName;?></h2>
         <p>ID:<?php echo $product->ProductCode;?></p>
         <p>© <a href=""><?php echo $contributor_name;?></a></p>
-        <a href="javascript:void(0)" class="thumbnail" data-fancybox-group="group1" title="<?php echo $product->ProductName?>"><img alt="" src="<?php echo site_url().'uploads/'.$product->ProfileId.'/'.$product->ProductCode.'/thumb/detail/'.$product_name?>"></a>
-        <h4 class="pull-left" > <a class="eye pull-left " href="product_details.html"> <i class="icon-eye-open"></i><span class="eye-txt">(10)</span></a> <a class="down pull-left " href="product_details.html"> <i class="icon-download-alt"></i><span class="down-txt">(10)</span></a> </h4>
+        <div class="thumbnail" title="<?php echo $product->ProductName?>"><img alt="" src="<?php echo site_url().'uploads/'.$product->ProfileId.'/'.$product->ProductCode.'/thumb/detail/'.$product_name?>"></div>
+        <h4 class="pull-left" > <a class="eye pull-left " href="product_details.html"> <i class="icon-eye-open"></i><span class="eye-txt">(10)</span></a>  </h4>
         <h4 class="pull-right"> <a class="likes pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="likes-txt">(10)</span></a>
         </h4>
       </div>
       <!--/detail image-->
       <div class="span5 d-tab">
        <img class="easy-steps" src="<?php echo site_url() ?>themes/images/easy-way.jpg" width="460" height="60" alt="easy steps">
-        <ul class="nav nav-tabs" id="myTab">
-          <li class="active"><a href="#home">Price</a></li>
-          <li class=""><a href="#information">Information</a></li>
-          <li class=""><a href="#description">Description</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="home">
-            <table class="table table-striped shop_attributes tab-table">
-              <tbody>
-                <tr class="table-head">
-                  <th>Size</th>
-                  <th>Pixel / Inches</th>
-                  <th>Price</th>
-                  <th style="text-align:right">Download</th>
-                </tr>
-                <tr class="">
-                  <td>Standard XS </td>
-                  <td>423 x 283 (0.1 MP)</td>
-                  <td>&pound; 1.0</td>
-                  <td style="text-align:right"><a href="#">Add to cart</a></td>
-                </tr>
-                <tr class="">
-                  <td>Standard S </td>
-                  <td>847 x 567 (0.5 MP)</td>
-                  <td>&pound; 1.0</td>
-                  <td style="text-align:right"><a href="#">Add to cart</a></td>
-                </tr>
-                <tr class="">
-                  <td>Standard M </td>
-                  <td>1685 x 1128 (1.9 MP)</td>
-                  <td>&pound; 1.0</td>
-                  <td style="text-align:right"><a href="#">Add to cart</a></td>
-                </tr>
-                <tr class="">
-                  <td>Standard L </td>
-                  <td>2351 x 1574 (3.7 MP)</td>
-                  <td>&pound; 1.0</td>
-                  <td style="text-align:right"><a href="#">Add to cart</a></td>
-                </tr>
-                <tr class="">
-                  <td>Standard XL </td>
-                  <td>3872 x 2592 (10.0 MP)</td>
-                  <td>&pound; 1.0</td>
-                  <td style="text-align:right"><a href="#">Add to cart</a></td>
-                </tr>
-              </tbody>
-            </table>
-
-            <?php echo form_open('cart/add'); ?>
-            <div class="subsribe-box">
-              <p class="pull-left">Discover our monthly plans and <br>
-                download images</p>
-               
-               <?php echo form_hidden('id', $product->ProductId); ?>
-                      <?php
-                         $attributes = 'class = "icon-shopping-cart"';
-                         echo form_submit('action', '', $attributes); ?>   
-              <a class="pull-right" href="#">Subscribe</a> 
-            </div>
-            <?php echo form_close(); ?>
-          </div>
-          <div class="tab-pane" id="information"> Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches. </div>
-          <div class="tab-pane" id="description">
-            <p> Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches.</p>
-            <p> Kwaai-Images is an Amsterdam based Microstock photography company (Low priced and inclusive stock photography) for images, sketches and paintings. This platform is build for professionals and amateurs, to upload, sale and resale pictures and sketches.</p>
-          </div>
-        </div>
+        <div class="detail-info">
+        <div class="d-block">
+			<h3 class="ttl-d">Image Size</h3>        
+            <hr />
+            <p>Small, Big</p>
+            </div><!--block-->
+            <div class="d-block des-block">
+			<h3 class="ttl-d">Description</h3>        
+            <hr />
+            <p><?php echo $product->ProductDescription;?></p>
+            </div><!--block-->
+             <hr />
+            <div class="d-block b-price">
+			<h3 class="ttl-d"><?php echo $product->ProductPrice !=''?'$'.$product->ProductPrice:'Free';?></span></h3> 
+       <?php echo form_open('cart/add'); ?>
+       <?php echo form_hidden('id', $product->ProductId); ?>
+        <!-- <a href="#">Add to cart</a> -->
+        <?php echo form_submit('action', 'Add to cart'); ?> 
+        <?php echo form_close(); ?>
+            </div><!--block-->
+        </div><!---end of img information--->
+        
       </div>
       <!--/tab ending-->
-
-
-
-      <div class="row">
       <div class="span10">
         <div  class="recent-posts blocky">
           <h4 class="title"> <span class="pull-center"><span class="text"><span class="line">Similar Pictures</span></span></span> <span class="pull-right"> </span> </h4>
@@ -148,119 +99,7 @@
                     <?php echo form_close(); ?>
                   </li>
               <?php endforeach; endif;?>
-               <!--
-              <li>
-                <div class="product-box">
-                  <p><a href="product_detail.php"><img src="<?php //echo site_url();?>themes/images/thumb/1.jpg" alt="" /></a></p>
-                  <div class="caption">
-                    <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                      <ul class='star-rating'>
-                        <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                        <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                        <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                        <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                        <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                      </ul>
-                      <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> </h4>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="product-box">
-                  <p><a href="product_detail.php"><img src="<?php //echo site_url();?>themes/images/thumb/2.jpg" alt="" /></a></p>
-                  <div class="caption">
-                    <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                      <ul class='star-rating'>
-                        <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                        <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                        <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                        <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                        <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                      </ul>
-                      <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> </h4>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="product-box">
-                  <p><a href="product_detail.php"><img src="<?php //echo site_url();?>themes/images/thumb/3.jpg" alt="" /></a></p>
-                  <div class="caption">
-                    <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                      <ul class='star-rating'>
-                        <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                        <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                        <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                        <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                        <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                      </ul>
-                      <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> </h4>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="product-box">
-                  <p><a href="product_detail.php"><img src="<?php //echo site_url();?>themes/images/thumb/4.jpg" alt="" /></a></p>
-                  <div class="caption">
-                    <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                      <ul class='star-rating'>
-                        <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                        <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                        <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                        <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                        <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                      </ul>
-                      <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> </h4>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="product-box">
-                  <p><a href="product_detail.php"><img src="<?php //echo site_url();?>themes/images/thumb/5.jpg" alt="" /></a></p>
-                  <div class="caption">
-                    <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                      <ul class='star-rating'>
-                        <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                        <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                        <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                        <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                        <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                      </ul>
-                      <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> </h4>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="product-box">
-                  <p><a href="product_detail.php"><img src="<?php //echo site_url();?>themes/images/thumb/4.jpg" alt="" /></a></p>
-                  <div class="caption">
-                    <h4 > <a class="like pull-left " href="<?php //echo site_url();?>product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                      <ul class='star-rating'>
-                        <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                        <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                        <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                        <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                        <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                      </ul>
-                      <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> </h4>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="product-box">
-                  <p><a href="product_detail.php"><img src="<?php //echo site_url();?>themes/images/thumb/2.jpg" alt="" /></a></p>
-                  <div class="caption">
-                    <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                      <ul class='star-rating'>
-                        <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                        <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                        <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                        <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                        <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                      </ul>
-                      <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> </h4>
-                  </div>
-                </div>
-              </li> -->
+              
             </ul>
             <div class="clearfix"></div>
           </div>
@@ -268,17 +107,7 @@
         <!--/carousel--> 
       </div>
     </div>
-    </div>
   </section>
 </div>
 <script src="<?php echo site_url();?>themes/js/jquery.carouFredSel-6.2.1-packed.js"></script> 
 <script src="<?php echo site_url();?>themes/js/custom.js"></script>
-<script type="text/javascript">
-$(function () {
-        $('#myTab a:first').tab('show');
-        $('#myTab a').click(function (e) {
-          e.preventDefault();
-          $(this).tab('show');
-        })
-      })
-</script>

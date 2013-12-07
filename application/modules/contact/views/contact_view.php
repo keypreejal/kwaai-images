@@ -25,13 +25,14 @@
       </section>
       <section class="main-content">        
         <div class="row"> 
-        <h4><span>Contact Us</span></h4>      
-          <div class="span5">
+        <div class="span10">
+        <h2 class="ttls"><span class="text">Contact Us</span></h2> 
+          <div class="span3 side-sec">
             <div>
               <?php echo $others;?>
             </div>
           </div>
-          <div class="span5" style="margin-left:0">
+          <div class="span5 pull-right" style="margin-left:0">
             <?php if($this->session->flashdata('contact_msg')): ?>
                    <div class="notify notify-success">                        
                       <a class="close" href="javascript:;">×</a>                        
@@ -64,7 +65,7 @@
                 </div>
                  <span>
                     <label for="captcha"><span>Secuity Code:*</span></label> 
-                    <div style="height:27px;width:75px;color:#ffffff;font-size:22px;font-family:Verdana, Geneva, sans-serif;background-color:#000000;"><?php echo $_SESSION['security_code'];?></div>
+                    <div style="height:27px;width:75px;color:#ffffff;font-size:22px;font-family:Verdana, Geneva, sans-serif;background-color:#000000; padding:5px 10px; margin-bottom:5px"><?php echo $_SESSION['security_code'];?></div>
                     <input name="captcha" type="text" value="" class="required" id="captcha"/>
                 </span>
 
@@ -74,7 +75,8 @@
                 </div>
               </fieldset>
             </form>
-          </div>        
+          </div> 
+          </div>       
         </div>
       </section>      
      <!-- <section class="google_map">

@@ -50,8 +50,9 @@
                                      
                                     <?php echo $contents; ?>
                                     
-                                    <label>Location:</label>
+                                    
                                       <div class="field">
+                                      <label>Location:</label>
                                         <select name="page_location" id="page_location" class="validate[required]">
                                           <option value="" <?php echo( ($plocation ==-1) ?"Selected":"")?>>Select Page Location</option>
                                           <option value="0" <?php echo( ($plocation ==0) ?"Selected":"")?>>Header</option>
@@ -71,8 +72,9 @@
                                               <input type="text" name="footer_position" id="footer_position" size="10" value="<?php echo $fposition==-1?'':$fposition;?>"/>            
                                           </div>
                                       </div>
-                                    <label>Status:</label>
+                                    
                                     <div class=field>
+                                    <label>Status:</label>
                                       <select name="status" id="status" class="validate[required]">
                                         <option value=''>Select Status</option>
                                         <option <?php echo $selected ;?>value=0>Disable</option>

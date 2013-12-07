@@ -1354,6 +1354,9 @@ table {
 	border-bottom:1px solid #ddd
 }
 .tab-table td a{font-size:11px; line-height:normal; background-color:#505050; color:#fff; padding:2px 8px; border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px}
+.uploaded-images .tab-table td a, .uploaded-images .tab-table td a:hover{background:none; padding:2px 15px 2px 0;}
+.uploaded-images .tab-table td a i{font-size:25px; color:#000;}
+.uploaded-images .tab-table td a i:hover{color:#049fef; background:none}
 .table th, .table td a:hover{background-color:#049fef}
 .table th {
 	font-size:15px;

@@ -3,7 +3,7 @@
   .img-preview{
     position:relative;
     display:block;
-    width:100px;
+    width:150px;
     height:100px;
     background:#efefef;
     border:1px solid #FFF;
@@ -14,11 +14,8 @@
     left:0;
   }
   .image-container{
-    float:left;
     margin:0 10px 10px 0;
-    border:2px solid #ccc;
-    padding:10px;
-    background:#FFF;
+	    padding:10px;
   }
   .image-container:last-child{margin-right:0;}
   .image-container.over{
@@ -83,8 +80,8 @@
                                         <tr class="gradeA">
                                             <td><div class="image-container">
                                                     <div class="img-preview"><form name="imgform" class="imgform"><img src="<?php echo site_url().'featureImg/thumb/'.$page->FeatureImage;?>"/></form></div>
-                                                    <input type="button" name="add" class="add" value="Add" style="float:left;" />
-                                                    <input type="button" id="remove" rid="<?php echo $page->PageId;?>" value="Remove" style="float:left;" />
+                                                    <input type="button" name="add" class="add" value="Add"  />
+                                                    <input type="button" id="remove" rid="<?php echo $page->PageId;?>" value="Remove"/>
                                                     <input type="file" pid="<?php echo $page->PageId;?>" name="upload_image" class="upload_image" accept="image/jpeg" style="visibility:hidden;" />
                                                 </div>
                                             </td>

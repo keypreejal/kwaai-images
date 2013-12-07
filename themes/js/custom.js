@@ -5,7 +5,7 @@
 /* Carousel */
 $('#carousel_container').carouFredSel({
           responsive: true,
-          width: '100%',
+          width: '96%',
          scroll: 1,
           delay: 10000,
       duration: 10000,

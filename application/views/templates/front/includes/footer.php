@@ -31,9 +31,9 @@
         </ul>
       </div>
       <div class="span2 foot-last">
-        <p style="float:left; font-size:13px; font-weight:bold; color:#fff; line-height:29px; "><?php echo $follow_us;?></p>
+        <h4><?php echo $follow_us;?></h4>
         <span class="social_icons"> <a target="_blank" class="facebook" href="<?php echo $facebook;?>"><i class="icon-facebook"></i></a> <a class="twitter" href="<?php echo $twitter;?>"><i class="icon-twitter"></i></a> <a class="google" target="_blank" href="<?php echo $gplus;?>"><i class="icon-google-plus"></i></a> </span> </div>
-        <a href="#"><img src="<?php echo site_url();?>themes/images/paypao.jpg" width="174" height="53"  alt="paypal" align="right"></a>
+        <a href="#"><img src="<?php echo site_url();?>themes/images/paypao.jpg" width="174" height="53"  alt="paypal" align="left"></a>
     </div>
   </section>
   

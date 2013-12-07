@@ -314,7 +314,7 @@ class Categories extends MY_Controller {
 			
 		// move/resize images
 		
-		$this->image->resize($tmp_file_path,$thumb,100,100);
+		$this->image->resize($tmp_file_path,$thumb,150,100);
 		$this->image->resize($tmp_file_path,$dest,188,183);
 		@unlink($tmp_file_path);
 		for($i=$id;$i<($id+3);$i++){

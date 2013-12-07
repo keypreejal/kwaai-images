@@ -119,7 +119,7 @@
  		      </li>
           <li>
             <a href="<?php echo site_url().'cart';?>"><?php echo $shopping_baskets;?></a>
-            <span class="s-basket"><p>0</p></span>
+            <span class="s-basket"><p><?php echo count($this->cart->contents()).' item';?></p></span>
           </li>
         </ul>
       </div>

@@ -31,46 +31,48 @@
       <div class="well well-small">
         <p><?php echo $sidebar_search_fliter_title;?></p>
       </div>
-     <form method="#" action="#" class="side-search">
-      <div class="side-block">
-          <h2><?php echo $sidebar_search_fliter_image_type;?></h2>
-          <?php 
-            foreach($categories as $category){
-              echo "<div><input type='checkbox' class='image' id='".intval($category->CatId)."' name='image'><label>".$this->front_model->format_data($category->CategoryName)."</label></div>";
-            } ?>
-         
-      </div>
-      <!--/ side block image type-->
-      <div class="side-block">
-        <h2><?php echo $sidebar_search_fliter_category;?></h2>
-          <div>
-              <select>
-               <?php 
-				foreach($scategories as $scategory){
-				  echo "<option>".$this->front_model->format_data($scategory->SCategoryName)."</option>";
-				} ?>
-             </select> 
-          </div>  
-          <!--/end of div-->
-          </div>
-      <!--/ side block category type-->
-      <div class="side-block" style="border-bottom:none">
-        <h2><?php echo $sidebar_search_fliter_orientation;?></h2>
-          <div>
-          	 <?php 
-				foreach($orientations as $orientation){
-				  echo "<div><input type='checkbox' class='image' id='".intval($orientation->OrId)."' name='image'><label>".$this->front_model->format_data($orientation->OrName)."</label></div>";
-				} ?>
-          </div>  
-          <!--/end of div-->
-      </div>          
-      <!--/ side block oreinetation type-->
-      <div class="side-block">
-         <button class="btn btn-primary" id="submitButton" type="submit"><?php echo $search_btn;?></button>
-      </div> 
-    </form>
-  </div>
+      <form method="#" action="#" class="side-search">
+        <div class="side-block">
+            <h2><?php echo $sidebar_search_fliter_image_type;?></h2>
+            <?php 
+              foreach($categories as $category){
+                echo "<div><input type='checkbox' class='cateory' value='".intval($category->CatId)."' name='category'><label>".$this->front_model->format_data($category->CategoryName)."</label></div>";
+              } ?>
+        </div>
+        <!--/ side block image type-->
+        <div class="side-block">
+          <h2><?php echo $sidebar_search_fliter_category;?></h2>
+            <div>
+                <select name="scategory">
+                 <?php 
+          				foreach($scategories as $scategory){
+          				  echo "<option value='".intval($scategory->SCatId)."'>".$this->front_model->format_data($scategory->SCategoryName)."</option>";
+          				} ?>
+               </select> 
+            </div>  
+            <!--/end of div-->
+        </div>
+        <!--/ side block category type-->
+        <div class="side-block" style="border-bottom:none">
+          <h2><?php echo $sidebar_search_fliter_orientation;?></h2>
+            <div>
+
+            	 <?php 
+        				foreach($orientations as $orientation){
+        				  echo "<div><input type='checkbox' class='orientation' value='".intval($orientation->OrId)."' name='orientation'><label>".$this->front_model->format_data($orientation->OrName)."</label></div>";
+        				} ?>
+            </div>  
+            <!--/end of div-->
+        </div>          
+        <!--/ side block oreinetation type-->
+        <div class="side-block">
+           <input class="btn btn-primary" id="submitButton" type="submit" value="<?php echo $search_btn;?>"></input>
+        </div> 
+      </form>
+    </div>
     <!-- Sidebar end=============================================== -->
+
+
     <div class="span9 product-span">
       <h3 class="result"> 12,345 Results </h3>
       <ul class="breadcrumb">
@@ -92,10 +94,12 @@
            if(is_array($kwaai_images)>0):
             foreach($kwaai_images as $kwaai_image):?>
               <li>
-                <?php echo form_open('cart/add'); ?>
+                <?php echo form_open('cart/add'); 
+                      $pcode = strtolower($kwaai_image->ProductCode);
+                ?>
                 <div class="product-box"> 
-                  <p><a href="<?php echo site_url()."category/product/$kwaai_image->ProductCode" ?>" class="screenshot" rel="<?php echo site_url().'uploads/'.$kwaai_image->ProfileId.'/'.$kwaai_image->ProductCode.'/thumb/detail/'.$kwaai_image->ImageName;?>" title="<?php echo $kwaai_image->ProductName;?>">
-                    <img src="<?php echo site_url().'uploads/'.$kwaai_image->ProfileId.'/'.$kwaai_image->ProductCode.'/thumb/listing/'.$kwaai_image->ImageName;?>"> </a></p>
+                  <p><a href="<?php echo site_url()."category/product/$pcode" ?>" class="screenshot" rel="<?php echo site_url().'uploads/'.$kwaai_image->ProfileId.'/'.$pcode.'/thumb/detail/'.$kwaai_image->ImageName;?>" title="<?php echo $kwaai_image->ProductName;?>">
+                    <img src="<?php echo site_url().'uploads/'.$kwaai_image->ProfileId.'/'.$pcode.'/thumb/listing/'.$kwaai_image->ImageName;?>"> </a></p>
                   <div class="caption">
                     <h4 ><a class="like pull-left " href="javascript:void(0)"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
                       <ul class='star-rating'>
@@ -120,106 +124,7 @@
               </li>
               
         <?php endforeach; endif;?>
-       <!--  <li>
-          <div class="product-box"> 
-            <p> <a href="detail.php" class="screenshot" rel="themes/images/thumb-large/1.jpg" title=":Bird"><img src="themes/images/thumb/1.jpg"> </a></p>
-            <div class="caption">
-              <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                <ul class='star-rating'>
-                  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                </ul>
-                <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-              </h4>
-              <hr>
-              <span id="i-id">00011</span>
-              <span id="i-name">Kwaai Images</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="product-box"> 
-            <p><a href="detail.php" class="screenshot" rel="themes/images/thumb-large/2.jpg" title=":Bird"><img src="themes/images/thumb/2.jpg"> </a></p>
-            <div class="caption">
-              <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                <ul class='star-rating'>
-                  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                </ul>
-                <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-              </h4>
-              <hr>
-              <span id="i-id">00011</span>
-              <span id="i-name">Kwaai Images</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="product-box"> 
-            <p><a href="detail.php" class="screenshot" rel="themes/images/thumb-large/3.jpg" title=":Bird"><img src="themes/images/thumb/3.jpg"> </a></p>
-            <div class="caption">
-              <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                <ul class='star-rating'>
-                  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                </ul>
-                <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-              </h4>
-              <hr>
-              <span id="i-id">00011</span>
-              <span id="i-name">Kwaai Images</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="product-box"> 
-            <p><a href="detail.php" class="screenshot" rel="themes/images/thumb-large/4.jpg" title=":Bird"><img src="themes/images/thumb/4.jpg"> </a></p>
-            <div class="caption">
-              <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                <ul class='star-rating'>
-                  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                </ul>
-                <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-              </h4>
-              <hr>
-              <span id="i-id">00011</span>
-              <span id="i-name">Kwaai Images</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="product-box"> 
-            <p><a href="detail.php" class="screenshot" rel="themes/images/thumb-large/5.jpg" title=":Bird"><img src="themes/images/thumb/5.jpg"> </a></p>
-            <div class="caption">
-              <h4 > <a class="like pull-left " href="product_details.html"> <i class="icon-thumbs-up"></i><span class="like-txt">(10)</span></a>
-                <ul class='star-rating'>
-                  <li><a href='#' title='Rate this 1 smile out of 5' class='one-star'>1</a></li>
-                  <li><a href='#' title='Rate this 2 smile out of 5' class='two-stars'>2</a></li>
-                  <li><a href='#' title='Rate this 3 smile out of 5' class='three-stars'>3</a></li>
-                  <li><a href='#' title='Rate this 4 smile out of 5' class='four-stars'>4</a></li>
-                  <li><a href='#' title='Rate this 5 smile out of 5' class='five-stars'>5</a></li>
-                </ul>
-                <a class="pull-right" href="#"> <i class="icon-shopping-cart"></i></a> 
-              </h4>
-              <hr>
-              <span id="i-id">00011</span>
-              <span id="i-name">Kwaai Images</span>
-            </div>
-          </div>
-        </li> -->
+       
       </ul>
 
 
@@ -236,3 +141,43 @@
   </div>
 </div>
 <script src="<?php echo site_url();?>themes/js/js/main.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('input[name="category"]:first').attr("checked",true);
+  $('input[name="orientation"]:first').attr("checked",true);
+  $('input[name="orientation"]').click(function(){
+    $("input[name=orientation]:checkbox").attr("checked", false);
+    $(this).attr("checked", true);
+  });
+  $('input[name="category"]').click(function(){
+    $("input[name=category]:checkbox").attr("checked", false);
+    $(this).attr("checked", true);
+  });
+
+  $('form.side-search').submit(function(e){
+    e.preventDefault();
+    $('<img>',{
+        src : './images/wait.gif',
+        class : 'search_loading',
+      }).insertAfter($('#sidebar')).wrap('<div class="searching"></div>');
+    
+    var dataString = $(this).serializeArray();
+    $.ajax({
+        type: "post",
+        url : "<?php echo site_url('category/search');?>",
+        data: dataString,
+        dataType : 'html',
+        success: function(data){
+         $('img.search_loading').remove();   
+         $('div.searching').remove();
+         if(data !=' '){
+            $('ul.listing-products li').remove();
+            $('ul.listing-products').html(data);
+         }
+        }
+      });
+
+  })
+})
+</script>

@@ -85,24 +85,24 @@ class Cart extends CI_Controller {
 		$product = $this->front_model->get_single_row('tblproducts', 'ProductId', $pid);
 
 		$image = $this->front_model->get_single_data('tblproductvariations','ImageName','ProductCode', $product->ProductCode);
-		$price = $product->ProductPrice ==''?10:$product->ProductPrice;
+		//here if price is .999999 it means the product is for Free
+		$price = $product->ProductPrice ==''?'0.0':$product->ProductPrice;
 		$data = array(
                'id'      => $pid,
                'qty'     => 1,
                'price'   => $price,
                'name'    => $product->ProductName,
                'image'  => $image,
+               'profileid' => $product->ProfileId,
                'code' => $product->ProductCode,
                'size' => $product->TotalSize
             );
 
 		$this->cart->insert($data); 
 		
-		$this->session->set_flashdata('cart_smsg', 'Product Added to cart');
+		// $this->session->set_flashdata('cart_smsg', 'Product Added to cart');
 
-		$this->template->set_template('defaultfront');
-		$this->template->write_view('content', 'cart_view',$this->data);
-		$this->template->render();
+		redirect('category');
 		
 
 		

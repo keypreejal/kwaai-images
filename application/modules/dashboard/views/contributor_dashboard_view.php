@@ -25,7 +25,7 @@
   <section class="main-content">
     <div class="row">
       <div class="span10">
-        <h2 class="titles"><span class="text"><a class="show" id="home" href="javascript:void(0)"><i class="icon-home"></i>My Dashboard:</a> User Name Display</span></h2>
+        <h2 class="ttls"><span class="text"><a class="show" id="home" href="javascript:void(0)"><i class="icon-home"></i>My Dashboard:</a> User Name Display</span></h2>
          <?php if($this->session->flashdata('upload_msg')): ?>
              <div class="notify notify-success">                        
                 <a class="close" href="javascript:;">×</a>                        
@@ -93,44 +93,47 @@
                         echo "<option value='".intval($orientation->OrId)."'>".$this->front_model->format_data($orientation->OrName)."</option>";         
                     } ?>
               </select>
+              <hr />
               <div class="control-group freepaid">
-                <div class="controls">
+                <div class="select-type">
                   <input type="checkbox" name="free-paid" checked="true" value="0"><label class="free">Upload image for FREE</label>
                 </div>
-                <div class="controls">
+                <div class="select-type">
                   <input type="checkbox" name="free-paid" value="1"><label class="free">Upload image for Paid</label>
                 </div>
               </div>
-
-              <table class="table table-striped shop_attributes tab-table">
-                <thead>
+				<hr />
+                <div class="dashtable">
+              <table class="table table-striped shop_attributes tab-table upload-img-sec">
+              <tbody>
+              <tr>
                   <th>Upload</th>
-                  <th>Size(MB)</th>
-                  <th>Title</th>
+                  <th class="u-size">Size(MB)</th>
+                  <th class="ttl-size">Title</th>
                   <th>Description</th>
                   <th class="tprice">Price</th>
-                </thead>
-                <tbody>
+                </tr>
                   <tr>
-                    <td width="5px;">
-                      <img id="preview" src="#" alt="your image" width="180px" height="102px"/>
+                    <td class="up-size">
+                      <img id="preview" src="#" alt="" width="80px" height="40px"/>
                       <input type="file" name="upload_image" id="upload_image" class="upload_image required" >
                     </td>
-                    <td>
+                    <td class="u-size">
                       <input type="text" id="product_size" name="product_size" class="product_size required empty" readOnly="true">
                     </td>
-                    <td>
+                    <td class="ttl-size">
                       <input type="text" name="product_title" class="product_title required empty">
                     </td>
-                    <td>
+                    <td class="t-size">
                       <textarea name="product_description" class="product_description required empty"></textarea>
                     </td>
-                    <td class="tprice">
+                    <td class="tprice u-size">
                       <input type="text" name="product_price" class="product_price empty"></textarea>
                     </td>
                   </tr>
                 </tbody>
-              </table>
+               </table>
+               </div>
               <div class="thumb-control-group" style="display:none;">
                 <div class="controls">
                   <input type="radio" name="upload-thumb" class="upload-thumb input-radio single" value="No" checked="true">
@@ -165,8 +168,8 @@
             <div class="uploaded-images">
               <table class="table table-striped uploads-history tab-table">
                   <tbody>
-                    <tr class="">
-                      <th>Preview</th>
+                    <tr class="c-list">
+                      <td>Preview</td>
                       <td>Title</td>
                       <td>Action</td>
                     </tr>
@@ -174,11 +177,11 @@
                    if(is_array($uploaded_images)>0):
                     foreach($uploaded_images as $uploaded_image):?>
                       <tr class="">
-                           <td><img width="180" height="102" src="<?php echo site_url().'uploads/'.$uploaded_image->ProfileId.'/'.$uploaded_image->ProductCode.'/thumb/listing/'.$uploaded_image->ImageName;?>" ></td>
+                           <td><img width="80" height="40" src="<?php echo site_url().'uploads/'.$uploaded_image->ProfileId.'/'.$uploaded_image->ProductCode.'/thumb/listing/'.$uploaded_image->ImageName;?>" ></td>
                            <td><?php echo $uploaded_image->ProductName; ?></td>
                            <td>
-                              <a title="Edit" pcode="<?php echo $uploaded_image->ProductCode;?>" id="eimage" href="javascript:void(0)"><img src="<?php echo base_url(); ?>images/admin/edit.png"></a>
-                              <a id="delimage" title="Delete" onclick="return confirm('Are You Sure To Delete This Image?');" href="<?php echo base_url()."dashboard/delete/$uploaded_image->ProductCode";?>"><img src="<?php echo base_url(); ?>images/admin/close.png"></a>
+                              <a title="Edit" pcode="<?php echo $uploaded_image->ProductCode;?>" id="eimage" href="javascript:void(0)"><i class="icon-edit"></i></a>
+                              <a id="delimage" title="Delete" onclick="return confirm('Are You Sure To Delete This Image?');" href="<?php echo base_url()."dashboard/delete/$uploaded_image->ProductCode";?>"><i class="icon-remove-sign"></i></a>
                            </td>
                       </tr>
                     <?php endforeach; endif;?>
@@ -186,8 +189,6 @@
                   </tbody>
               </table>
             </div>
-            <hr>
-            
             <div class="overview">
               <h3><i class="icon-bar-chart"></i>User's Account Statistics:</h3>
               <!-- Your details -->
